@@ -1,4 +1,4 @@
-#include "../../include/core/string.h"
+#include "../../npstdlib/string.h"
 namespace npcore
 {
 	size_t strnlen(char * string)

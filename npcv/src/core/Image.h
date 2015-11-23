@@ -1,8 +1,8 @@
 #ifndef __NSDK_IMAGE_H__
 #define __NSDK_IMAGE_H__
 
-#include "core/npstdlib.h";
-#include "core\pixel.h"
+#include "../core/npstdlib/npstdlib.h";
+#include "../core/pixel.h"
 
 #define R(pixel) *pixel->ptr
 #define G(pixel) *(pixel->ptr + 1)

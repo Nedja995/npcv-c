@@ -5,5 +5,7 @@
 #if defined _MSC_VER || !_MSC_VER
 	typedef unsigned char uchar;
 #endif
+#if LINUX
+	typedef char uchar;
 
 #endif

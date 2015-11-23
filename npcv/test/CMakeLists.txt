@@ -1,8 +1,20 @@
-FILE (GLOB_RECURSE test_SRCS *.cpp *.cxx *.cc *.C *.c *.h *.hpp)
-
-
-ADD_EXECUTABLE(${test_BIN} ${test_SRCS})
-TARGET_LINK_LIBRARIES(${test_BIN} ${test_LIBS})
-
-ADD_CUSTOM_TARGET(check ALL "${MAINFOLDER}/bin/${test_BIN}" DEPENDS ${test_BIN} COMMENT "Executing unit tests..." VERBATIM SOURCES ${test_SRCS})
-ADD_CUSTOM_TARGET(test "${MAINFOLDER}/bin/${test_BIN}" DEPENDS ${test_BIN} COMMENT "Executing unit tests..." VERBATIM SOURCES ${test_SRCS})
+#
+#	TEST IMAGE READ WRITE
+#
+# Image Processing project
+#
+set(INC_TESTIMAGERW
+	.
+)
+set(INC_SYS_TESTIMAGERW
+	imageproc/edge_detection.h
+	imageproc/imageproc_gray.h
+)
+set(SRC_TESTIMAGERW
+	imageproc/intern/EdgeDetection.cpp
+	imageproc/intern/EdgeDetection.cpp
+)
+add_executable(imageproc ${SRC_TESTIMAGERW} ${INC_SYS_TESTIMAGERW})
+#
+#END IMAGEPROC
+#####################################################################################

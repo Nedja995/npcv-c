@@ -1,7 +1,7 @@
 #ifndef __NPCV_PIXEL_H__
 #define __NPCV_PIXEL_H__
 
-#include "npstdlib.h"
+#include "npstdlib/npstdlib.h"
 
 namespace npcore 
 {

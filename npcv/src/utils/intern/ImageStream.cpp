@@ -1,5 +1,5 @@
-#include "../include/Image.h"
-#include "../include/utils/ImageStream.h"
+#include "../../core/Image.h"
+#include "../ImageStream.h"
 
 #ifndef STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
@@ -8,8 +8,8 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #endif
 
-#include "../lib/stb/stb_image.h"
-#include "../lib/stb/stb_image_write.h"
+#include "../../../lib/stb/stb_image.h"
+#include "../../../lib/stb/stb_image_write.h"
 
 
 

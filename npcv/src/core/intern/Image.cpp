@@ -1,4 +1,5 @@
-#include "../include/Image.h"
+#include "../Image.h"
+
 namespace npcore
 {
 	Image* image_create(uchar* data, int width, int height, int type)

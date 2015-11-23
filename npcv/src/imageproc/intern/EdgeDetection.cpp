@@ -1,4 +1,4 @@
-#include "../../../include/utils/imageproc/edge_detection.h"
+#include "../edge_detection.h"
 
 namespace npip {
 

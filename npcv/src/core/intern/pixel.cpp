@@ -1,4 +1,4 @@
-#include "../../include/core/pixel.h"
+#include "../pixel.h"
 
 namespace npcore 
 {

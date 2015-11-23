@@ -1,13 +1,8 @@
-#include "../../include/core/npstdlib.h"
+#include "../../core/npstdlib/npstdlib.h"
+#include "../../core/npstdlib/string.h"
 
-#include "../../include/utils/FileCSV.h"
-
-#include "../../include/core/file_ops.h"
-
-//#include "../../include/core/xprintf.h"
-
-#include "../../include/core/string.h"
-
+#include "../../utils/FileCSV.h"
+#include "../file_ops.h"
 
 #include <stdlib.h>
 

@@ -1,7 +1,7 @@
 #ifndef __NSD_IMAGE_READER__
 #define __NSD_IMAGE_READER__
 
-#include "../Image.h"
+#include "../core/Image.h"
 
 using namespace npcore;
 

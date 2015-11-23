@@ -1,7 +1,7 @@
 #ifndef __NPCV_IMAGE_CLASSIFICATION_H__
 #define __NPCV_IMAGE_CLASSIFICATION_H__
 
-#include "../../Image.h";
+#include "../core/Image.h";
 
 using namespace npcore;
 

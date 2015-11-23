@@ -1,7 +1,7 @@
 #ifndef __NPCV_EDGE_DETECTION_H__
 #define __NPCV_EDGE_DETECTION_H__
 
-#include "../../Image.h"
+#include "../core/Image.h"
 
 using namespace npcore;
 

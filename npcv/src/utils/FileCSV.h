@@ -2,9 +2,9 @@
 #define __NPCV_CSV_STREAM_H__
 
 
-#include "classification\image_classification.h"
+#include "../classification/image_classification.h"
 
-#include "../../include/core/list.h"
+#include "../core/npstdlib/list.h"
 
 using namespace npcore;
 using namespace npcf;
