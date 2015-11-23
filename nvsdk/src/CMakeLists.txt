@@ -1,0 +1,4 @@
+set(SRC
+
+	Image.cpp
+)
