@@ -1,7 +1,7 @@
 #ifndef __NSDK_IMAGE_H__
 #define __NSDK_IMAGE_H__
 
-#include "../core/npstdlib/npstdlib.h";
+#include "../core/npstdlib/npstdlib.h"
 #include "../core/pixel.h"
 
 #define R(pixel) *pixel->ptr

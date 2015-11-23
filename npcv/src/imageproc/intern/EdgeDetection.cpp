@@ -179,3 +179,5 @@ namespace npip {
 
 	}
 }
+
+int main() { return 0; }

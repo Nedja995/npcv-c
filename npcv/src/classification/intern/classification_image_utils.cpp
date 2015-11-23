@@ -1,15 +1,15 @@
 #include "../../core/npstdlib/npstdlib.h"
 #include "../../core/npstdlib/string.h"
 
-#include "../../utils/FileCSV.h"
-#include "../file_ops.h"
+#include "../classification_image_utils.h"
+#include "file_ops.h"
 
 #include <stdlib.h>
 
 #define MAX_REGION_VALUE_CHARS 4
 
 
-namespace nputils
+namespace npcf
 {
 	bool csv_write_image_classifier(ImageClassificationData * icd, const char * filepath)
 	{
@@ -21,12 +21,12 @@ namespace nputils
 			//sprintfN(text + i * sizeof(char) * 4, "%i,%i\n", 0, regVal);
 		}
 
-		file_write(filepath, text);
+		nputils::file_write(filepath, text);
 
 		return false;
 	}
 
-	bool csv_write_image_classifiers(npcore::List * classifiersList, const char * filepath)
+	char *csv_write_image_classifiers(npcore::List * classifiersList, const char * filepath)
 	{
 		int listCount = npcore::list_count(classifiersList);
 		int regCount = ((ImageClassificationData*)classifiersList->first->data)->regionCount;
@@ -69,9 +69,9 @@ namespace nputils
 			else
 				offset += offsetReg + sizeof(char);
 		}
-		file_write(filepath, textAllClass);
+		nputils::file_write(filepath, textAllClass);
 
-		return true;
+		return textAllClass;
 	}
 
 }

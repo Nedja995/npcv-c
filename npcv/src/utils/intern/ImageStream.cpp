@@ -8,16 +8,12 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #endif
 
-#include "../../../lib/stb/stb_image.h"
-#include "../../../lib/stb/stb_image_write.h"
-
+#include "../stb_image.h"
+#include "../stb_image_write.h"
 
 
 namespace nputils
 {
-
-
-
 	Image * ImageStream::ReadImage_STB(const char *filepath)
 	{
 		int width;
@@ -39,3 +35,5 @@ namespace nputils
 	}
 
 }
+
+//int main() { return 0;  }

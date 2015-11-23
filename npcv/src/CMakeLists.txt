@@ -1,4 +1,10 @@
 
+add_subdirectory(core)
+add_subdirectory(utils)
+#add_subdirectory(imageproc)
+#add_subdirectory(classification)
+
+
 #
 #	CORE
 #
@@ -7,8 +13,10 @@
 set(INC_CORE
 	.
 )
-
 set(INC_SYS_CORE
+	../lib/stb/stb_image.h
+	../lib/stb/stb_image_write.h
+
 	core/pixel.h
 	core/Image.h
 	
@@ -18,9 +26,15 @@ set(INC_SYS_CORE
 	core/npstdlib/npstdlib.h
 	core/npstdlib/string.h
 	#core/npstdlib/xprintf.h
-	
-	
+
 )
+
+set(STB_IMAGE_INC
+	${INC_SYS_CORE} 
+	../lib/stb/stb_image.h
+	../lib/stb/stb_image_write.h
+)
+
 
 set(SRC_CORE
 	core/intern/pixel.cpp
@@ -35,10 +49,52 @@ set(SRC_CORE
 	#core/intern/npstdlib/xprintf.cpp
 	
 )
-add_executable(core ${SRC_CORE} ${INC_SYS_CORE})
+
+add_library(core ${SRC_CORE} ${INC_SYS_CORE})
+
+
 #
 #END CORE
 #####################################################################################
+
+#
+#	UTILS
+#
+# UTILS project
+#
+set(INC_UTILS
+	.
+)
+
+set(INC_SYS_UTILS
+	utils/file_ops.h
+	utils/ImageStream.h
+)
+
+set(SRC_UTILS
+	utils/intern/file_ops.cpp
+	utils/intern/ImageStream.cpp
+	
+
+)
+include_directories(utils ${INC_SYS_CORE})
+
+if(STB_IMAGE)
+	include_directories(utils ${STB_IMAGE_INC})
+endif()
+
+add_library(utils ${SRC_UTILS} ${INC_SYS_UTILS})
+target_link_libraries(utils core)
+
+
+
+#
+#END UTILS
+#####################################################################################
+
+
+
+
 #
 #	IMAGEPROC
 #
@@ -55,36 +111,15 @@ set(SRC_IMAGEPROC
 	imageproc/intern/EdgeDetection.cpp
 	imageproc/intern/EdgeDetection.cpp
 )
+
+include_directories(utils ${INC_CORE})
 add_executable(imageproc ${SRC_IMAGEPROC} ${INC_SYS_IMAGEPROC})
+target_link_libraries(imageproc core)
+target_link_libraries(imageproc utils)
 #
 #END IMAGEPROC
 #####################################################################################
-#
-#	UTILS
-#
-# UTILS project
-#
-set(INC_UTILS
-	.
-)
 
-set(INC_SYS_UTILS
-	utils/file_ops.h
-	utils/FileCSV.h
-	utils/ImageStream.h
-)
-
-set(SRC_UTILS
-	utils/intern/file_ops.cpp
-	utils/intern/FileCSV.cpp
-	utils/intern/ImageStream.cpp
-	
-)
-
-add_executable(utils ${SRC_UTILS} ${INC_SYS_UTILS})
-#
-#END UTILS
-#####################################################################################
 
 #
 #	CLASSIFICATION
@@ -97,12 +132,16 @@ set(INC_CLASSIFICATION
 
 set(INC_SYS_CLASSIFICATION
 	classification/image_classification.h
+	classification/classification_image_utils.h
 )
 
 set(SRC_CLASSIFICATION
 	classification/intern/image_classification.cpp
+	classification/intern/classification_image_utils.cpp
 )
-
+include_directories(utils ${INC_CORE})
 add_executable(classification ${SRC_CLASSIFICATION} ${INC_SYS_CLASSIFICATION})
+target_link_libraries(classification core)
+target_link_libraries(classification utils)
 #
 #END CLASSIFICATION
