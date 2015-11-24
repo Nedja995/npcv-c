@@ -3,14 +3,14 @@
 
 #include <iostream>
 //
-#include "../include/Image.h"
-#include "../include/utils/ImageStream.h"
-#include "../include/utils/imageproc/imageproc_gray.h"
-#include "../include/utils/imageproc/edge_detection.h"
-#include "../include/utils/classification/image_classification.h"
-#include "../include/core/file_ops.h"
-#include "../include/utils/FileCSV.h"
-#include "../include/core/list.h"
+#include "core/Image.h"
+#include "utils/ImageStream.h"
+#include "imageproc/imageproc_gray.h"
+#include "imageproc/edge_detection.h"
+#include "classification/image_classification.h"
+#include "utils/file_ops.h"
+#include "classification\classification_image_utils.h"
+#include "core/npstdlib/list.h"
 
 #include "DataTest.h"
 
@@ -130,8 +130,8 @@ bool ClassifyOcr_Test()
 	}
 
 	//npcore::ImageClassificationData * icd = npcore::image_classify(subimage, 9);
-
-	nputils::csv_write_image_classifiers(classes, fileWrite_output);
+//	npcf::csv_write_image_classifier(i)
+//	nputils::csv_write_image_classifiers(classes, fileWrite_output);
 
 	/*for (int i = 0; i < icd->regionCount; i++)
 	{

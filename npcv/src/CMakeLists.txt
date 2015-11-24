@@ -83,6 +83,7 @@ if(STB_IMAGE)
 	include_directories(utils ${STB_IMAGE_INC})
 endif()
 
+
 add_library(utils ${SRC_UTILS} ${INC_SYS_UTILS})
 target_link_libraries(utils core)
 
@@ -109,11 +110,15 @@ set(INC_SYS_IMAGEPROC
 )
 set(SRC_IMAGEPROC
 	imageproc/intern/EdgeDetection.cpp
-	imageproc/intern/EdgeDetection.cpp
+	imageproc/intern/ImageProc_Gray.cpp
 )
 
-include_directories(utils ${INC_CORE})
-add_executable(imageproc ${SRC_IMAGEPROC} ${INC_SYS_IMAGEPROC})
+include_directories(imageproc ${INC_CORE})
+if(TESTS)
+	add_library(imageproc ${SRC_IMAGEPROC} ${INC_SYS_IMAGEPROC})
+else()
+	add_executable(imageproc ${SRC_IMAGEPROC} ${INC_SYS_IMAGEPROC})
+endif()
 target_link_libraries(imageproc core)
 target_link_libraries(imageproc utils)
 #
@@ -140,7 +145,12 @@ set(SRC_CLASSIFICATION
 	classification/intern/classification_image_utils.cpp
 )
 include_directories(utils ${INC_CORE})
-add_executable(classification ${SRC_CLASSIFICATION} ${INC_SYS_CLASSIFICATION})
+
+if(TESTS)
+	add_library(classification ${SRC_CLASSIFICATION} ${INC_SYS_CLASSIFICATION})
+else()
+	add_executable(classification ${SRC_CLASSIFICATION} ${INC_SYS_CLASSIFICATION})
+endif()
 target_link_libraries(classification core)
 target_link_libraries(classification utils)
 #
