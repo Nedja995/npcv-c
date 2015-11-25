@@ -42,7 +42,7 @@ namespace npcore
 		return width * height * type;
 	}
 
-	Image * image_get_area(const Image const * image, int x, int y, int width, int height)
+	Image * image_get_area(const Image * image, int x, int y, int width, int height)
 	{
 		Image * ret = 0;
 		Pixel * pixelTemp = 0;

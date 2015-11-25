@@ -2,19 +2,19 @@
 #define __NPCV_TEST_MANAGER_H__
 
 #include <iostream>
-//
-#include "core/Image.h"
-#include "utils/ImageStream.h"
-#include "imageproc/imageproc_gray.h"
-#include "imageproc/edge_detection.h"
-#include "classification/image_classification.h"
-#include "utils/file_ops.h"
-#include "classification\classification_image_utils.h"
-#include "core/npstdlib/list.h"
+
+#include "../src/core/Image.h"
+#include "../src/utils/ImageStream.h"
+#include "../src/imageproc/imageproc_gray.h"
+#include "../src/imageproc/edge_detection.h"
+#include "../src/classification/image_classification.h"
+#include "../src/utils/file_ops.h"
+#include "../src/classification/classification_image_utils.h"
+#include "../src/core/npstdlib/list.h"
 
 #include "DataTest.h"
 
-enum NPCVTests 
+enum NPCVTests
 {
 	ImageReadWrite,
 	GrayImage,
@@ -108,7 +108,7 @@ bool ClassifyOcr_Test()
 {
 	npcore::Image *img = nputils::ImageStream::ReadImage_STB(classifyOcr_input);
 	npcore::Image *subimage = 0;
-	npcore::Image *subImageEdges = nullptr;
+	npcore::Image *subImageEdges = NULL;
 	npcf::ImageClassificationData *icdTemp = 0;
 	npcore::List *classes = npcore::list_create();
 
@@ -120,9 +120,9 @@ bool ClassifyOcr_Test()
 		for (int y = 700; y < 800; y += 20)
 		{
 			subimage = npcore::image_get_area(img, x, y, subimageSize, subimageSize);
-			
+
 			icdTemp = npcf::image_classify(subimage, 12);
-			if (icdTemp == nullptr)
+			if (icdTemp == NULL)
 				continue;
 			npcore::list_put(classes, icdTemp);
 			si++;
@@ -190,7 +190,7 @@ int main(int argc, char** argv)
 		else if (testChoosed == ClassifyOcr)
 		{
 			ClassifyOcr_Test();
-		}		
+		}
 		else if (testChoosed == FileWrite)
 		{
 			FileWrite_Test();
@@ -205,7 +205,7 @@ int main(int argc, char** argv)
 		{
 			std::cout << "Test don't exists" << std::endl;
 		}
-	
+
 
 		//system("pause");
 		return 0;

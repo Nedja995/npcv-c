@@ -1,6 +1,7 @@
 #include "../file_ops.h"
 
 #include <fstream>
+#include "../../core/npstdlib/string.h"
 
 namespace nputils
 {

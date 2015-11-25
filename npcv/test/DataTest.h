@@ -1,6 +1,7 @@
 #ifndef __NPCV_DATA_TEST_H__
 #define __NPCV_DATA_TEST_H__
 
+
 const char * projectPath = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\test\\";
 
 const char* imageReadWrite_input = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\test\\Datas\\SampleDatas\\lena.jpg";

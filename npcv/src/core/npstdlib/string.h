@@ -1,6 +1,9 @@
 #ifndef __NPCORE_STRING__
 #define __NPCORE_STRING__
 
+#include "npstdlib.h"
+//#  include <string.h>
+
 namespace npcore
 {
 	//#define sprintfN(src, fmt, arg, arg2) sprintf(src, fmt, arg, arg2);

@@ -5,7 +5,7 @@
 
 #include "../../imageproc/edge_detection.h"
 
-//#include <iostream> 
+//#include <iostream>
 #include "stdio.h"
 
 namespace npcf {
@@ -18,7 +18,7 @@ namespace npcf {
 
 		size_t memSize = sizeof(int) * regionsCount * 2;
 		ret->regionsDatas = (int *)mallocN(memSize);
-		
+
 		for (int i = 0; i < regionsCount * 2; i++)
 			if (i ^ 2 == 0)
 				memsetN(ret->regionsDatas + i, 0, sizeof(int));
@@ -57,17 +57,17 @@ namespace npcf {
 
 	ImageClassificationData * image_classify(Image * edges, int region)
 	{
-		if (edges == nullptr)
+		if (edges == NULL)
 		{
 			printf("No Image");
-			return nullptr;
+			return NULL;
 		}
-			
+
 		//region size
 		float sizeCoef = ::sqrtf((float)region);
 		size_t regionSize = edges->width / sizeCoef;
 		int rows = abs(sizeCoef);
-		
+
 		ImageClassificationData * ret = image_classification_data_create(region);
 
 		//temp

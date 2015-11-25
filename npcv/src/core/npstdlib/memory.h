@@ -1,12 +1,27 @@
 #ifndef __NSDK_MEMORY_H__
 #define __NSDK_MEMORY_H__
 
-#if defined _MSC_VER || !_MSC_VER
-#	include "stdlib.h"
+
+/*
+* Platform specific include
+*
+*/
+
+//
+//Windows and Linux shared
+#if defined _MSC_VER || defined __linux__
 #	include <stdio.h>
-#	include <string>
 #endif
 
+//
+//Specific
+#if defined _MSC_VER
+#	include "stdlib.h"
+#	include <string>
+#else defined __linux__
+#	include "stdlib.h"
+#   include <string.h>
+#endif
 
 //
 // COMPILER DEPENDED
@@ -15,7 +30,7 @@
 inline void* mallocN(size_t size)
 {
 	void* ret = 0;
-	
+
 #if defined _MSC_VER || !_MSC_VER
 	//
 	// Visual Studio

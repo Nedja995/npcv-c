@@ -22,7 +22,7 @@ namespace npcore
 
 	Pixel * image_get_pixel(const Image * image, int x, int y);
 
-	Image * image_get_area(const Image const * image, int x, int y, int width, int height);
+	Image * image_get_area(const Image * image, int x, int y, int width, int height);
 
 	size_t image_data_get_size(const int width, const int height, const int type);
 

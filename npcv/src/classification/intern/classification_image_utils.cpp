@@ -4,8 +4,6 @@
 #include "../classification_image_utils.h"
 #include "file_ops.h"
 
-#include <stdlib.h>
-
 #define MAX_REGION_VALUE_CHARS 4
 
 
@@ -41,8 +39,8 @@ namespace npcf
 		char *fmtTemp = 0;
 
 		int j = 0;
-		for (npcore::LinkData *iter = classifiersList->first; 
-				iter != classifiersList->last; 
+		for (npcore::LinkData *iter = classifiersList->first;
+				iter != classifiersList->last;
 				iter = iter->next){
 
 			offsetReg = 0;
@@ -56,11 +54,11 @@ namespace npcf
 				if (i == regCount - 1) {
 					sprintf(textClass + offsetReg, "%i", regVal);
 					offsetReg += npcore::strnlen(textValue) ;
-				}					
+				}
 				else {
 					sprintf(textClass + offsetReg, "%i,", regVal);
 					offsetReg += npcore::strnlen(textValue) + 1;
-				}			
+				}
 			}
 
 			sprintf(textAllClass + offset, "%s\n", textClass);
