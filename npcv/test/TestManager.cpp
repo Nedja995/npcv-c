@@ -155,7 +155,7 @@ int main(int argc, char** argv)
 {
 	std::cout << "===== NPCV TestManger started=====" << std::endl;
 
-	NPCVTests testChoosed = ClassifyOcr;
+	NPCVTests testChoosed = ImageReadWrite;
 
 	std::string input;
 
