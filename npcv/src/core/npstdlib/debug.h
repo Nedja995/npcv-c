@@ -14,7 +14,7 @@ namespace npcore {
 		TRACE = 5 // every loged function
 	} LogLevel;
 
-	static LogLevel logLevel = LogLevel::TRACE;
+	static LogLevel logLevel = TRACE;
 
 	/*
 	*

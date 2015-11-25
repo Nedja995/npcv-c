@@ -9,7 +9,7 @@ namespace npcore {
 
 	void Log(const char *text)
 	{
-		Log(text, LogLevel::INFO);
+		Log(text, INFO);
 	}
 
 		

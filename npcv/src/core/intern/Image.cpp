@@ -5,7 +5,7 @@ namespace npcore
 {
 	Image* image_create(uchar* data, int width, int height, int type)
 	{
-		Image* ret = mallocN<Image>();
+		Image* ret = (Image *)mallocN(sizeof(Image));
 
 		size_t memSize = sizeof(uchar) * width * height * 3;
 		ret->data = (uchar*)duplicateN((void*)data, memSize);
