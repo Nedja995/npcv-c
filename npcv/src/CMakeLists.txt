@@ -14,9 +14,6 @@ set(INC_CORE
 	.
 )
 set(INC_SYS_CORE
-	../lib/stb/stb_image.h
-	../lib/stb/stb_image_write.h
-
 	core/pixel.h
 	core/Image.h
 	
@@ -25,16 +22,21 @@ set(INC_SYS_CORE
 	core/npstdlib/mathn.h
 	core/npstdlib/npstdlib.h
 	core/npstdlib/string.h
+	core/npstdlib/memory.h
 	#core/npstdlib/xprintf.h
 
 )
 
 set(STB_IMAGE_INC
-	${INC_SYS_CORE} 
 	../lib/stb/stb_image.h
 	../lib/stb/stb_image_write.h
 )
-
+if(STB_IMAGE)
+	set(INC_SYS_CORE
+		${INC_SYS_CORE}
+		../lib/stb/
+	)
+endif()
 
 set(SRC_CORE
 	core/intern/pixel.cpp
@@ -46,6 +48,7 @@ set(SRC_CORE
 	core/intern/npstdlib/npstdlib.cpp
 
 	core/intern/npstdlib/string.cpp
+
 	#core/intern/npstdlib/xprintf.cpp
 	
 )
@@ -79,9 +82,9 @@ set(SRC_UTILS
 )
 include_directories(utils ${INC_SYS_CORE})
 
-if(STB_IMAGE)
-	include_directories(utils ${STB_IMAGE_INC})
-endif()
+#if(STB_IMAGE)
+#	include_directories(utils ${STB_IMAGE_INC})
+#endif()
 
 
 add_library(utils ${SRC_UTILS} ${INC_SYS_UTILS})
