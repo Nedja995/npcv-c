@@ -53,11 +53,11 @@ namespace npcf
 				//printf("%i", regVal);
 				if (i == regCount - 1) {
 					sprintf(textClass + offsetReg, "%i", regVal);
-					offsetReg += npcore::strnlen(textValue) ;
+					offsetReg += npcore::string_length(textValue) ;
 				}
 				else {
 					sprintf(textClass + offsetReg, "%i,", regVal);
-					offsetReg += npcore::strnlen(textValue) + 1;
+					offsetReg += npcore::string_length(textValue) + 1;
 				}
 			}
 

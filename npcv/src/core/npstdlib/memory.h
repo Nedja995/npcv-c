@@ -11,15 +11,14 @@
 //Windows and Linux shared
 #if defined _MSC_VER || defined __linux__
 #	include <stdio.h>
+#	include "stdlib.h"
 #endif
 
 //
 //Specific
 #if defined _MSC_VER
-#	include "stdlib.h"
 #	include <string>
 #else defined __linux__
-#	include "stdlib.h"
 #   include <string.h>
 #endif
 

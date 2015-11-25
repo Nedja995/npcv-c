@@ -14,6 +14,9 @@ set(INC_CORE
 	.
 )
 set(INC_SYS_CORE
+	../lib/stb/stb_image.h
+	../lib/stb/stb_image_write.h
+
 	core/pixel.h
 	core/Image.h
 	
@@ -23,6 +26,7 @@ set(INC_SYS_CORE
 	core/npstdlib/npstdlib.h
 	core/npstdlib/string.h
 	core/npstdlib/memory.h
+	core/npstdlib/debug.h
 	#core/npstdlib/xprintf.h
 
 )
@@ -31,12 +35,12 @@ set(STB_IMAGE_INC
 	../lib/stb/stb_image.h
 	../lib/stb/stb_image_write.h
 )
-if(STB_IMAGE)
-	set(INC_SYS_CORE
-		${INC_SYS_CORE}
-		../lib/stb/
-	)
-endif()
+#if(STB_IMAGE)
+	#set(INC_SYS_CORE
+	#	${INC_SYS_CORE}
+	#	../lib/stb/
+	#)
+#endif()
 
 set(SRC_CORE
 	core/intern/pixel.cpp
@@ -46,7 +50,7 @@ set(SRC_CORE
 	core/intern/npstdlib/list.cpp
 	core/intern/npstdlib/mathn.cpp
 	core/intern/npstdlib/npstdlib.cpp
-
+	core/intern/npstdlib/debug.cpp
 	core/intern/npstdlib/string.cpp
 
 	#core/intern/npstdlib/xprintf.cpp

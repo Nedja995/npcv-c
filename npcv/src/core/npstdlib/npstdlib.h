@@ -5,9 +5,15 @@
 
 #include "memory.h"
 #include "datatypes.h"
+#include "debug.h"
+
+#define NULL 0
+
+namespace npcore {
+	
 
 
-
+}
 
 
 

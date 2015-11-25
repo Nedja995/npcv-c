@@ -11,7 +11,10 @@
 #include "../src/utils/file_ops.h"
 #include "../src/classification/classification_image_utils.h"
 #include "../src/core/npstdlib/list.h"
-
+#include "../src/core/npstdlib/npstdlib.h"
+#include "../src/core/npstdlib/string.h"
+#include "../src/core/npstdlib/memory.h"
+#include "../src/core/npstdlib/debug.h"
 #include "DataTest.h"
 
 enum NPCVTests
@@ -27,6 +30,11 @@ enum NPCVTests
 
 bool ImageReadWrite_Test()
 {
+	npcore::Log("Test Started: ImageReadWrite", npcore::LogLevel::TRACE);
+
+	npcore::Log("input path: "); npcore::Log(imageReadWrite_input); npcore::Log("\n");
+	npcore::Log("output path: "); npcore::Log(imageReadWrite_output); npcore::Log("\n");
+
 	npcore::Image * img = nputils::ImageStream::ReadImage_STB(imageReadWrite_input);
 
 	nputils::ImageStream::WriteImage_STB(img, imageReadWrite_output);
