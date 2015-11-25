@@ -30,8 +30,7 @@ enum NPCVTests
 
 bool ImageReadWrite_Test()
 {
-	npcore::Log("Test Started: ImageReadWrite", npcore::LogLevel::TRACE);
-
+	npcore::Log("Test Started: ImageReadWrite", npcore::TRACE);
 	npcore::Log("input path: "); npcore::Log(imageReadWrite_input); npcore::Log("\n");
 	npcore::Log("output path: "); npcore::Log(imageReadWrite_output); npcore::Log("\n");
 

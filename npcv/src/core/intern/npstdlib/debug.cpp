@@ -1,4 +1,4 @@
-#include "../debug.h"
+#include "../../npstdlib/debug.h"
 
 #if defined _MSC_VER || defined __linux__
 #	include "stdio.h"
@@ -12,7 +12,7 @@ namespace npcore {
 		Log(text, INFO);
 	}
 
-		
+
 	void Log(const char *text, LogLevel level)
 	{
 		if (level > logLevel) {
