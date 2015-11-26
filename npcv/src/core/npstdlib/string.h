@@ -3,7 +3,7 @@
 
 #include "npstdlib.h"
 //#  include <string.h>
-
+#include "datatypes.h"
 namespace npcore
 {
 	//#define sprintfN(src, fmt, arg, arg2) sprintf(src, fmt, arg, arg2);

@@ -30,11 +30,32 @@ enum NPCVTests
 
 bool ImageReadWrite_Test()
 {
-	npcore::Log("Test Started: ImageReadWrite", npcore::TRACE);
+    char r[3], g[3], b[3], xy[20];
+
+	npcore::Log("Test Started: ImageReadWrite\n", npcore::TRACE);
 	npcore::Log("input path: "); npcore::Log(imageReadWrite_input); npcore::Log("\n");
 	npcore::Log("output path: "); npcore::Log(imageReadWrite_output); npcore::Log("\n");
 
 	npcore::Image * img = nputils::ImageStream::ReadImage_STB(imageReadWrite_input);
+    if(img == NULL){
+        npcore::Log("Test Failed !", npcore::ERROR);
+        return false;
+    }
+
+    for (int x = 0; x < img->width; ++x)
+    {
+        for (int y = 0; y < img->height; ++y)
+        {
+            npcore::Pixel *px = npcore::image_get_pixel(img, x, y);
+            npcore::sprintfN(xy, "|%ix%i  ", x, y);
+            npcore::sprintfN(r, "%i ", px->r);
+            npcore::sprintfN(g,  "%i ", px->g);
+            npcore::sprintfN(b, "%i |", px->b);
+            npcore::Log(xy); npcore::Log(r); npcore::Log(g);  npcore::Log(b);
+        }
+        npcore::Log("\n");
+    }
+
 
 	nputils::ImageStream::WriteImage_STB(img, imageReadWrite_output);
 
@@ -160,9 +181,9 @@ bool FileWrite_Test()
 
 int main(int argc, char** argv)
 {
-	std::cout << "===== NPCV TestManger started=====" << std::endl;
+	std::cout << "===== NPCV TestManger started=====" << std::endl << std::endl<< std::endl<< std::endl;
 
-	NPCVTests testChoosed = ImageReadWrite;
+	NPCVTests testChoosed = FileWrite;
 
 	std::string input;
 
@@ -212,7 +233,7 @@ int main(int argc, char** argv)
 		{
 			std::cout << "Test don't exists" << std::endl;
 		}
-
+std::cout << std::endl << std::endl;
 
 		//system("pause");
 		return 0;

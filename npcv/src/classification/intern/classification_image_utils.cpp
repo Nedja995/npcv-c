@@ -2,7 +2,7 @@
 #include "../../core/npstdlib/string.h"
 
 #include "../classification_image_utils.h"
-#include "file_ops.h"
+#include "../../utils/file_ops.h"
 
 #define MAX_REGION_VALUE_CHARS 4
 

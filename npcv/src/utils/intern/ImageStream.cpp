@@ -23,7 +23,7 @@ namespace nputils
 		Image * ret = 0;
 		uchar * data = stbi_load(filepath, &width, &height, &type, 3);
 
-		sprintfN(strW, "%ix", width); sprintfN(strH, "%i ", height); 
+		sprintfN(strW, "%ix", width); sprintfN(strH, "%i ", height);
 		Log(" image loaded ", DEBUG); Log(strW, DEBUG); Log(strH, DEBUG);
 
 		ret = image_create(data, width, height, type);
@@ -34,6 +34,12 @@ namespace nputils
 
 	bool ImageStream::WriteImage_STB(const Image * image, const char * filepath)
 	{
+        //debug log image
+		char strW[15], strH[15], strT[15], type[5];
+		sprintfN(strW, "%ix", image->width); sprintfN(strH, "%i ", image->height); sprintfN(type, "%i ", image->type);
+        Log("WriteImage_STB: \nimage: ", DEBUG); Log(strW, DEBUG); Log(strH, DEBUG); Log(type, DEBUG);
+
+        Log("\nwrite to: "); Log(filepath);
 		int res = stbi_write_png(filepath, image->width, image->height, image->type, image->data, 0);
 
 		return true;
