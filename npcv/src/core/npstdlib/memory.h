@@ -19,7 +19,7 @@
 #if defined _MSC_VER
 #	include <string>
 #else defined __linux__
-#   include <npstring.h>
+#   include <string.h>
 #endif
 
 //

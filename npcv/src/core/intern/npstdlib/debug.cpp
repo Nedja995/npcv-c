@@ -1,6 +1,6 @@
-#include "../debug.h"
-#include "../memory.h"
-#include "../npstring.h"
+#include "../../npstdlib/debug.h"
+#include "../../npstdlib/memory.h"
+#include "../../npstdlib/npstring.h"
 #include "file_ops.h"
 
 #if defined _MSC_VER || defined __linux__
@@ -28,7 +28,7 @@ namespace npcore {
 		else {
 			NOT_IMPLEMENTED();
 		}
-		
+
 	}
 
 	void NTrace(const char * msg)
