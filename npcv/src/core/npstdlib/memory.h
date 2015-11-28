@@ -19,7 +19,7 @@
 #if defined _MSC_VER
 #	include <string>
 #else defined __linux__
-#   include <string.h>
+#   include <npstring.h>
 #endif
 
 //
@@ -75,6 +75,7 @@ inline void memsetN(void * mem, int val, size_t size)
 inline void freeN(void * data)
 {
 	free(data);
+	data = NULL;
 }
 
 

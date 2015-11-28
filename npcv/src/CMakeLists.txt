@@ -23,8 +23,8 @@ set(INC_SYS_CORE
 	#npstdlib
 	core/npstdlib/list.h
 	core/npstdlib/mathn.h
-	core/npstdlib/npstdlib.h
-	core/npstdlib/string.h
+	core/npstdlib/npio.h
+	core/npstdlib/npstring.h
 	core/npstdlib/memory.h
 	core/npstdlib/debug.h
 	#core/npstdlib/xprintf.h
@@ -49,9 +49,9 @@ set(SRC_CORE
 	#npstdlib
 	core/intern/npstdlib/list.cpp
 	core/intern/npstdlib/mathn.cpp
-	core/intern/npstdlib/npstdlib.cpp
+	core/intern/npstdlib/npio.cpp
 	core/intern/npstdlib/debug.cpp
-	core/intern/npstdlib/string.cpp
+	core/intern/npstdlib/npstring.cpp
 
 	#core/intern/npstdlib/xprintf.cpp
 	

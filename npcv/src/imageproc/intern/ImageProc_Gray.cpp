@@ -1,4 +1,4 @@
-#include "core/npstdlib/npstdlib.h"
+#include "core/npstdlib/npio.h"
 #include "imageproc/imageproc_gray.h"
 
 

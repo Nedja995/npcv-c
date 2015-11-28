@@ -1,5 +1,5 @@
-#include "../../core/npstdlib/npstdlib.h"
-#include "../../core/npstdlib/string.h"
+#include "../../core/npstdlib/npio.h"
+#include "../../core/npstdlib/npstring.h"
 
 #include "../classification_image_utils.h"
 #include "../../utils/file_ops.h"
@@ -39,14 +39,11 @@ namespace npcf
 		char *fmtTemp = 0;
 
 		int j = 0;
-		for (npcore::LinkData *iter = classifiersList->first;
-				iter != classifiersList->last;
-				iter = iter->next){
-
+		LIST_FOREACH(classifiersList) {
 			offsetReg = 0;
 			for (int i = 0; i < regCount; i++)
 			{
-				regVal = image_classify_region_get((ImageClassificationData*)iter->data, i);
+				regVal = image_classify_region_get((ImageClassificationData*)link->data, i);
 				if (regVal == -1)
 					int a = 3;
 				sprintf(textValue, "%i", regVal);

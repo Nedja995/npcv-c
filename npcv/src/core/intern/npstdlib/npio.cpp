@@ -1,4 +1,4 @@
-#include "../../npstdlib/npstdlib.h"
+#include "../../npstdlib/npio.h"
 
 #include "stdio.h"
 #include <stdarg.h>

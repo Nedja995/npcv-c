@@ -1,6 +1,6 @@
-#include "../../npstdlib/string.h"
+#include "../../npstdlib/npstring.h"
 #include <stdarg.h>
-
+#include "stdio.h"
 
 namespace npcore
 {

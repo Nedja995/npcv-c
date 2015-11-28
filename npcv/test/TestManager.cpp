@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "vld.h"
+
 #include "../src/core/Image.h"
 #include "../src/utils/ImageStream.h"
 #include "../src/imageproc/imageproc_gray.h"
@@ -11,11 +13,13 @@
 #include "../src/utils/file_ops.h"
 #include "../src/classification/classification_image_utils.h"
 #include "../src/core/npstdlib/list.h"
-#include "../src/core/npstdlib/npstdlib.h"
-#include "../src/core/npstdlib/string.h"
+#include "../src/core/npstdlib/npio.h"
+#include "../src/core/npstdlib/npstring.h"
 #include "../src/core/npstdlib/memory.h"
 #include "../src/core/npstdlib/debug.h"
 #include "DataTest.h"
+
+using namespace npcore;
 
 enum NPCVTests
 {
@@ -30,31 +34,24 @@ enum NPCVTests
 
 bool ImageReadWrite_Test()
 {
-    char r[3], g[3], b[3], xy[20];
+	/*Log("Test Started: ImageReadWrite\n", TRACE);
+	Log("input path: "); Log(imageReadWrite_input); Log("\n");
+	Log("output path: "); Log(imageReadWrite_output); Log("\n");*/
 
-	npcore::Log("Test Started: ImageReadWrite\n", npcore::TRACE);
-	npcore::Log("input path: "); npcore::Log(imageReadWrite_input); npcore::Log("\n");
-	npcore::Log("output path: "); npcore::Log(imageReadWrite_output); npcore::Log("\n");
-
-	npcore::Image * img = nputils::ImageStream::ReadImage_STB(imageReadWrite_input);
+	Image * img = nputils::ImageStream::ReadImage_STB(imageReadWrite_input);
     if(img == NULL){
-        npcore::Log("Test Failed !", npcore::ERROR);
+        Log("Test Failed !", ERROR);
         return false;
     }
 
-    for (int x = 0; x < img->width; ++x)
-    {
-        for (int y = 0; y < img->height; ++y)
-        {
-            npcore::Pixel *px = npcore::image_get_pixel(img, x, y);
-            npcore::sprintfN(xy, "|%ix%i  ", x, y);
-            npcore::sprintfN(r, "%i ", px->r);
-            npcore::sprintfN(g,  "%i ", px->g);
-            npcore::sprintfN(b, "%i |", px->b);
-            npcore::Log(xy); npcore::Log(r); npcore::Log(g);  npcore::Log(b);
-        }
-        npcore::Log("\n");
-    }
+	IMAGE_FOREACH(img)
+		if(x == 0 || x == 300)
+			NTrace(pixel_string_alloc(pixel)); 
+		END_ITER_Y
+			if (x == 0 || x == 300)
+			NTrace("\n");
+	END_FOREACH2
+
 
 
 	nputils::ImageStream::WriteImage_STB(img, imageReadWrite_output);
@@ -64,9 +61,9 @@ bool ImageReadWrite_Test()
 
 bool ImageSubarea_Test()
 {
-	npcore::Image * img = nputils::ImageStream::ReadImage_STB(imageSubarea_input);
+	Image * img = nputils::ImageStream::ReadImage_STB(imageSubarea_input);
 
-	npcore::Image * small = npcore::image_get_area(img, 110, 110, img->width /2, img->height /2);
+	Image * small = image_get_area(img, 110, 110, img->width /2, img->height /2);
 
 	nputils::ImageStream::WriteImage_STB(small, imageSubarea_output);
 
@@ -82,7 +79,7 @@ bool ImageSubarea_Test()
 
 bool ImageProc_Gray_Test()
 {
-	npcore::Image * img = nputils::ImageStream::ReadImage_STB(imageGray_input);
+	Image * img = nputils::ImageStream::ReadImage_STB(imageGray_input);
 
 	npip::gray(img);
 
@@ -93,39 +90,39 @@ bool ImageProc_Gray_Test()
 
 bool ImageProc_EdgeDetection_Test()
 {
-	npcore::Image * img = nputils::ImageStream::ReadImage_STB(edgeDetection_input);
+	Image * img = nputils::ImageStream::ReadImage_STB(edgeDetection_input);
 
-	//npcore::Image * img2 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img3 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img4 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img5 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img6 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img7 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img8 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img9 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img10 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img11 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img12 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img13 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img14 = (npcore::Image *)duplicateN(img, sizeof(img));
-	//npcore::Image * img15 = (npcore::Image *)duplicateN(img, sizeof(img));
+	//Image * img2 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img3 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img4 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img5 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img6 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img7 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img8 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img9 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img10 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img11 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img12 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img13 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img14 = (Image *)duplicateN(img, sizeof(img));
+	//Image * img15 = (Image *)duplicateN(img, sizeof(img));
 
 
 	npip::contour_draw_custom(img, 1, 20);
-	//npcore::imgproc::contour_draw_custom(img2);
-	//npcore::imgproc::contour_draw_custom(img3);
-	//npcore::imgproc::contour_draw_custom(img4);
-	//npcore::imgproc::contour_draw_custom(img5);
-	//npcore::imgproc::contour_draw_custom(img6);
-	//npcore::imgproc::contour_draw_custom(img7);
-	//npcore::imgproc::contour_draw_custom(img8);
-	//npcore::imgproc::contour_draw_custom(img9);
-	//npcore::imgproc::contour_draw_custom(img10);
-	//npcore::imgproc::contour_draw_custom(img11);
-	//npcore::imgproc::contour_draw_custom(img12);
-	//npcore::imgproc::contour_draw_custom(img13);
-	//npcore::imgproc::contour_draw_custom(img14);
-	//npcore::imgproc::contour_draw_custom(img15);
+	//imgproc::contour_draw_custom(img2);
+	//imgproc::contour_draw_custom(img3);
+	//imgproc::contour_draw_custom(img4);
+	//imgproc::contour_draw_custom(img5);
+	//imgproc::contour_draw_custom(img6);
+	//imgproc::contour_draw_custom(img7);
+	//imgproc::contour_draw_custom(img8);
+	//imgproc::contour_draw_custom(img9);
+	//imgproc::contour_draw_custom(img10);
+	//imgproc::contour_draw_custom(img11);
+	//imgproc::contour_draw_custom(img12);
+	//imgproc::contour_draw_custom(img13);
+	//imgproc::contour_draw_custom(img14);
+	//imgproc::contour_draw_custom(img15);
 
 	nputils::ImageStream::WriteImage_STB(img, edgeDetection_output);
 
@@ -134,11 +131,11 @@ bool ImageProc_EdgeDetection_Test()
 
 bool ClassifyOcr_Test()
 {
-	npcore::Image *img = nputils::ImageStream::ReadImage_STB(classifyOcr_input);
-	npcore::Image *subimage = 0;
-	npcore::Image *subImageEdges = NULL;
+	Image *img = nputils::ImageStream::ReadImage_STB(classifyOcr_input);
+	Image *subimage = 0;
+	Image *subImageEdges = NULL;
 	npcf::ImageClassificationData *icdTemp = 0;
-	npcore::List *classes = npcore::list_create();
+	List *classes = list_create();
 
 	int subimageSize = 20;
 
@@ -147,28 +144,28 @@ bool ClassifyOcr_Test()
 	{
 		for (int y = 700; y < 800; y += 20)
 		{
-			subimage = npcore::image_get_area(img, x, y, subimageSize, subimageSize);
+			subimage = image_get_area(img, x, y, subimageSize, subimageSize);
 
 			icdTemp = npcf::image_classify(subimage, 12);
 			if (icdTemp == NULL)
 				continue;
-			npcore::list_put(classes, icdTemp);
+			list_put(classes, icdTemp);
 			si++;
 		}
 	}
 
-	//npcore::ImageClassificationData * icd = npcore::image_classify(subimage, 9);
+	//ImageClassificationData * icd = image_classify(subimage, 9);
 //	npcf::csv_write_image_classifier(i)
 //	nputils::csv_write_image_classifiers(classes, fileWrite_output);
 
 	/*for (int i = 0; i < icd->regionCount; i++)
 	{
-		std::cout << "reg: " << i << " : " << npcore::image_classify_region_get(icd, i) << std::endl;
+		std::cout << "reg: " << i << " : " << image_classify_region_get(icd, i) << std::endl;
 	}*/
 
-//	npcore::Image * small = npcore::image_get_area(img, 0, 400, 20, 20);
+//	Image * small = image_get_area(img, 0, 400, 20, 20);
 
-	//npcore::ImageStream::WriteImage_STB(subimage, classifyOcr_output);
+	//ImageStream::WriteImage_STB(subimage, classifyOcr_output);
 
 	return true;
 }
@@ -183,10 +180,15 @@ int main(int argc, char** argv)
 {
 	std::cout << "===== NPCV TestManger started=====" << std::endl << std::endl<< std::endl<< std::endl;
 
-	NPCVTests testChoosed = FileWrite;
+	NPCVTests testChoosed = ImageReadWrite;
 
 	std::string input;
 
+	debug_initialize();
+//	dbg_default_TraceFile = (char*)logPath;
+
+	char *leak = (char*)mallocN(2000);
+	leak = NULL;
 	if (argc == 2)
 	{
 		input = argv[1];
@@ -233,8 +235,8 @@ int main(int argc, char** argv)
 		{
 			std::cout << "Test don't exists" << std::endl;
 		}
-std::cout << std::endl << std::endl;
-
+		std::cout << std::endl << std::endl;
+		debug_exit();
 		//system("pause");
 		return 0;
 

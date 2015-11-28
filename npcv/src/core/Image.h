@@ -1,7 +1,7 @@
 #ifndef __NSDK_IMAGE_H__
 #define __NSDK_IMAGE_H__
 
-#include "../core/npstdlib/npstdlib.h"
+#include "../core/npstdlib/npio.h"
 #include "../core/pixel.h"
 
 #define R(pixel) *pixel->ptr
@@ -26,6 +26,10 @@ namespace npcore
 
 	size_t image_data_get_size(const int width, const int height, const int type);
 
+	char *image_string_alloc(const Image *image);
+
+	void image_trace(const Image *image);
+	void image_trace(const Image *image, const char *traceListener);
 }
 
 
