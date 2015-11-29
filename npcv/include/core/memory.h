@@ -58,10 +58,7 @@ inline void memcpyN(void * dst,
 			 void * src,
 			 size_t size)
 {
-#ifdef _MSC_VER || !_MSC_VER
-	//
-	// Visual Studio
-	//
+#if _MSC_VER || __linux__
 	dst = memcpy(dst, src, size);
 #endif
 }
