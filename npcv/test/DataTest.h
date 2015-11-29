@@ -27,12 +27,12 @@ const char *logPath = "logs/log.txt";
 
 	const char* fileWrite_output = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\test\\Datas\\TestOutput\\fileProba.csv";
 
-#elif defined __linux__
+#elif __linux__
 
-	const char * projectPath = "/home/nedja/ComputerVision/npcv";
+	const char * projectPath = "/home/ubuntudev/Desktop/Projects/ComputerVision/npcv/test/Datas";
 
-	const char* imageReadWrite_input = "/home/nedja/ComputerVisionGit/ComputerVision/npcv/test/Datas/SampleDatas/mask.png";
-	const char* imageReadWrite_output = "/home/nedja/ComputerVisionGit/ComputerVision/npcv/test/Datas/OutputDatas/lenaRW.png";
+	const char* imageReadWrite_input = "/home/ubuntudev/Desktop/Projects/ComputerVision/npcv/test/Datas/SampleDatas/lena.jpg";
+	const char* imageReadWrite_output = "/home/ubuntudev/Desktop/Projects/ComputerVision/npcv/test/Datas/OutputDatas/lenaRW.png";
 
 	const char* imageSubarea_input = "/home/nedja/ComputerVisionGit/npcv/test/Datas/SampleDatas/lena.jpg";
 	const char* imageSubarea_output = "/home/nedja/ComputerVisionGit/npcvt/test/Datas/TestOutput/lenaSubarea.png";

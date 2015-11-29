@@ -46,16 +46,6 @@ bool ImageReadWrite_Test()
         return false;
     }
 
-	IMAGE_FOREACH(img)
-		if(x == 0 || x == 300)
-			NTrace(pixel_string_alloc(pixel));
-		END_ITER_Y
-			if (x == 0 || x == 300)
-			NTrace("\n");
-	END_FOREACH2
-
-
-
 	nputils::ImageStream::WriteImage_STB(img, imageReadWrite_output);
 
 	return true;

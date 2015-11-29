@@ -30,10 +30,7 @@ inline void* mallocN(size_t size)
 {
 	void* ret = 0;
 
-#if defined _MSC_VER || !_MSC_VER
-	//
-	// Visual Studio
-	//
+#if _MSC_VER || __linux__
 	ret = malloc(size);
 #endif
 

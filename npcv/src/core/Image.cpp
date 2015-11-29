@@ -55,7 +55,7 @@ namespace npcore
 
 	void image_trace(const Image * image, const char *traceListener)
 	{
-		
+
 	}
 
 	Image * image_get_area(const Image * image, int x, int y, int width, int height)

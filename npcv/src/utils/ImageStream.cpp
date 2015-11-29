@@ -26,8 +26,8 @@ namespace nputils
 		ret = image_create(data, width, height, type);
 
 		char *imageString = image_string_alloc(ret);
-		Log(" image loaded ", DEBUG); Log(imageString, DEBUG); Log("\n");
-		
+	//	Log(" image loaded ", DEBUG); Log(imageString, DEBUG); Log("\n");
+
 
 		return ret;
 	}
