@@ -1,3 +1,4 @@
+#include "core/memory.h"
 #include "edge_detection.h"
 
 namespace npip {

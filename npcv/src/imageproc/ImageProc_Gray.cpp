@@ -1,4 +1,3 @@
-#include "core/npio.h"
 #include "imageproc_gray.h"
 
 

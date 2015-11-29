@@ -4,14 +4,16 @@
 //#  include <npstring.h>
 #include "datatypes.h"
 #include "memory.h"
+
+#define NP_MAX_STRING_BUFFER 1000
+
 namespace npcore
 {
-	char *string_create(size_t length);
+	char *strmakeN(const char *fmt, ...);
 
-	size_t string_length(char *string);
+	size_t strnlenN(const char *string);
 
-	void sprintfN(char *buf, char *fmt, ...);
-
+	void sprintfN(char *buf, const char *fmt, ...);
 
 }
 #endif

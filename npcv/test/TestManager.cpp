@@ -1,9 +1,12 @@
 #ifndef __NPCV_TEST_MANAGER_H__
 #define __NPCV_TEST_MANAGER_H__
 
-#include <iostream>
+//#include <iostream>
+#include <stdarg.h>
+//#include <stdio.h>
 
-#if defined _MSC_VER && _DEBUG && _NP_DEBUG_VLD
+//#include <varargs.h>
+#if defined _MSC_VER && _NP_DEBUG && _NP_NP_DEBUG_VLD
 #include "vld.h"
 #endif
 
@@ -20,7 +23,6 @@
 #include "core/memory.h"
 #include "core/debug.h"
 #include "DataTest.h"
-
 using namespace npcore;
 
 enum NPCVTests
@@ -34,15 +36,17 @@ enum NPCVTests
 };
 
 
+
+
 bool ImageReadWrite_Test()
 {
-	Log("Test Started: ImageReadWrite\n", DEBUG);
-	Log("input path: ", DEBUG); Log(imageReadWrite_input); Log("\n", DEBUG);
-	Log("output path: ", DEBUG); Log(imageReadWrite_output); Log("\n", DEBUG);
+	/*Log("Test Started: ImageReadWrite\n", NP_DEBUG);
+	Log("input path: ", NP_DEBUG); Log(imageReadWrite_input); Log("\n", NP_DEBUG);
+	Log("output path: ", NP_DEBUG); Log(imageReadWrite_output); Log("\n", NP_DEBUG);*/
 
 	Image * img = nputils::ImageStream::ReadImage_STB(imageReadWrite_input);
     if(img == NULL){
-        Log("Test Failed !", ERROR);
+      //  Log("Test Failed !", NP_ERROR);
         return false;
     }
 
@@ -170,17 +174,18 @@ bool FileWrite_Test()
 
 int main(int argc, char** argv)
 {
-	std::cout << "===== NPCV TestManger started=====" << std::endl << std::endl<< std::endl<< std::endl;
+	debug_initialize();
+	NLog("===== NPCV TestManger started=====\n");
 
 	NPCVTests testChoosed = ImageReadWrite;
 
 	std::string input;
 
-	debug_initialize();
-//	dbg_default_TraceFile = (char*)logPath;
 
-	char *leak = (char*)mallocN(2000);
-	leak = NULL;
+//	_np_tracefile_default_path = (char*)logPath;
+
+	//char *leak = (char*)mallocN(2000);
+//	leak = NULL;
 	if (argc == 2)
 	{
 		input = argv[1];
@@ -225,9 +230,9 @@ int main(int argc, char** argv)
 		}
 		else
 		{
-			std::cout << "Test don't exists" << std::endl;
+			NLog("Test don't exists\n");
 		}
-		std::cout << std::endl << std::endl;
+		NLog("\n");
 		debug_exit();
 		//system("pause");
 		return 0;

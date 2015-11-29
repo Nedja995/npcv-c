@@ -50,7 +50,7 @@ namespace npcore
 
 	void image_trace(const Image * image)
 	{
-		image_trace(image, dbg_default_TraceFile);
+		//image_trace(image, _np_tracefile_default_path);
 	}
 
 	void image_trace(const Image * image, const char *traceListener)

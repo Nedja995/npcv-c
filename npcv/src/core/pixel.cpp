@@ -34,8 +34,8 @@ namespace npcore
 	//trace
 	void pixel_trace(const Pixel * pixel, const char *listener)
 	{
-		if (strncmp(listener, dbg_default_TraceFile, strlen(dbg_default_TraceFile)) == 0) {
-			Log("tracing image. default listener");
+		if (strncmp(listener, _np_tracefile_default_path, strlen(_np_tracefile_default_path)) == 0) {
+			//Log("tracing image. default listener");
 		}
 		else {
 			NOT_IMPLEMENTED();
@@ -44,7 +44,7 @@ namespace npcore
 	//trace default
 	void pixel_trace(const Pixel * pixel)
 	{
-		pixel_trace(pixel, dbg_default_TraceFile);
+		pixel_trace(pixel, _np_tracefile_default_path);
 	}
 
 

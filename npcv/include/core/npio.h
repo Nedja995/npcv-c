@@ -11,7 +11,7 @@
 
 namespace npcore {
 	
-
+	void NConsolePrint(const char *fmt, ...);
 
 }
 

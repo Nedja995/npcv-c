@@ -1,7 +1,6 @@
 #ifndef __NSDK_IMAGE_H__
 #define __NSDK_IMAGE_H__
 
-#include "npio.h"
 #include "pixel.h"
 
 #define R(pixel) *pixel->ptr
