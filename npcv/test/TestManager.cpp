@@ -3,22 +3,22 @@
 
 #include <iostream>
 
-#if defined _MSC_VER && DEBUG
+#if defined _MSC_VER && _DEBUG && _NP_DEBUG_VLD
 #include "vld.h"
 #endif
 
-#include "../src/core/Image.h"
-#include "../src/utils/ImageStream.h"
-#include "../src/imageproc/imageproc_gray.h"
-#include "../src/imageproc/edge_detection.h"
-#include "../src/classification/image_classification.h"
-#include "../src/utils/file_ops.h"
-#include "../src/classification/classification_image_utils.h"
-#include "../src/core/npstdlib/list.h"
-#include "../src/core/npstdlib/npio.h"
-#include "../src/core/npstdlib/npstring.h"
-#include "../src/core/npstdlib/memory.h"
-#include "../src/core/npstdlib/debug.h"
+#include "core/Image.h"
+#include "utils/ImageStream.h"
+#include "imageproc/imageproc_gray.h"
+#include "imageproc/edge_detection.h"
+#include "classification/image_classification.h"
+#include "utils/file_ops.h"
+#include "classification/classification_image_utils.h"
+#include "core/list.h"
+#include "core/npio.h"
+#include "core/npstring.h"
+#include "core/memory.h"
+#include "core/debug.h"
 #include "DataTest.h"
 
 using namespace npcore;
@@ -36,9 +36,9 @@ enum NPCVTests
 
 bool ImageReadWrite_Test()
 {
-	/*Log("Test Started: ImageReadWrite\n", TRACE);
-	Log("input path: "); Log(imageReadWrite_input); Log("\n");
-	Log("output path: "); Log(imageReadWrite_output); Log("\n");*/
+	Log("Test Started: ImageReadWrite\n", DEBUG);
+	Log("input path: ", DEBUG); Log(imageReadWrite_input); Log("\n", DEBUG);
+	Log("output path: ", DEBUG); Log(imageReadWrite_output); Log("\n", DEBUG);
 
 	Image * img = nputils::ImageStream::ReadImage_STB(imageReadWrite_input);
     if(img == NULL){

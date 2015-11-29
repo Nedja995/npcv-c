@@ -1,4 +1,4 @@
-#include "../../npstdlib/mathn.h"
+#include "mathn.h"
 
 #include "math.h"
 

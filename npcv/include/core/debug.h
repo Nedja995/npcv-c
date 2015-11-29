@@ -14,7 +14,7 @@
 namespace npcore {
 
 	static bool DebugLogWrite = true;
-	static char *dbg_default_TraceFile = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\test\\Datas\\TestOutput\\log.txt";
+	static char *dbg_default_TraceFile = "log.txt";
 	static List *_debug_log_text_list;
 
 	typedef enum LogLevel {

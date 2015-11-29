@@ -1,8 +1,8 @@
-#include "../../core/npstdlib/npio.h"
-#include "../../core/npstdlib/npstring.h"
+#include "core/npio.h"
+#include "core/npstring.h"
 
-#include "../classification_image_utils.h"
-#include "../../utils/file_ops.h"
+#include "classification_image_utils.h"
+#include "utils/file_ops.h"
 
 #define MAX_REGION_VALUE_CHARS 4
 

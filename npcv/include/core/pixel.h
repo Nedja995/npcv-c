@@ -3,7 +3,7 @@
 
 #define PIXEL_MAX_STRING 500 // pixel_string_alloc() LIMIT
 
-#include "npstdlib/datatypes.h"
+#include "datatypes.h"
 
 namespace npcore 
 {

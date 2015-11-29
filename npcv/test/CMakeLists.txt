@@ -3,26 +3,22 @@
 #
 # Image Processing project
 #
-set(INC_TESTS
-	.
-	../src
-)
-set(INC_SYS_TESTS
+
+#project include
+set(PROJECT_INCLUDE ${CMAKE_SOURCE_DIR}/include)
+
+set(TESTS_INC
 	DataTest.h
 )
-set(SRC_TESTS
+
+set(TESTS_SRC
 	TestManager.cpp
 )
 
 
+add_executable(tests ${TESTS_SRC} ${TESTS_INC})
 
-
-add_executable(tests ${SRC_TESTS} ${INC_SYS_TESTS})
-
-include_directories(../src)
-#include_directories(tests ${INC_SYS_UTILS})
-#include_directories(tests ${INC_SYS_CLASSIFICATION})
-#include_directories(tests ${INC_SYS_IMAGEPROC})
+include_directories(tests ${PROJECT_INCLUDE})
 
 target_link_libraries(tests core)
 target_link_libraries(tests utils)

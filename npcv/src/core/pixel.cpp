@@ -1,12 +1,12 @@
-#include "../pixel.h"
-#include "../npstdlib/npstring.h"
-#include "../npstdlib/debug.h"
+#include "pixel.h"
+#include "npstring.h"
+#include "debug.h"
 
 namespace npcore 
 {
-	Pixel * pixel_create(uchar * pixel)
+	Pixel *pixel_create(uchar *pixel)
 	{
-		Pixel * ret = (Pixel *)mallocN(sizeof(Pixel));
+		Pixel *ret = (Pixel *)mallocN(sizeof(Pixel));
 
 		ret->r = (int)*pixel;
 		ret->g = (int)*(pixel + 1);

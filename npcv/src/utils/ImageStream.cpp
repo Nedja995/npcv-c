@@ -1,9 +1,9 @@
 #include <string>
 
-#include "../../core/Image.h"
-#include "../ImageStream.h"
-#include "../core/npstdlib/npstring.h"
-#include "../core/npstdlib/debug.h"
+#include "core/Image.h"
+#include "ImageStream.h"
+#include "core/npstring.h"
+#include "core/debug.h"
 
 #ifndef STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
@@ -11,8 +11,8 @@
 #ifndef STB_IMAGE_WRITE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #endif
-#include "../../../lib/stb/stb_image.h"
-#include "../../../lib/stb/stb_image_write.h"
+#include "stb_image.h"
+#include "stb_image_write.h"
 
 using namespace npcore;
 
@@ -26,7 +26,7 @@ namespace nputils
 		ret = image_create(data, width, height, type);
 
 		char *imageString = image_string_alloc(ret);
-		Log(" image loaded ", DEBUG); Log(imageString, DEBUG);
+		Log(" image loaded ", DEBUG); Log(imageString, DEBUG); Log("\n");
 		
 
 		return ret;

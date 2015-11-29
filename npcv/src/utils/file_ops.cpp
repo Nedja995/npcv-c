@@ -1,8 +1,8 @@
-#include "../file_ops.h"
+#include "file_ops.h"
 
 #include <fstream>
-#include "../../core/npstdlib/npstring.h"
-#include "../../core/npstdlib/debug.h"
+#include "core/npstring.h"
+#include "core/debug.h"
 //#define __cplusplus 1
 using namespace npcore;
 

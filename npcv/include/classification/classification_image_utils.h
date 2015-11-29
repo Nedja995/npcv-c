@@ -2,9 +2,9 @@
 #define __NPCV_CLASSF_FILE_H__
 
 
-#include "../classification/image_classification.h"
+#include "classification/image_classification.h"
 
-#include "../core/npstdlib/list.h"
+#include "core/list.h"
 
 using namespace npcore;
 

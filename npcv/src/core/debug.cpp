@@ -1,7 +1,7 @@
-#include "../../npstdlib/debug.h"
-#include "../../npstdlib/memory.h"
-#include "../../npstdlib/npstring.h"
-#include "file_ops.h"
+#include "debug.h"
+#include "memory.h"
+#include "npstring.h"
+#include "utils/file_ops.h"
 
 #if defined _MSC_VER || defined __linux__
 #	include "stdio.h"
@@ -11,8 +11,6 @@
 using namespace nputils;
 
 namespace npcore {
-
-
 
 	void Log(const char *text)
 	{
@@ -45,10 +43,12 @@ namespace npcore {
 
 	bool debug_exit()
 	{
-#if defined _NP_TRACE
+#if defined _NP_DEBUG_TRACE
 		//write trace and logs to file
 		std::ofstream traceFile;
 		traceFile.open(dbg_default_TraceFile, std::ofstream::out | std::ofstream::app);
+
+		traceFile << "Run <time> ============================================= " << std::endl;
 		//iterate through trace logs
 		LIST_FOREACH(_debug_log_text_list){
 			//write to file via stream

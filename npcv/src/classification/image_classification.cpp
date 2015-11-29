@@ -1,9 +1,9 @@
 
-#include "../image_classification.h"
-#include "../../core/npstdlib/memory.h"
-#include "../../core/npstdlib/mathn.h"
+#include "image_classification.h"
+#include "core/memory.h"
+#include "core/mathn.h"
 
-#include "../../imageproc/edge_detection.h"
+//#include "imageproc/edge_detection.h"
 
 //#include <iostream>
 #include "stdio.h"

@@ -4,14 +4,10 @@
 #define STB_IMAGE_IMPLEMENTATION
 const char* fileWrite_input = "1,4\n2,0\n3,7\0";
 
+const char *logPath = "logs/log.txt";
+
 #if defined _MSC_VER
 	const char * projectPath = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\test\\";
-
-
-	const char *logPath = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\test\\Datas\\TestOutput\\log.txt";
-
-
-
 
 	const char* imageReadWrite_input = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\test\\Datas\\SampleDatas\\lena.jpg";
 	const char* imageReadWrite_output = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\test\\Datas\\TestOutput\\lenaRW.png";

@@ -1,5 +1,5 @@
-#include "core/npstdlib/npio.h"
-#include "imageproc/imageproc_gray.h"
+#include "core/npio.h"
+#include "imageproc_gray.h"
 
 
 namespace npip{

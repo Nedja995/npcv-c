@@ -1,6 +1,5 @@
-#include "../../npstdlib/list.h"
-
-#include "../../npstdlib/memory.h"
+#include "list.h"
+#include "memory.h"
 
 namespace npcore
 {

@@ -1,4 +1,4 @@
-#include "../../npstdlib/npstring.h"
+#include "npstring.h"
 #include <stdarg.h>
 #include "stdio.h"
 
