@@ -11,10 +11,12 @@ set(UTILS_INC_DIR
 	${PROJECT_INCLUDE}/utils
 )
 set(UTILS_INC
+	${UTILS_INC_DIR}/path_utils.h
 	${UTILS_INC_DIR}/file_ops.h
 	${UTILS_INC_DIR}/ImageStream.h
 )
 set(UTILS_SRC
+	path_utils.cpp
 	file_ops.cpp
 	ImageStream.cpp
 )

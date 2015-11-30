@@ -15,6 +15,8 @@ namespace npcore
 
 	void sprintfN(char *buf, const char *fmt, ...);
 
+	void strreplaceN(char *string, char *from, char *to);
+
 }
 #endif
 #define string_alloc(length) (char *)mallocN(sizeof(char) * length + 1)

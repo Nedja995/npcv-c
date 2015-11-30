@@ -6,11 +6,11 @@ namespace npcore
 {
 	char *strmakeN(const char * fmt, ...)
 	{
-		char *ret = (char*)mallocN(sizeof(char) * NP_MAX_STRING_BUFFER);
+		char *ret = (char*)mallocN(sizeof(char) * 400);
 		*ret = '\0';
 		va_list args;
 		va_start(args, fmt);	
-		sprintfN(ret, fmt, args);
+		vsprintf(ret, fmt, args);
 		va_end(args);
 		return ret;
 	}
@@ -29,5 +29,17 @@ namespace npcore
 		va_start(va, fmt);
 		vsprintf(buf, fmt, va);
 		va_end(va);
+	}
+
+	void strreplaceN(char *string, char *from, char *to)
+	{
+		
+		char *ch = NULL;
+		int i = 0;
+		int len = strnlenN(string);
+		for (ch = string + i; i < len; i++)
+			if (*ch == *from) {
+				memcpyN(ch, from, sizeof(char));
+			}
 	}
 }

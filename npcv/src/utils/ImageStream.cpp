@@ -1,4 +1,4 @@
-#include <string>
+//#include <string>
 
 #include "core/Image.h"
 #include "ImageStream.h"
@@ -23,23 +23,18 @@ namespace nputils
 		int width, height, type;
 		Image * ret = 0;
 		uchar * data = stbi_load(filepath, &width, &height, &type, 3);
+		if (data == NULL) {
+			char *pat = strdup(filepath);
+			NLogError("Cannot load image from: %s", pat);
+			return NULL;
+		}
+
 		ret = image_create(data, width, height, type);
-
-		char *imageString = image_string_alloc(ret);
-	//	Log(" image loaded ", DEBUG); Log(imageString, DEBUG); Log("\n");
-
-
 		return ret;
 	}
 
 	bool ImageStream::WriteImage_STB(const Image * image, const char * filepath)
 	{
-        //debug log image
-		//char strW[15], strH[15], strT[15], type[5];
-		//sprintfN(strW, "%ix", image->width); sprintfN(strH, "%i ", image->height); sprintfN(type, "%i ", image->type);
-      //  Log("WriteImage_STB: image: ", DEBUG); Log(strW, DEBUG); Log(strH, DEBUG); Log(type, DEBUG);
-
-     //   Log("write to: "); Log(filepath);
 		int res = stbi_write_png(filepath, image->width, image->height, image->type, image->data, 0);
 
 		return true;

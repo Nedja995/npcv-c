@@ -1,10 +1,43 @@
 #ifndef __NPCV_DATA_TEST_H__
 #define __NPCV_DATA_TEST_H__
 
+#include "core\npstring.h"
+#include "utils\path_utils.h"
+
 #define STB_IMAGE_IMPLEMENTATION
 const char* fileWrite_input = "1,4\n2,0\n3,7\0";
 
 const char *logPath = "logs/log.txt";
+
+//Absolout path to SamplesDatas and TestOutput directory
+#if defined _MSC_VER
+char *sampleRoot = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\test";
+//relative inputs
+char *lenaInput = "\\Datas\\SampleDatas\\lena.jpg";
+//relative ouput
+char *writeOutput = "\\Datas\\TestOutput\\imgWrite.jpg";
+char *subareaOutput = "\\Datas\\TestOutput\\subarea.jpg";
+#else
+char *sampleRoot = "/home/ubuntudev/Desktop/Projects/ComputerVision/npcv/test/Datas";
+//relative inputs
+char *lenaInput = "/SampleDatas/lena.jpg";
+//relative ouput
+char *writeOutput = "/TestOutput/imgWrite.jpg";
+char *subareaOutput = "/TestOutput/subarea.jpg";
+#endif
+
+class Examples {
+public:
+	static char *getPath_alloc(const char *filepath) {
+		char *ret = (char*)mallocN(sizeof(char) * 1000);
+		npcore::sprintfN(ret, "%s%s", sampleRoot, filepath);
+//#if defined __linux__
+		//nputils::path_to_linux(ret);
+//#endif
+		return ret;
+	}
+};
+
 
 #if defined _MSC_VER
 	const char * projectPath = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\test\\";
@@ -51,6 +84,7 @@ const char *logPath = "logs/log.txt";
 
 
 #endif
+
 
 
 

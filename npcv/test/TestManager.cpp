@@ -2,13 +2,13 @@
 #define __NPCV_TEST_MANAGER_H__
 
 //#include <iostream>
-#include <stdarg.h>
+//#include <stdarg.h>
 //#include <stdio.h>
 
 //#include <varargs.h>
-#if defined _MSC_VER && _NP_DEBUG && _NP_NP_DEBUG_VLD
-#include "vld.h"
-#endif
+//#if defined _MSC_VER && _NP_DEBUG && _NP_NP_DEBUG_VLD
+//#include "vld.h"
+//#endif
 
 #include "core/Image.h"
 #include "utils/ImageStream.h"
@@ -23,6 +23,8 @@
 #include "core/memory.h"
 #include "core/debug.h"
 #include "DataTest.h"
+
+
 using namespace npcore;
 
 enum NPCVTests
@@ -43,14 +45,15 @@ bool ImageReadWrite_Test()
 	/*Log("Test Started: ImageReadWrite\n", NP_DEBUG);
 	Log("input path: ", NP_DEBUG); Log(imageReadWrite_input); Log("\n", NP_DEBUG);
 	Log("output path: ", NP_DEBUG); Log(imageReadWrite_output); Log("\n", NP_DEBUG);*/
-
-	Image * img = nputils::ImageStream::ReadImage_STB(imageReadWrite_input);
+	char *input = Examples::getPath_alloc(lenaInput);
+	char *output =  Examples::getPath_alloc(writeOutput);
+	Image * img = nputils::ImageStream::ReadImage_STB(input);
     if(img == NULL){
-      //  Log("Test Failed !", NP_ERROR);
+        NLog("Test Failed !", NP_ERROR);
         return false;
     }
 
-	nputils::ImageStream::WriteImage_STB(img, imageReadWrite_output);
+	nputils::ImageStream::WriteImage_STB(img, output);
 
 	return true;
 }
@@ -171,11 +174,11 @@ bool FileWrite_Test()
 	return nputils::file_write(fileWrite_output, fileWrite_input);
 }
 
-
 int main(int argc, char** argv)
 {
 	debug_initialize();
-	NLog("===== NPCV TestManger started=====\n");
+
+	NLog("===== NPCV TestManger started=====");
 
 	NPCVTests testChoosed = ImageReadWrite;
 
@@ -232,7 +235,7 @@ int main(int argc, char** argv)
 		{
 			NLog("Test don't exists\n");
 		}
-		NLog("\n");
+	//	NLog("\n");
 		debug_exit();
 		//system("pause");
 		return 0;

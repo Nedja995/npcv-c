@@ -23,14 +23,23 @@
 #ifndef __NPCORE_DEBUG__
 #define __NPCORE_DEBUG__
 
+//std
+#include <stdarg.h>
+#include "stdio.h"
+
 #include "list.h"
 #include "npstring.h"
 
 #define DOES_WRITE_TRACE_CONSOLE
 
 //
-// For implementation missing 
-#define NOT_IMPLEMENTED() //Log("Called function with no implementation", NP_DEBUG)
+// Preprocessor
+//
+#define _NP_LOG_OUT_FILE 1
+#define _NP_LOG_OUT_CONSOLE 1
+#define _NP_TRACE_OUT_CONSOLE 1
+#define _NP_TRACE_OUT_FILE 1
+
 
 /*
 *
@@ -48,6 +57,9 @@
 #define NP_DEBUG 5  //
 #define NP_TRACE 6  //
 
+//
+// For implementation missing 
+#define NOT_IMPLEMENTED() NLog("Called function with no implementation", NP_ERROR)
 
 //
 // LOG MACROS
@@ -97,7 +109,7 @@ namespace npcore {
 
 	//
 	//Log variable
-	static bool _np_log_disabled;
+	static bool _np_log_disabled = false;
 	static bool _np_log_out_file = true;
 	static bool _np_log_out_console = true;
 	
