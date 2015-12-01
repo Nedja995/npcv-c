@@ -1,7 +1,7 @@
 #ifndef __NSDK_MEMORY_H__
 #define __NSDK_MEMORY_H__
 
-
+#define NULL 0
 /*
 * Platform specific include
 *

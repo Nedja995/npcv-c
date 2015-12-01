@@ -10,9 +10,9 @@ using namespace npcore;
 
 namespace npcf
 {
-	bool csv_write_image_classifier(ImageClassificationData *icd, const char *filepath);
+	char *data_get_format_csv(ImageClassificationData *icd, size_t *stringLength);
 
-	char *csv_write_image_classifiers(List *classifiersList, const char *filepath);
+	char *datas_get_format_csv(List *classifiersList);
 
 
 }

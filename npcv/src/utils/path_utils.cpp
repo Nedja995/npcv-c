@@ -8,7 +8,7 @@ namespace nputils {
 	void path_to_linux(char * winPath)
 	{
 		
-		strreplaceN(winPath, "\\", "\/");
+		strreplaceN(winPath, "\\\\", "\/");
 	}
 	void path_to_windows(char * unixPath)
 	{

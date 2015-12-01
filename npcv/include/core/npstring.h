@@ -5,7 +5,7 @@
 #include "datatypes.h"
 #include "memory.h"
 
-#define NP_MAX_STRING_BUFFER 1000
+#define STRING_BUFFER 1024
 
 namespace npcore
 {
@@ -16,6 +16,8 @@ namespace npcore
 	void sprintfN(char *buf, const char *fmt, ...);
 
 	void strreplaceN(char *string, char *from, char *to);
+
+	char *strappendN(const char *first, const char *second);
 
 }
 #endif

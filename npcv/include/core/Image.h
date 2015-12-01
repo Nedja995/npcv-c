@@ -1,3 +1,8 @@
+//
+//TODO: write functions:
+//		image_each_pixel( img, (void)(cb_pixel_process*)(pixel*)
+//		
+
 #ifndef __NSDK_IMAGE_H__
 #define __NSDK_IMAGE_H__
 

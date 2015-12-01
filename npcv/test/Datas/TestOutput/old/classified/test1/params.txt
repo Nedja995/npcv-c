@@ -1,0 +1,4 @@
+regions: 9
+edge color: 255
+resolution: 1
+sensitivity: 30

@@ -19,6 +19,8 @@ set(CORE_INC
 	${CORE_INC_DIR}/npstring.h
 	${CORE_INC_DIR}/memory.h
 	${CORE_INC_DIR}/debug.h
+	${CORE_INC_DIR}/datatypes.h
+	${CORE_INC_DIR}/ntime.h
 )
 
 set(CORE_SRC
@@ -29,6 +31,7 @@ set(CORE_SRC
 	npio.cpp
 	debug.cpp
 	npstring.cpp
+	ntime.cpp
 )
 
 #include project headers

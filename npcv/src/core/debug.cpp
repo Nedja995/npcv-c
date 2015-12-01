@@ -1,4 +1,8 @@
 //
+//TODO: make separated file for time functions
+//
+
+//
 //time_t start, end;
 //double dif;
 //time(&start);
@@ -13,16 +17,17 @@
 #	include <fstream>
 #	include <stdarg.h>
 #endif
+//
+//#if defined _MSC_VER
+//#	include <windows.h>
+//	#include <wchar.h>
+//#	include <time.h>
+//#endif
 
-#if defined _MSC_VER
-#	include <windows.h>
-	#include <wchar.h>
-#endif
+#include "ntime.h"
 
-
-#include <time.h>
 #include "debug.h"
-
+#include "datatypes.h"
 #include "npio.h"
 
 //#include "memory.h"
@@ -61,13 +66,16 @@ namespace npcore {
 			//output stream
 			std::ofstream traceFile;
 
-			//get time
-			SYSTEMTIME lt;
-			GetLocalTime(&lt);
 
+			//fja();
+
+
+			//get time
+			NTime *lt =  time_get_allocN();
+			
 			//format wild time string 
 			char *timeText = (char*)mallocN(sizeof(char) * 256);
-			wsprintf(timeText, "logs\\%02d_%02d_%02d_%02d-%02d-%02d", lt.wYear, lt.wMonth, lt.wDay, lt.wHour, lt.wMinute, lt.wSecond);
+			sprintfN(timeText, "%02d_%02d_%02d_%02d-%02d-%02d", lt->year, lt->month, lt->day, lt->hour, lt->minute, lt->second);
 
 			//make log file path
 			char *logFile = (char*)mallocN(sizeof(char) * 264);

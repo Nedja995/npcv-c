@@ -1,25 +1,21 @@
 #ifndef __NPCV_TEST_MANAGER_H__
 #define __NPCV_TEST_MANAGER_H__
 
-//#include <iostream>
-//#include <stdarg.h>
-//#include <stdio.h>
-
 //#include <varargs.h>
 //#if defined _MSC_VER && _NP_DEBUG && _NP_NP_DEBUG_VLD
 //#include "vld.h"
 //#endif
 
-#include "core/Image.h"
+//#include "core/Image.h"
 #include "utils/ImageStream.h"
 #include "imageproc/imageproc_gray.h"
 #include "imageproc/edge_detection.h"
-#include "classification/image_classification.h"
+//#include "classification/image_classification.h"
 #include "utils/file_ops.h"
 #include "classification/classification_image_utils.h"
-#include "core/list.h"
+//#include "core/list.h"
 #include "core/npio.h"
-#include "core/npstring.h"
+//#include "core/npstring.h"
 #include "core/memory.h"
 #include "core/debug.h"
 #include "DataTest.h"
@@ -29,121 +25,117 @@ using namespace npcore;
 
 enum NPCVTests
 {
-	ImageReadWrite,
-	GrayImage,
-	EdgeDetection,
-	ImageSubarea,
-	ClassifyOcr,
-	FileWrite
+	ALL,
+	FILE_W,
+	IMAGE_RW,
+	GRAY,
+	SUBIMAGE,
+	EDGES,
+	CLASSIFYOCR
 };
 
-
-
-
-bool ImageReadWrite_Test()
+bool FileWrite_Example()
 {
-	/*Log("Test Started: ImageReadWrite\n", NP_DEBUG);
-	Log("input path: ", NP_DEBUG); Log(imageReadWrite_input); Log("\n", NP_DEBUG);
-	Log("output path: ", NP_DEBUG); Log(imageReadWrite_output); Log("\n", NP_DEBUG);*/
+	char *output = Examples::getPath_alloc(fileWriteOutput);
+
+	if (nputils::file_write(output, fileWriteInput) == false) {
+		NConsolePrint("\nFile Writing failed !");
+		return false;
+	}
+}
+
+bool ImageReadWrite_Example()
+{
 	char *input = Examples::getPath_alloc(lenaInput);
 	char *output =  Examples::getPath_alloc(writeOutput);
 	Image * img = nputils::ImageStream::ReadImage_STB(input);
-    if(img == NULL){
-        NLog("Test Failed !", NP_ERROR);
-        return false;
-    }
+	if (img == NULL) {
+		NConsolePrint("\nEdge Image Read Write failed! input image not found!");
+		return false;
+	}
 
 	nputils::ImageStream::WriteImage_STB(img, output);
 
 	return true;
 }
 
-bool ImageSubarea_Test()
+bool ImageGray_Example()
 {
-	Image * img = nputils::ImageStream::ReadImage_STB(imageSubarea_input);
+	char *input = Examples::getPath_alloc(lenaInput);
+	char *output = Examples::getPath_alloc(grayOutput);
 
-	Image * small = image_get_area(img, 110, 110, img->width /2, img->height /2);
-
-	nputils::ImageStream::WriteImage_STB(small, imageSubarea_output);
-
-	return true;
-}
-
-
-
-
-
-
-
-
-bool ImageProc_Gray_Test()
-{
-	Image * img = nputils::ImageStream::ReadImage_STB(imageGray_input);
+	Image * img = nputils::ImageStream::ReadImage_STB(input);
+	if (img == NULL) {
+		NConsolePrint("\nGray failed! input image not found!");
+		return false;
+	}
 
 	npip::gray(img);
+	nputils::ImageStream::WriteImage_STB(img, output);
 
-	nputils::ImageStream::WriteImage_STB(img, imageGray_output);
 
 	return true;
 }
 
-bool ImageProc_EdgeDetection_Test()
+bool Subarea_Example()
 {
-	Image * img = nputils::ImageStream::ReadImage_STB(edgeDetection_input);
+	char *input = Examples::getPath_alloc(lenaInput);
+	char *output = Examples::getPath_alloc(subareaOutput);
 
-	//Image * img2 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img3 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img4 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img5 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img6 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img7 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img8 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img9 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img10 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img11 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img12 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img13 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img14 = (Image *)duplicateN(img, sizeof(img));
-	//Image * img15 = (Image *)duplicateN(img, sizeof(img));
+	Image * img = nputils::ImageStream::ReadImage_STB(input);
+	if (img == NULL) {
+		NConsolePrint("\n Subarea failed! input image not found!");
+		return false;
+	}
 
+	Image * small = image_get_area(img, img->width / 4, img->height / 4, 
+									img->width / 2, img->height / 2);
+
+	nputils::ImageStream::WriteImage_STB(small, output);
+
+	return true;
+}
+
+bool EdgeDetection_Examples()
+{
+	char *input = Examples::getPath_alloc(lenaInput);
+	char *output = Examples::getPath_alloc(edgeDetectionOutput);
+
+	Image * img = nputils::ImageStream::ReadImage_STB(input);
+
+	if (img == NULL) {
+		NConsolePrint("\nDetection failed! input image not found!");
+		return false;
+	}
 
 	npip::contour_draw_custom(img, 1, 20);
-	//imgproc::contour_draw_custom(img2);
-	//imgproc::contour_draw_custom(img3);
-	//imgproc::contour_draw_custom(img4);
-	//imgproc::contour_draw_custom(img5);
-	//imgproc::contour_draw_custom(img6);
-	//imgproc::contour_draw_custom(img7);
-	//imgproc::contour_draw_custom(img8);
-	//imgproc::contour_draw_custom(img9);
-	//imgproc::contour_draw_custom(img10);
-	//imgproc::contour_draw_custom(img11);
-	//imgproc::contour_draw_custom(img12);
-	//imgproc::contour_draw_custom(img13);
-	//imgproc::contour_draw_custom(img14);
-	//imgproc::contour_draw_custom(img15);
-
-	nputils::ImageStream::WriteImage_STB(img, edgeDetection_output);
+	nputils::ImageStream::WriteImage_STB(img, output);
 
 	return true;
 }
 
-bool ClassifyOcr_Test()
+bool ClassifyOcrSamples_Example()
 {
-	Image *img = nputils::ImageStream::ReadImage_STB(classifyOcr_input);
+	char *input = Examples::getPath_alloc(ocrSamples);
+	char *output = Examples::getPath_alloc(ocrSamplesOutput);
+
+
+	Image *img = nputils::ImageStream::ReadImage_STB(input);
+	if (img == NULL) {
+		NConsolePrint("\nClassify OCR Samples failed! input image not found!");
+		return false;
+	}
 	Image *subimage = 0;
 	Image *subImageEdges = NULL;
 	npcf::ImageClassificationData *icdTemp = 0;
 	List *classes = list_create();
-
-	int subimageSize = 20;
 
 	int si = 0;
 	for (int x = 0; x < 2000 - 20; x += 20)
 	{
 		for (int y = 700; y < 800; y += 20)
 		{
-			subimage = image_get_area(img, x, y, subimageSize, subimageSize);
+			subimage = image_get_area(img, x, y, ocrSubimageSize, ocrSubimageSize);
 
 			icdTemp = npcf::image_classify(subimage, 12);
 			if (icdTemp == NULL)
@@ -153,92 +145,120 @@ bool ClassifyOcr_Test()
 		}
 	}
 
-	//ImageClassificationData * icd = image_classify(subimage, 9);
-//	npcf::csv_write_image_classifier(i)
-//	nputils::csv_write_image_classifiers(classes, fileWrite_output);
+	char *csvContent = npcf::datas_get_format_csv(classes);
 
-	/*for (int i = 0; i < icd->regionCount; i++)
-	{
-		std::cout << "reg: " << i << " : " << image_classify_region_get(icd, i) << std::endl;
-	}*/
-
-//	Image * small = image_get_area(img, 0, 400, 20, 20);
-
-	//ImageStream::WriteImage_STB(subimage, classifyOcr_output);
+	nputils::file_write(output, csvContent);
 
 	return true;
 }
 
-bool FileWrite_Test()
-{
-	return nputils::file_write(fileWrite_output, fileWrite_input);
+void printMainMessage() {
+	NConsolePrint("\n\n===== NPCV ExamplesManger =====\n\n");
+	NConsolePrint("available inputs are (type parametars or leave it with default params):\n\n");
+	NConsolePrint(" all\n\n");
+	NConsolePrint(" filewrite output_path\n\n");
+	NConsolePrint(" imagereadwrite input_image output_image\n\n");
+	NConsolePrint(" gray input_image output_path\n\n");
+	NConsolePrint(" subimage input_image output_image x y width height\n\n");
+	NConsolePrint(" edges input_path output_path resolution sensitivity\n\n");
+	NConsolePrint(" csfocr input_image output_file sample_size regions\n\n");
 }
 
+//
+//TODO: solution for unknown input arguments number
+//
+// for now without custom arguments
+//
 int main(int argc, char** argv)
 {
+	NPCVTests testChoosed = ALL;
+	char *input = (char*)mallocN(sizeof(char) * 256);
+	//*(input + 256) = '\0';
+	//
 	debug_initialize();
 
-	NLog("===== NPCV TestManger started=====");
-
-	NPCVTests testChoosed = ImageReadWrite;
-
-	std::string input;
-
-
-//	_np_tracefile_default_path = (char*)logPath;
-
-	//char *leak = (char*)mallocN(2000);
-//	leak = NULL;
-	if (argc == 2)
+	while (strncmp(input, "quit", 5) != 0) 
 	{
-		input = argv[1];
-		if (input == "ImageRW")
-		{
-			testChoosed = ImageReadWrite;
+		//
+		// MAIN LOOP
+		printMainMessage();
+
+		//get input
+		scanf("%s", input);
+		
+		//TODO: move this to function
+		//choose example
+		if (strstr(input,"all") != NULL) 
+			testChoosed = ALL;
+		else if (strstr(input, "filewrite") != NULL) 
+			testChoosed = FILE_W;
+		else if (strstr(input, "imagereadwrite") != NULL)
+			testChoosed = IMAGE_RW;
+		else if (strstr(input, "gray") != NULL)
+			testChoosed = GRAY;
+		else if (strstr(input, "subimage") != NULL)
+			testChoosed = SUBIMAGE;
+		else if (strstr(input, "edges") != NULL)
+			testChoosed = EDGES;
+		else if (strstr(input, "csfocr") != NULL)
+			testChoosed = CLASSIFYOCR;
+		else {
+			NConsolePrint("\nWrong command..");
+			continue;
+		}		
+
+		//process
+		if (testChoosed == ALL) {
+			NConsolePrint("\nstart FileWrite\n");
+			FileWrite_Example();
+			NConsolePrint("stop FileWrite\n\n");
+
+			NConsolePrint("start ImageReadWrite\n");
+			ImageReadWrite_Example();
+			NConsolePrint("stop ImageReadWrite\n\n");
+
+			NConsolePrint("start Gray\n");
+			ImageGray_Example();
+			NConsolePrint("stop Gray\n\n");
+
+			NConsolePrint("start Subarea\n");
+			Subarea_Example();
+			NConsolePrint("stop Subarea\n\n");
+
+			NConsolePrint("start Edges\n");
+			EdgeDetection_Examples();
+			NConsolePrint("stop FileWrite\n\n");
+
+			NConsolePrint("start Classify OCR samples\n");
+			ClassifyOcrSamples_Example();
+			NConsolePrint("stop Classify OCR samples\n");
 		}
-		if (input == "Gray")
-		{
-			testChoosed = GrayImage;
+		else if (testChoosed == FILE_W) {
+			FileWrite_Example();
 		}
-		if (input == "Edge")
-		{
-			testChoosed = EdgeDetection;
+		else if (testChoosed == IMAGE_RW) {
+			ImageReadWrite_Example();
 		}
+		else if (testChoosed == GRAY) {
+			ImageGray_Example();
+		}
+		else if (testChoosed == SUBIMAGE) {
+			Subarea_Example();
+		}
+		else if (testChoosed == EDGES) {
+			FileWrite_Example();
+		}
+		else if (testChoosed == CLASSIFYOCR) {
+			ClassifyOcrSamples_Example();
+		}
+
 	}
-		if (testChoosed == ImageReadWrite)
-		{
-			ImageReadWrite_Test();
-		}
-		else if (testChoosed == GrayImage)
-		{
-			ImageProc_Gray_Test();
-		}
-		else if (testChoosed == ImageSubarea)
-		{
-			ImageSubarea_Test();
-		}
-		else if (testChoosed == ClassifyOcr)
-		{
-			ClassifyOcr_Test();
-		}
-		else if (testChoosed == FileWrite)
-		{
-			FileWrite_Test();
-		}
-		else if (testChoosed == EdgeDetection)
-		{
-			int a = 3;
-			ImageProc_EdgeDetection_Test();
-			a = 4;
-		}
-		else
-		{
-			NLog("Test don't exists\n");
-		}
-	//	NLog("\n");
-		debug_exit();
-		//system("pause");
-		return 0;
+
+	debug_exit();
+
+	//system("pause");
+
+	return 0;
 
 }
 

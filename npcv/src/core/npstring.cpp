@@ -2,6 +2,8 @@
 #include <stdarg.h>
 #include "stdio.h"
 
+
+
 namespace npcore
 {
 	char *strmakeN(const char * fmt, ...)
@@ -34,12 +36,24 @@ namespace npcore
 	void strreplaceN(char *string, char *from, char *to)
 	{
 		
-		char *ch = NULL;
+		char *ch = string;
 		int i = 0;
 		int len = strnlenN(string);
-		for (ch = string + i; i < len; i++)
+		for (ch; i < len; i++) {
 			if (*ch == *from) {
-				memcpyN(ch, from, sizeof(char));
+				memcpyN(ch, to, sizeof(char));
 			}
+			//else
+			ch++;
+		}
+
+
+	}
+
+	char *strappendN(const char *first, const char *second)
+	{
+		char *ret = (char*)mallocN(sizeof(char) * STRING_BUFFER);
+		sprintf(ret, "%s%s", first, second);
+		return ret;
 	}
 }

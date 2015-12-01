@@ -25,7 +25,7 @@ namespace nputils
 		uchar * data = stbi_load(filepath, &width, &height, &type, 3);
 		if (data == NULL) {
 			char *pat = strdup(filepath);
-			NLogError("Cannot load image from: %s", pat);
+			NLogError("\nCannot load image from: %s", pat);
 			return NULL;
 		}
 

@@ -35,10 +35,12 @@
 //
 // Preprocessor
 //
+//#define _NP_LOG_DISABLED 1
 #define _NP_LOG_OUT_FILE 1
 #define _NP_LOG_OUT_CONSOLE 1
 #define _NP_TRACE_OUT_CONSOLE 1
 #define _NP_TRACE_OUT_FILE 1
+
 
 
 /*
