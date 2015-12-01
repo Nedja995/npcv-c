@@ -1,8 +1,8 @@
 #ifndef __NPCV_DATA_TEST_H__
 #define __NPCV_DATA_TEST_H__
 
-#include "core\npstring.h"
-#include "utils\path_utils.h"
+#include "core/npstring.h"
+#include "utils/path_utils.h"
 
 
 
@@ -15,7 +15,7 @@ const char *sampleRoot = "/home/ubuntudev/Desktop/Projects/ComputerVision/npcv/t
 
 //inputs
 const char* fileWriteInput = "Hello\n File test is succesfully";
-const char *lenaInput = "SampleDatas\\lenaa.jpg";
+const char *lenaInput = "SampleDatas\\lena.jpg";
 const char *ocrSamples = "SampleDatas\\digits.png";
 const int ocrSubimageSize = 20;
 //outputs

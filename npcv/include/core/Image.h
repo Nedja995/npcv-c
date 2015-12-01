@@ -1,12 +1,13 @@
 //
 //TODO: write functions:
 //		image_each_pixel( img, (void)(cb_pixel_process*)(pixel*)
-//		
+//
 
 #ifndef __NSDK_IMAGE_H__
 #define __NSDK_IMAGE_H__
 
 #include "pixel.h"
+#include "datatypes.h"
 
 #define R(pixel) *pixel->ptr
 #define G(pixel) *(pixel->ptr + 1)

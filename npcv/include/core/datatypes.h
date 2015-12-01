@@ -8,7 +8,10 @@ typedef unsigned short ushort;
 	typedef unsigned char uchar;
 #endif
 
-
+//for size_T
+#if defined __linux__
+#   include "stdlib.h"
+#endif
 
 
 
