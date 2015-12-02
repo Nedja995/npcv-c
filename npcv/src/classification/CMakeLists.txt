@@ -27,7 +27,7 @@ if(MODULE_CLASSIFICATION)
 	#include headers
 	include_directories(core ${CLASSIFICATION_INC_DIR})
 	# Library Add
-	add_library(classification ${CLASSIFICATION_SRC} ${CLASSIFICATION_INC})
+	add_library(classification STATIC ${CLASSIFICATION_SRC} ${CLASSIFICATION_INC})
 	#link with core lib
 	target_link_libraries(classification core)
 endif()

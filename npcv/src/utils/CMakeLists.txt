@@ -45,7 +45,7 @@ if(STB_IMAGE)
 endif()
 
 # Library Add
-add_library(utils ${UTILS_SRC} ${UTILS_INC})
+add_library(utils STATIC ${UTILS_SRC} ${UTILS_INC})
 
 #link with core lib
 target_link_libraries(utils core)

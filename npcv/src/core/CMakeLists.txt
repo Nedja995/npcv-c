@@ -40,4 +40,4 @@ include_directories(core ${PROJECT_INCLUDE})
 include_directories(core ${CORE_INC_DIR})
 
 # Library Add
-add_library(core ${CORE_SRC} ${CORE_INC})
+add_library(core STATIC ${CORE_SRC} ${CORE_INC})
