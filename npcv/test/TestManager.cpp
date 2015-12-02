@@ -21,8 +21,50 @@
 #include "DataTest.h"
 
 
+
 using namespace npcore;
 
+#ifdef WITH_GTEST
+#include "gtest/gtest.h"
+
+int saberi(int a, int  b) {
+	return a + b;
+}
+
+int oduzmi(int a, int b) {
+	return a - b;
+}
+
+int pomnozi(int a, int b) {
+	return a + b;
+}
+
+int podeli(int a, int b) {
+	return a / b;
+}
+
+TEST(FactorialTest, Positive) {
+	EXPECT_EQ(4, saberi(2, 2));
+	EXPECT_EQ(0, oduzmi(2, 2));
+	EXPECT_EQ(6, pomnozi(2, 3));
+	EXPECT_EQ(4, podeli(8, 2));
+}
+//int main(int argc, char** argv)
+//{
+//	::GTEST_INIT_GOOGLE_TEST_NAME_()
+//	RUN_ALL_TESTS();
+//
+//
+//	return 0;
+//}
+
+GTEST_API_ int main(int argc, char **argv) {
+	printf("Running main() from gtest_main.cc\n");
+	testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
+}
+
+#else
 enum NPCVTests
 {
 	ALL,
@@ -33,6 +75,7 @@ enum NPCVTests
 	EDGES,
 	CLASSIFYOCR
 };
+
 
 bool FileWrite_Example()
 {
@@ -47,7 +90,7 @@ bool FileWrite_Example()
 bool ImageReadWrite_Example()
 {
 	char *input = Examples::getPath_alloc(lenaInput);
-	char *output =  Examples::getPath_alloc(writeOutput);
+	char *output = Examples::getPath_alloc(writeOutput);
 	Image * img = nputils::ImageStream::ReadImage_STB(input);
 	if (img == NULL) {
 		NConsolePrint("\nEdge Image Read Write failed! input image not found!");
@@ -88,8 +131,8 @@ bool Subarea_Example()
 		return false;
 	}
 
-	Image * small = image_get_area(img, img->width / 4, img->height / 4, 
-									img->width / 2, img->height / 2);
+	Image * small = image_get_area(img, img->width / 4, img->height / 4,
+		img->width / 2, img->height / 2);
 
 	nputils::ImageStream::WriteImage_STB(small, output);
 
@@ -169,7 +212,7 @@ void printMainMessage() {
 //
 // for now without custom arguments
 //
-int main(int argc, char** argv)
+int main2(int argc, char** argv)
 {
 	NPCVTests testChoosed = ALL;
 	char *input = (char*)mallocN(sizeof(char) * 256);
@@ -177,7 +220,7 @@ int main(int argc, char** argv)
 	//
 	debug_initialize();
 
-	while (strncmp(input, "quit", 5) != 0) 
+	while (strncmp(input, "quit", 5) != 0)
 	{
 		//
 		// MAIN LOOP
@@ -185,12 +228,12 @@ int main(int argc, char** argv)
 
 		//get input
 		scanf("%s", input);
-		
+
 		//TODO: move this to function
 		//choose example
-		if (strstr(input,"all") != NULL) 
+		if (strstr(input, "all") != NULL)
 			testChoosed = ALL;
-		else if (strstr(input, "filewrite") != NULL) 
+		else if (strstr(input, "filewrite") != NULL)
 			testChoosed = FILE_W;
 		else if (strstr(input, "imagereadwrite") != NULL)
 			testChoosed = IMAGE_RW;
@@ -205,7 +248,7 @@ int main(int argc, char** argv)
 		else {
 			NConsolePrint("\nWrong command..");
 			continue;
-		}		
+		}
 
 		//process
 		if (testChoosed == ALL) {
@@ -262,6 +305,7 @@ int main(int argc, char** argv)
 
 }
 
+#endif
 
 
 #endif
