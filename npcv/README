@@ -17,24 +17,43 @@
 == 1. PROJECT SUMMARY ==
 
 	* This is a lightweight computer vision library I started with the aim of personal training.
-	  It is cross platform and open source 
+	  It is cross platform compiling and open source project for Windows, Linux and Android
+	  with posibility to port them on other platform and even embeded system.	
+
+	* There is not clear targets for what this can be used.
+	  For now it can be used like:
+		1.) standard libray (strings, lists, memory, and etc..) with configurable log system
+		2.) utils that can read/write file and images and cross platform path string utilities
+		3.) some image filtering and processing like gray, edge detection canny, cuting images
+		4.) classify images based on edges
 
 	* In addition to computer vision and even more I want learn to apply techniques related to open source projects 
 	  as other interesting software engineering techniques and technologies.
+	  I'm not going to make alternatives for existing solution 
+	  but there is some equals with somes solution I get inspired like opencv, blender, Vuforia, Neuroph, TensorFlow
 	  
-	* All advice and criticisms are welcome
+	* All advice, criticisms, questions and participants are welcome
 
 == 2. USING ==
 
 	* End user:
-		can start gui program from /bin/ directory for their envrinoment
+		can start gui program from '/bin/' directory for their envrinoment (in progress HIGH PRIORITY)
 	
 	* Library users:
-		need to link libs from /lib/ directory and include headers from /include/ directory
+		need to link libs from '/lib/' directory and include headers from '/include/ directory'
 	  
 	* Developer:
 		can use CMake to generate project for various IDE-s and Makefile 
 		I use Visual Studio 2015 and Codeblock for Linux.
+		For library development there is two usefull executable:
+			1.) examples - when running they will use make few outputs in '/examples/datas/output'
+						 - also this directory you can find '/valid_results/' with who you can compare your outputs
+						 - althrought in '/examples/datas/output/old/classified/test1/' 
+							you can find classification output of ocr number samples in early stage of development
+							
+			2.) tests - Thanksfully GTests there is great system for testing this project
+					  - Dependency will be automaticaly download via CMake 
+		
 		When configuring CMake you can configure third part libs:
 			GTest
 			Detailed trace
@@ -43,11 +62,12 @@
 	
 == 3. TECHNICAL SUMMARY ==
 
-	* Base is maden by several c modules and they are full cross platform libs 
-	  with posibility to port them on embeded system.
-	  There is the functions for memory allocation, strings compare, list, etc..
-	  very configurable logging system and base datatypes like pixel, image 
-	  and main image processing functions like, edge detection, classification,...
+	* Base is made by several c modules and they are full cross platform libs 
+	  There is the:
+	  1.) functions for memory allocation, strings compare, list, etc..
+	  2.) very configurable logging system 
+	  4.) base datatypes like pixel, image 
+	  3.) main image processing functions like, edge detection, classification,...
   
     * The Base is separated into four part for now it contains:
 		1.) 'core' module which is something like standard library
@@ -55,7 +75,7 @@
 		3.) 'imgproc' image processing
 		4.) 'classification'
 		
-	* Second part which is not yet implemented 
+	* Second part is not yet implemented 
   __________________________________________
   | H |
   | E | CMake
@@ -93,9 +113,9 @@
   |   | Y |								   |
   |___|___|________________________________|
   
-  __________________________________________
-  |			IN PROGRESS:				   |		
-  |________________________________________|
+	
+  in progress:
+   _________________________________________
   |   | G | 						       |
   | M | U | Win32 api			           |
   | A | I |  linux gui                     |   
@@ -115,26 +135,19 @@
   |   MACHINE LEARNING LATER...        		|
   |_________________________________________|
   
-== 3. PREREQUISITES ==
+== 4. PREREQUISITES ==
 
  This project requires:
   * Cross-platform Make (CMake) v2.6.2+
-  * GNU Make or equivalent.
-  * GCC or an alternative, reasonably conformant C++ compiler.
-  * Boost C++ Libraries v1.37+ [HEADERS and LIBRARIES]
-  * Qt Framework v4.5+
-  * Log4Cxx v0.10.0+
-  * UnitTest++ (a.k.a. unittest-cpp)
+  * (Windows) Visual Studio 2010+
+  * (linux) GCC or an alternative, reasonably conformant C++ compiler.
+  * (linux optional) CodeBlock IDE
 
-== 4. BUILDING ==
+== 5. BUILDING ==
 
- 	1.) Windows/Visual Studio:
-			(NOTE) Before starting 'tests' project in VS 
-			 make sure it Runtime Library is Multi-threaded Debug (/MTd)
+ 	1.) Windows/Visual Studio
 
-	2.) Linux/Codeblock/Unix Makefile:
-	
-	
+	2.) Linux/Codeblock/Unix Makefile
 	
  This project uses the Cross-platform Make (CMake) build system. However, we
  have conveniently provided a wrapper configure script and Makefile so that
@@ -144,7 +157,7 @@
  NOTE: Users of CMake may believe that the top-level Makefile has been
  generated by CMake; it hasn't, so please do not delete that file.
 
-== 5. INSTALLING ==
+== 6. INSTALLING ==
 
  Once the project has been built (see "BUILDING"), execute "sudo make install".
 

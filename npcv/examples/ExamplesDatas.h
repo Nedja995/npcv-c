@@ -19,12 +19,12 @@ const char *lenaInput = "samples\\lena.jpg";
 const char *ocrSamples = "samples\\digits.png";
 const int ocrSubimageSize = 20;
 //outputs
-const char *fileWriteOutput = "outputs\\FileWriteOutput.txt";
-const char *writeOutput = "outputs\\lena.jpg";
-const char* grayOutput = "outputs\\gray.png";
-const char *subareaOutput = "outputs\\subarea.jpg";
-const char* edgeDetectionOutput = "outputs\\edges.png";
-const char *ocrSamplesOutput = "outputs\\ocrSamples.csv";
+const char *fileWriteOutput = "output\\FileWriteOutput.txt";
+const char *writeOutput = "output\\lena.jpg";
+const char* grayOutput = "output\\gray.png";
+const char *subareaOutput = "output\\subarea.jpg";
+const char* edgeDetectionOutput = "output\\edges.png";
+const char *ocrSamplesOutput = "output\\ocrSamples.csv";
 
 
 

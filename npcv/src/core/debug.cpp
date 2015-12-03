@@ -43,8 +43,9 @@ namespace npcore {
 	* Initialize debug 
 	* (make trace log list,...)
 	*/
-	bool debug_initialize()
+	int _np_debug_initialize()
 	{
+		logLevel = NP_TRACE;
 		if (logLevel == NP_TRACE) {
 			/*
 			* If trace enabled create list for logs
@@ -52,20 +53,19 @@ namespace npcore {
 			_np_trace_log_text_list = list_create();
 		}
 
-		return true;
+		return 1;
 	}
 
 	/*
 	* Exit 
 	* (write trace file)
 	*/
-	bool debug_exit()
+	int _np_debug_exit()
 	{
 		//write trace logs to file
 		if (_does_trace_with_file()) {
 			//output stream
 			std::ofstream traceFile;
-
 
 			//fja();
 
@@ -91,7 +91,7 @@ namespace npcore {
 			traceFile.close();
 
 		}
-		return true;
+		return 1;
 	}
 
 	void _np_log(NPLogLevel level, const char* msg)
@@ -112,6 +112,7 @@ namespace npcore {
 		}
 
 	}
+
 	void _np_log_fmt(NPLogLevel level, const char * fmt, ...)
 	{
 		char *buffer = (char*)mallocN(sizeof(char) * 512);
@@ -122,10 +123,13 @@ namespace npcore {
 		_np_log(level, buffer);
 	}
 
-	/*
+	/**********************************
+	*
+	*
 	* Determine log output helpers
+	*
+	*
 	*/
-
 	bool _does_trace_with_console()
 	{
 #ifdef _NP_LOG_DISABLED				
@@ -177,13 +181,4 @@ namespace npcore {
 #endif								
 		return false;
 	}
-
-
-
-
-
-
-
-
-
 }

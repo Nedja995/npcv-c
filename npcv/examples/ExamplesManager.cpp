@@ -20,6 +20,8 @@
 #include "core/debug.h"
 #include "ExamplesDatas.h"
 
+#include "core\npstdlib.h"
+
 using namespace npcore;
 
 enum NPCVTests
@@ -171,11 +173,13 @@ void printMainMessage() {
 //
 int main(int argc, char** argv)
 {
+	NPCORE_initialize();
+
 	NPCVTests testChoosed = ALL;
 	char *input = (char*)mallocN(sizeof(char) * 256);
 	//*(input + 256) = '\0';
 	//
-	debug_initialize();
+	
 
 	while (strncmp(input, "quit", 5) != 0)
 	{
@@ -254,11 +258,11 @@ int main(int argc, char** argv)
 
 	}
 
-	debug_exit();
+	
 
 	//system("pause");
 
-	return 0;
+	return NPCORE_exit();
 
 }
 

@@ -21,6 +21,7 @@ set(CORE_INC
 	${CORE_INC_DIR}/debug.h
 	${CORE_INC_DIR}/datatypes.h
 	${CORE_INC_DIR}/ntime.h
+	${CORE_INC_DIR}/npstdlib.h
 )
 
 set(CORE_SRC
@@ -32,6 +33,7 @@ set(CORE_SRC
 	debug.cpp
 	npstring.cpp
 	ntime.cpp
+	npstdlib.cpp
 )
 
 #include project headers

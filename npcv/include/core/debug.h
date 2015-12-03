@@ -60,8 +60,10 @@
 #define NP_TRACE 6  //
 
 //
-// For implementation missing 
-#define NOT_IMPLEMENTED() NLog("Called function with no implementation", NP_ERROR)
+// Macro for log implementation missing 
+//
+#define NOT_IMPLEMENTED() \
+	NLog("Called function with no implementation", NP_ERROR)
 
 //
 // LOG MACROS
@@ -98,19 +100,31 @@
 
 
 namespace npcore {
-	//
-	bool debug_initialize();
-	//
-	bool debug_exit();
+	/*
+	* 
+	* Required call before and after using
+	* debug functions
+	*
+	*/
+	int _np_debug_initialize();
+	int _np_debug_exit();
 
 
 	/*
+	*
 	* Loging level flag
+	*
+	* TODO: comment
+	*
 	*/
 	typedef int NPLogLevel;
 
-	//
-	//Log variable
+	/*
+	* 
+	* Log configuration variables
+	*
+	*
+	*/
 	static bool _np_log_disabled = false;
 	static bool _np_log_out_file = true;
 	static bool _np_log_out_console = true;
@@ -120,29 +134,30 @@ namespace npcore {
 	static bool _np_trace_out_file = true;
 	static bool _np_trace_out_console = true;
 
-	
+	void _np_log(NPLogLevel level, const char* msg);
+
+	void _np_log_fmt(NPLogLevel level, const char* fmt, ...);
 
 
 	/*
 	* LOG LEVEL
 	* 
 	*/
-	static int logLevel = NP_TRACE;
+	static int logLevel;
 
 	//
 	// Default tracefile
 	static char *_np_tracefile_default_path = "log.txt";
 
-	// TODO add 
 	// Store trace logs in list for writing at end
 	static List *_np_trace_log_text_list;
 
-	void _np_log(NPLogLevel level, const char* msg);
 
-	void _np_log_fmt(NPLogLevel level,const char* fmt, ...);
 
 	/*
-	* Helpers
+	*
+	* Determine log configuration helpers
+	*
 	*/
 	bool _does_trace_with_console();
 	bool _does_trace_with_file();

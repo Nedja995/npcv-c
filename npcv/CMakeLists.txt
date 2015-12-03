@@ -14,18 +14,23 @@ SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib/dev)
 option(MODULE_IMGPROC "With tests project" YES)
 option(MODULE_CLASSIFICATION "With tests project" YES)
 
-option(STB_IMAGE "With stb image library" YES)
 
 option(DEBUG_TRACE "Write trace file" YES)
-
-option(DEBUG_WITH_VLD "Only for Win" NO)
+if(MSVC)
+	option(DEBUG_WITH_VLD "Only for Win" NO)
+endif()
 
 option(EXAMPLES "With tests project" YES)
 
+# Iit is only way to load/write image for now
+#option(WITH_STB_IMAGE "With stb image library " YES)
+set(WITH_STB_IMAGE YES)
 option(WITH_GTEST "With gtest project" NO)
-option(PATHH PATH "dasdasd")
-option(BUILD_GTEST "Builds the googletest subproject" OFF)
-option(BUILD_GMOCK "Builds the googlemock subproject" ON) #Note that googlemock target already builds googletest
+
+# This is understanding now
+#option(BUILD_GTEST "Builds the googletest subproject" OFF)
+#option(BUILD_GMOCK "Builds the googlemock subproject" ON) #Note that googlemock target already builds googletest
+
 #
 #
 ###############################################################
@@ -34,57 +39,22 @@ option(BUILD_GMOCK "Builds the googlemock subproject" ON) #Note that googlemock 
 ###########################################
 # ADD DIRECTORIES
 #
+
+# Add projects
 add_subdirectory(src)
 
+# Add examples project
 if(EXAMPLES)
 	add_subdirectory(examples)
 endif()
 
-
-###########################################
-#
-#
-# PREPROCESSOR DEFINITIONS
-#
-#
-
-#if(MODULE_CLASSIFICATION)
-	#preprocessor
-#	add_definitions(-D_NP_WITH_CLASSIFICATION)
-#endif()
-
-#if(MODULE_IMGPROC)
-	#preprocessor
-#	add_definitions(-D_NP_WITH_IMGPROC)
-#endif()
-
-#########################################
-#
-#  THIRD PART
-#
-#
-#
-# GTest
-#
+# Add GTest project
 if(WITH_GTEST)
 	add_subdirectory(test)
-	set(GTEST_ROOT /thirdparty/googletest-master)
-	#gtest cmake
-	if(BUILD_GMOCK)
-		add_subdirectory(${GTEST_ROOT}/googlemock)
-	elseif(BUILD_GTEST)
-		add_subdirectory(${GTEST_ROOT}/googletest)
-	endif()
 endif()
+
 #
 ###########################################
-
-#
-################################################
-
-
-
-
 
 
 #

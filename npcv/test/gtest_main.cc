@@ -1,4 +1,4 @@
-#include "gtest/gtest.h"
+#include "gtest\gtest.h"
 
 int saberi(int a, int  b) {
 	return a + b;
@@ -31,8 +31,9 @@ TEST(FactorialTest, Positive) {
 //	return 0;
 //}
 
-GTEST_API_ int main(int argc, char **argv) {
-	printf("Running main() from gtest_main.cc\n");
-	testing::InitGoogleTest(&argc, argv);
-	return RUN_ALL_TESTS();
-}
+//GTEST_API_ int main(int argc, char **argv) {
+//	printf("Running main() from gtest_main.cc\n");
+//	::testing::InitGoogleTest(&argc, argv);
+//
+//	return RUN_ALL_TESTS();
+//}

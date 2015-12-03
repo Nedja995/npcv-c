@@ -36,9 +36,9 @@ include_directories(utils ${PROJECT_INCLUDE})
 include_directories(utils ${UTILS_INC_DIR})
 #
 # external STB_IMAGE 
-if(STB_IMAGE)
+if(WITH_STB_IMAGE)
 	#preprocessor
-	add_definitions(-DWITH_STB)
+	add_definitions(-DWITH_STB_IMAGE)
 	#include stb_image headers
 	include_directories(utils ${CMAKE_SOURCE_DIR}/lib/stb)
 	
