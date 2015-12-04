@@ -1,4 +1,4 @@
-#include "gtest\gtest.h"
+#include "gtest/gtest.h"
 
 int saberi(int a, int  b) {
 	return a + b;

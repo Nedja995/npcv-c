@@ -20,7 +20,7 @@
 #include "core/debug.h"
 #include "ExamplesDatas.h"
 
-#include "core\npstdlib.h"
+#include "core/npstdlib.h"
 
 using namespace npcore;
 
@@ -179,7 +179,7 @@ int main(int argc, char** argv)
 	char *input = (char*)mallocN(sizeof(char) * 256);
 	//*(input + 256) = '\0';
 	//
-	
+
 
 	while (strncmp(input, "quit", 5) != 0)
 	{
@@ -258,7 +258,7 @@ int main(int argc, char** argv)
 
 	}
 
-	
+
 
 	//system("pause");
 
