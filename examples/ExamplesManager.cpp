@@ -6,21 +6,21 @@
 //#include "vld.h"
 //#endif
 
-//#include "core/Image.h"
-#include "utils/ImageStream.h"
-#include "imageproc/imageproc_gray.h"
-#include "imageproc/edge_detection.h"
+//#include "base/core/Image.h"
+#include "base/utils/ImageStream.h"
+#include "base/imageproc/imageproc_gray.h"
+#include "base/imageproc/edge_detection.h"
 //#include "classification/image_classification.h"
-#include "utils/file_ops.h"
-#include "classification/classification_image_utils.h"
-//#include "core/list.h"
-#include "core/npio.h"
-//#include "core/npstring.h"
-#include "core/memory.h"
-#include "core/debug.h"
+#include "base/utils/file_ops.h"
+#include "base/classification/classification_image_utils.h"
+//#include "base/core/list.h"
+#include "base/core/npio.h"
+//#include "base/core/npstring.h"
+#include "base/core/memory.h"
+#include "base/core/debug.h"
 #include "ExamplesDatas.h"
 
-#include "core/npstdlib.h"
+#include "base/core/npstdlib.h"
 
 using namespace npcore;
 
@@ -157,7 +157,7 @@ bool ClassifyOcrSamples_Example()
 void printMainMessage() {
 	NConsolePrint("\n\n===== NPCV ExamplesManger =====\n\n");
 	NConsolePrint("available inputs are (type parametars or leave it with default params):\n\n");
-	NConsolePrint(" all\n\n");
+	NConsolePrint(" all run all with example datas\n\n");
 	NConsolePrint(" filewrite output_path\n\n");
 	NConsolePrint(" imagereadwrite input_image output_image\n\n");
 	NConsolePrint(" gray input_image output_path\n\n");

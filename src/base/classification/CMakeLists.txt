@@ -8,12 +8,12 @@
 set(PROJECT_INCLUDE ${CMAKE_SOURCE_DIR}/include)
 
 set(CLASSIFICATION_INC_DIR
-	${PROJECT_INCLUDE}/classification
+	${PROJECT_INCLUDE}/base/classification
 )
 
 set(CLASSIFICATION_INC
-	${CLASSIFICATION_INC_DIR}/image_classification.h
-	${CLASSIFICATION_INC_DIR}/classification_image_utils.h
+	${CLASSIFICATION_INC_DIR}/base/image_classification.h
+	${CLASSIFICATION_INC_DIR}/base/classification_image_utils.h
 )
 
 set(CLASSIFICATION_SRC

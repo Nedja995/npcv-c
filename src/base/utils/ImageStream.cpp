@@ -1,9 +1,9 @@
 //#include <string>
 
-#include "core/Image.h"
+#include "base/core/Image.h"
 #include "ImageStream.h"
-#include "core/npstring.h"
-#include "core/debug.h"
+#include "base/core/npstring.h"
+#include "base/core/debug.h"
 
 #ifndef STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION

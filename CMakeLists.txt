@@ -26,7 +26,7 @@ option(EXAMPLES "With tests project" YES)
 #option(WITH_STB_IMAGE "With stb image library " YES)
 set(WITH_STB_IMAGE YES)
 
-option(WITH_GTEST "With gtest project" YES)
+option(WITH_GTEST "Win only" YES)
 
 # This is understanding now
 #option(BUILD_GTEST "Builds the googletest subproject" OFF)
@@ -50,10 +50,8 @@ if(EXAMPLES)
 endif()
 
 # Add GTest project
-if(MSYS)
-	if(WITH_GTEST)
-		add_subdirectory(test)
-	endif()
+if(WITH_GTEST)
+	add_subdirectory(test)
 endif()
 #
 ###########################################

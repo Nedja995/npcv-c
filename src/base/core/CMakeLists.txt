@@ -8,7 +8,7 @@
 set(PROJECT_INCLUDE ${CMAKE_SOURCE_DIR}/include)
 	
 set(CORE_INC_DIR 
-	${PROJECT_INCLUDE}/core)
+	${PROJECT_INCLUDE}/base/core)
 	
 set(CORE_INC
 	${CORE_INC_DIR}/pixel.h

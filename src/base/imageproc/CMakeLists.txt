@@ -9,7 +9,7 @@ set(PROJECT_INCLUDE ${CMAKE_SOURCE_DIR}/include)
 
 
 set(IMAGEPROC_INC_DIR 
-	${PROJECT_INCLUDE}/imageproc
+	${PROJECT_INCLUDE}/base/imageproc
 )
 set(IMAGEPROC_INC
 	${IMAGEPROC_INC_DIR}/edge_detection.h

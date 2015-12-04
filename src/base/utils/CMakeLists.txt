@@ -8,7 +8,7 @@
 set(PROJECT_INCLUDE ${CMAKE_SOURCE_DIR}/include)
 
 set(UTILS_INC_DIR
-	${PROJECT_INCLUDE}/utils
+	${PROJECT_INCLUDE}/base/utils
 )
 set(UTILS_INC
 	${UTILS_INC_DIR}/path_utils.h
@@ -34,14 +34,14 @@ set(STB_IMAGE_INC
 include_directories(utils ${PROJECT_INCLUDE})
 #include headers
 include_directories(utils ${UTILS_INC_DIR})
+
 #
 # external STB_IMAGE 
 if(WITH_STB_IMAGE)
 	#preprocessor
 	add_definitions(-DWITH_STB_IMAGE)
 	#include stb_image headers
-	include_directories(utils ${CMAKE_SOURCE_DIR}/lib/stb)
-	
+	include_directories(utils ${CMAKE_SOURCE_DIR}/lib/stb)	
 endif()
 
 # Library Add

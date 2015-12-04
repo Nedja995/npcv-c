@@ -1,8 +1,8 @@
-#ifndef __NPCV_EXAMPLES_DATAS
-#define __NPCV_DATA_TEST_H__
+#ifndef __NPCV_EXAMPLES_DATAS__
+#define __NPCV_EXAMPLES_DATAS__
 
-#include "core/npstring.h"
-#include "utils/path_utils.h"
+#include "base/core/npstring.h"
+#include "base/utils/path_utils.h"
 
 
 

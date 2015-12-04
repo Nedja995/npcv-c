@@ -1,7 +1,7 @@
 #ifndef __NPCV__GRAY_H__
 #define __NPCV_GRAY_H__
 
-#include "../core/Image.h"
+#include "base/core/Image.h"
 
 using namespace npcore;
 

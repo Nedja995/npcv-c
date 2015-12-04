@@ -1,5 +1,5 @@
 #include "path_utils.h"
-#include "core/npstring.h"
+#include "base/core/npstring.h"
 
 using namespace npcore;
 

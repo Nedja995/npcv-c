@@ -23,6 +23,7 @@ target_link_libraries(examples core)
 target_link_libraries(examples utils)
 target_link_libraries(examples imageproc)
 target_link_libraries(examples classification)
+
 #
 #END IMAGEPROC
 #####################################################################################

@@ -1,5 +1,5 @@
-#include "Image.h"
-#include "core/npstring.h"
+#include "base/core/Image.h"
+#include "base/core/npstring.h"
 
 
 
