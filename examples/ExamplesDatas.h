@@ -8,9 +8,9 @@
 
 //Windows or Unix
 #if defined _MSC_VER
-const char *sampleRoot = "D:\\Projects\\ComputerVision\\ComputerVision\\npcv\\examples\\datas\\";
+const char *sampleRoot = "D:\\Projects\\ComputerVision\\npcv\\examples\\datas\\";
 #else
-const char *sampleRoot = "/home/ubuntudev/Desktop/Projects/ComputerVision/npcv/examples/datas/";
+const char *sampleRoot = "/home/ubuntudev/Desktop/Projects/npcv/examples/datas/";
 #endif
 
 //inputs

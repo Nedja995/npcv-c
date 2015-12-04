@@ -16,18 +16,18 @@ option(MODULE_CLASSIFICATION "With tests project" YES)
 
 
 option(DEBUG_TRACE "Write trace file" YES)
-if(MSYS)
-   option(DEBUG_WITH_VLD "Only for Win" NO)
-endif()
+
+option(DEBUG_WITH_VLD "Only for Win" NO)
+
 
 option(EXAMPLES "With tests project" YES)
 
 # Iit is only way to load/write image for now
 #option(WITH_STB_IMAGE "With stb image library " YES)
 set(WITH_STB_IMAGE YES)
-if(MSYS)
-   option(WITH_GTEST "With gtest project" YES)
-endif()
+
+option(WITH_GTEST "With gtest project" YES)
+
 # This is understanding now
 #option(BUILD_GTEST "Builds the googletest subproject" OFF)
 #option(BUILD_GMOCK "Builds the googlemock subproject" ON) #Note that googlemock target already builds googletest
@@ -50,10 +50,11 @@ if(EXAMPLES)
 endif()
 
 # Add GTest project
-if(WITH_GTEST)
-	add_subdirectory(test)
+if(MSYS)
+	if(WITH_GTEST)
+		add_subdirectory(test)
+	endif()
 endif()
-
 #
 ###########################################
 
