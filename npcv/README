@@ -37,7 +37,7 @@
 == 2. USING ==
 
 	* End user:
-		can start gui program from '/bin/' directory for their envrinoment (in progress HIGH PRIORITY)
+		can start gui program from '/bin/' directory for their envrinoment
 	
 	* Library users:
 		need to link libs from '/lib/' directory and include headers from '/include/ directory'
@@ -46,13 +46,16 @@
 		can use CMake to generate project for various IDE-s and Makefile 
 		I use Visual Studio 2015 and Codeblock for Linux.
 		For library development there is two usefull executable:
-			1.) examples - when running they will use make few outputs in '/examples/datas/output'
-						 - also this directory you can find '/valid_results/' with who you can compare your outputs
-						 - althrought in '/examples/datas/output/old/classified/test1/' 
-							you can find classification output of ocr number samples in early stage of development
+			1.) examples - when running they will make few outputs in '/examples/datas/output'
+			              - also this directory you can find '/valid_results/' 
+					with who you can compare your outputs
+				    
+				 - althrought in '/examples/datas/output/old/classified/test1/' 
+				    you can find classification output of ocr number samples 
+				    in early stage of development
 							
 			2.) tests - Thanksfully GTests there is great system for testing this project
-					  - Dependency will be automaticaly download via CMake 
+				  - Dependency will be automaticaly download via CMake 
 		
 		When configuring CMake you can configure third part libs:
 			GTest
@@ -62,79 +65,22 @@
 	
 == 3. TECHNICAL SUMMARY ==
 
-	* Base is made by several c modules and they are full cross platform libs 
-	  There is the:
-	  1.) functions for memory allocation, strings compare, list, etc..
-	  2.) very configurable logging system 
-	  4.) base datatypes like pixel, image 
-	  3.) main image processing functions like, edge detection, classification,...
+	* 'npcv' are base made by several C modules and they are full cross platform.
+	  There are main functions for computing and also standard and utils library
+	  with low level log system. Many functions in std library are just wrapped
+	  I did it for the problem  that I think may arise with performance or
+	  compatibility with embeded system. So I thought this can help later.
+	  Even this wr. for now reduce performance little
+	  And I want implement much more functionalities.
   
-    * The Base is separated into four part for now it contains:
-		1.) 'core' module which is something like standard library
-		2.) 'utils' file/image read and write
-		3.) 'imgproc' image processing
-		4.) 'classification'
-		
-	* Second part is not yet implemented 
-  __________________________________________
-  | H |
-  | E | CMake
-  | L | 
-  | P | GTest
-  | E |
-  | R | Examples project
-  |_S_|____________________________________
-  |   | C | 						       |
-  |   | O | memory, string, list, math,    |
-  | B | R | time, io, datatypes            |  
-  | A | E | 							   |
-  | S |___|________________________________|
-  | E | U |                                |
-  |   | T | file and image read/write      |
-  |   | I | 							   |
-  |   | L | path utils					   |
-  |   | S |								   |
-  |   |___|________________________________|
-  |   | I |								   |
-  |   | M | canny/custom edge detection    |
-  |   | G |								   |
-  |   | P | image gray                     |
-  |   | R |								   |
-  |   | O |								   |
-  |   | C |								   |
-  |   |___|________________________________|
-  |   | C |								   |
-  |   | L | classification data utils      |
-  |   | A |								   |
-  |   | S | classification methods         |
-  |   | I |								   |
-  |   | F |								   |
-  |   | F |								   |
-  |   | Y |								   |
-  |___|___|________________________________|
-  
-	
-  in progress:
-   _________________________________________
-  |   | G | 						       |
-  | M | U | Win32 api			           |
-  | A | I |  linux gui                     |   
-  | I |___|________________________________|
-  | N | B |		 |   					   |
-  |   | I | java | cross plat. build & GUI => external
-  | C | N |______|_________________________|
-  | + | D | 		|				       |
-  | + | I |	python	|	//scripting	gui	   |
-  | A | N |_________|______________________|
-  | P | G |		|						   |
-  | I | S |	C#	| Unity3D API			   => external
-  |___|___|_____|__________________________|
-
-  __________________________________________
-  |											|
-  |   MACHINE LEARNING LATER...        		|
-  |_________________________________________|
-  
+	* The 'npcv' is separated into four projects for now it contains:
+	 
+	 |  module  description                   |     namespace   |              
+	 | 'core' something like standard library |  npcore         |
+	 | 'utils' file/image read and write	  |  nputils        |
+	 | 'imgproc' image processing             |  npip           |
+	 | 'classification'			  |  npcf           |
+	 
 == 4. PREREQUISITES ==
 
  This project requires:
