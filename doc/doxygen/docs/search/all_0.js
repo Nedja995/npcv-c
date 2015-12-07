@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['_5f_5fnpcv_5fgray_5fh_5f_5f',['__NPCV_GRAY_H__',['../imageproc__gray_8h.html#a46a420a46ef3ed0981443f9106fa33bb',1,'imageproc_gray.h']]],
+  ['_5fcr_5fcrlf',['_CR_CRLF',['../xprintf_8h.html#a81095ef4440d4aaa43747394f9ee54f3',1,'xprintf.h']]],
+  ['_5fcrt_5fsecure_5fno_5fwarnings',['_CRT_SECURE_NO_WARNINGS',['../npio_8h.html#af08ec37a8c99d747fb60fa15bc28678b',1,'npio.h']]],
+  ['_5fdoes_5flog_5fwith_5fconsole',['_does_log_with_console',['../namespacenpcore.html#a74468459cc96428dc45b1359ac23c6f3',1,'npcore']]],
+  ['_5fdoes_5flog_5fwith_5ffile',['_does_log_with_file',['../namespacenpcore.html#a48dab8dde5ddcd0cef4f4918a944e7d2',1,'npcore']]],
+  ['_5fdoes_5ftrace_5fwith_5fconsole',['_does_trace_with_console',['../namespacenpcore.html#a7fea25ea1bb6529c2b15c18a07b508e8',1,'npcore']]],
+  ['_5fdoes_5ftrace_5fwith_5ffile',['_does_trace_with_file',['../namespacenpcore.html#aa64a678d26b90470761166d2d072cc39',1,'npcore']]],
+  ['_5fline_5fecho',['_LINE_ECHO',['../xprintf_8h.html#aa99cdf8e230567df3ac55cc98e438535',1,'xprintf.h']]],
+  ['_5fnp_5fdebug_5fexit',['_np_debug_exit',['../namespacenpcore.html#a1dfd4b84adfbc8588c5a78b5f8d2cf6b',1,'npcore']]],
+  ['_5fnp_5fdebug_5finitialize',['_np_debug_initialize',['../namespacenpcore.html#a4e9472bf013fb242e75cb8cd38d3b313',1,'npcore']]],
+  ['_5fnp_5flog',['_np_log',['../namespacenpcore.html#ae42e55b6b9343133dd5ef6169726c290',1,'npcore']]],
+  ['_5fnp_5flog_5fdisabled',['_np_log_disabled',['../namespacenpcore.html#a69e81209e733f2eda229ba021f6ccc17',1,'npcore']]],
+  ['_5fnp_5flog_5ffmt',['_np_log_fmt',['../namespacenpcore.html#adcb0741befc18359890aac8d819ad03c',1,'npcore']]],
+  ['_5fnp_5flog_5fout_5fconsole',['_NP_LOG_OUT_CONSOLE',['../debug_8h.html#aa25e199d44a9a4d97cd67d5530215679',1,'_NP_LOG_OUT_CONSOLE():&#160;debug.h'],['../namespacenpcore.html#abe162960d0bc9e7dc3def644d4046524',1,'npcore::_np_log_out_console()']]],
+  ['_5fnp_5flog_5fout_5ffile',['_np_log_out_file',['../namespacenpcore.html#a337aced261de12846aeee57aa719db8b',1,'npcore::_np_log_out_file()'],['../debug_8h.html#a8d4acec7169eb0029670de5392b9d72a',1,'_NP_LOG_OUT_FILE():&#160;debug.h']]],
+  ['_5fnp_5ftrace_5fdisabled',['_np_trace_disabled',['../namespacenpcore.html#a8a977eb91b0475737f1c470f1768e7d5',1,'npcore']]],
+  ['_5fnp_5ftrace_5flog_5ftext_5flist',['_np_trace_log_text_list',['../namespacenpcore.html#a240e1ea7b76e2a4a619df903c0625cbd',1,'npcore']]],
+  ['_5fnp_5ftrace_5fout_5fconsole',['_NP_TRACE_OUT_CONSOLE',['../debug_8h.html#a70397fbbc2adb4a0efb182dd01e6b0a0',1,'_NP_TRACE_OUT_CONSOLE():&#160;debug.h'],['../namespacenpcore.html#ad73336e8714fe1bed022cd77ef99f786',1,'npcore::_np_trace_out_console()']]],
+  ['_5fnp_5ftrace_5fout_5ffile',['_NP_TRACE_OUT_FILE',['../debug_8h.html#ac03b423ef9ad57becce1c75ac8a15116',1,'_NP_TRACE_OUT_FILE():&#160;debug.h'],['../namespacenpcore.html#a5745ef1f38dcc0e711b6f292c841c50a',1,'npcore::_np_trace_out_file()']]],
+  ['_5fnp_5ftracefile_5fdefault_5fpath',['_np_tracefile_default_path',['../namespacenpcore.html#a3f2f0789b2812840418b97456c79ed77',1,'npcore']]],
+  ['_5fuse_5fxfunc_5fin',['_USE_XFUNC_IN',['../xprintf_8h.html#a8c4d55924d46a5be23051988625e301d',1,'xprintf.h']]],
+  ['_5fuse_5fxfunc_5fout',['_USE_XFUNC_OUT',['../xprintf_8h.html#ae7681e2a8627e63b79a5a5e2adf5720b',1,'xprintf.h']]]
+];

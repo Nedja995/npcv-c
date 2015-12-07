@@ -1,7 +1,3 @@
-//TODO: add better logging level control during runtime (runtime log)
-//TODO: add capabilities to set listener for called log (multi listeners)
-//TODO: make loging system in new thread and write trace runtime
-
 /*
 * Logging must be enabled with both 
 * preprocessor directives and				(optimization)
@@ -22,6 +18,29 @@
 
 #ifndef __NPCORE_DEBUG__
 #define __NPCORE_DEBUG__
+/**
+*  @brief Debug and logging
+*
+*  Helpers for debuging 
+*   And very configurable logging system
+*
+*  @file debug.h
+*
+*  @ingroup core
+*
+*  @author Nedeljko Pejasinovic
+*  
+*  
+*
+* @todo  Implement Trace Session via structure with runtime log flags
+* @todo  Change LogLevel from macro to typedef 
+* 		 (NP_FATAL, NP_ERROR,..)
+* @todo  Add better logging level control during runtime
+* @todo  Add capabilities to set listener for called log (multi listeners)
+* @todo  Separate logging and trace in thread
+*
+*/
+
 
 //std
 #include <stdarg.h>
@@ -32,46 +51,50 @@
 
 #define DOES_WRITE_TRACE_CONSOLE
 
-//
-// Preprocessor
-//
+/**
+ * @def	_NP_LOG_DISABLED
+ * @brief	A macro that defines np log disabled.
+ */
 //#define _NP_LOG_DISABLED 1
+
+/**@brief	If defined all logs will be writen to file at exit. */
 #define _NP_LOG_OUT_FILE 1
+
+/** @brief	If defined all logs will be printed at console. */
 #define _NP_LOG_OUT_CONSOLE 1
+
+/**@brief	If defined all trace and logs will printed at console. */
 #define _NP_TRACE_OUT_CONSOLE 1
+
+/** @brief	If defined all trace and logs will be writen to file at exit. */
 #define _NP_TRACE_OUT_FILE 1
 
 
+/**@brief	A macro that defines np fatal. */
+#define NP_FATAL	1  
 
-/*
-*
-* LOGGING
-* 
+/**@brief	A macro that defines np error. */
+#define NP_ERROR	2  
+
+/**@brief	A macro that defines np warning.*/
+#define NP_WARNING	3  
+
+/** @brief	A macro that defines np information. */
+#define NP_INFO		4  
+
+/**@brief	A macro that defines np debug.*/
+#define NP_DEBUG	5 
+
+/** @brief	A macro that defines np trace.*/
+#define NP_TRACE	6
+
+
+
+/**
+* @brief if disabled any log and trace functions
+* 		 won't be called
 */
-
-//
-// Log levels
-//
-#define NP_FATAL 1  //
-#define NP_ERROR 2  // 
-#define NP_WARNING 3  //
-#define NP_INFO 4  //
-#define NP_DEBUG 5  //
-#define NP_TRACE 6  //
-
-//
-// Macro for log implementation missing 
-//
-#define NOT_IMPLEMENTED() \
-	NLog("Called function with no implementation", NP_ERROR)
-
-//
-// LOG MACROS
-//
 #if _NP_LOG_DISABLED
-//
-// Empty function call when logging disabled
-//
 #define NLogTrace(NP_DEBUG, fmt_, ...)
 #define NLogDebug(NP_DEBUG, fmt_, ...)
 #define NLogWarning(NP_WARNING, fmt_, ...)
@@ -79,89 +102,162 @@
 #define NLogFatal(fmt_, ...) 
 #define NLog(fmt_, ...)
 #else
+
+/**
+ * @brief	Info log formated
+ *
+ * @param	fmt_	Describes the format to use.
+ * @param	... 	Variable arguments providing additional information.
+ */
 #define NLog(fmt_, ...)  \
 	_np_log_fmt(NP_INFO, fmt_, __VA_ARGS__)
-// LOG FATAL
+
+/**
+ * @brief	Fatal error log formated
+ *
+ * @param	fmt_	Describes the format to use.
+ * @param	... 	Variable arguments providing additional information.
+ */
 #define NLogFatal(fmt_, ...)  \
 	_np_log_fmt(NP_FATAL, fmt_, __VA_ARGS__)
-// LOG ERROR
+
+/**
+ * @brief	Error log formated
+ *
+ * @param	fmt_	Describes the format to use.
+ * @param	... 	Variable arguments providing additional information.
+ */
 #define NLogError(fmt_, ...)  \
 	_np_log_fmt(NP_ERROR, fmt_, __VA_ARGS__)
-// LOG WARNING
-#define NLogWarning(NP_WARNING, fmt_, ...)  \
+
+/**
+ * @brief	Warning log formated
+ *
+ * @param	fmt_	  	Describes the format to use.
+ * @param	...		  	Variable arguments providing additional information.
+ */
+#define NLogWarning(fmt_, ...)  \
 	_np_log_fmt(fmt_, __VA_ARGS__)
-// LOG DEBUG
-#define NLogDebug(NP_DEBUG, fmt_, ...)  \
+
+/**
+ * @brief	Debug log formated
+ *
+ * @param	fmt_		Describes the format to use.
+ * @param	...			Variable arguments providing additional information.
+ */
+#define NLogDebug(fmt_, ...)  \
 	_np_log_fmt(fmt_, __VA_ARGS__)
-// LOG TRACE
-#define NLogTrace(NP_DEBUG, fmt_, ...)  \
+
+/**@brief	Trace log formated.
+ *
+ * @param	fmt_		Describes the format to use.
+ * @param	...			Variable arguments providing additional information.
+ */
+#define NLogTrace(fmt_, ...)  \
 	_np_log_fmt(NP_TRACE, fmt_, __VA_ARGS__)
 #endif
 
 
+ /**@brief	Calling from no implemented functions.
+ */
+#define NOT_IMPLEMENTED() \
+	NLogError("Called function with no implementation")
+
+/**
+ * @namespace	npcore
+ *
+ * @brief	Core functionalities
+ */
 namespace npcore {
-	/*
-	* 
-	* Required call before and after using
-	* debug functions
+	/**
+	* @typedef	int NPLogLevel
 	*
-	*/
-	int _np_debug_initialize();
-	int _np_debug_exit();
-
-
-	/*
-	*
-	* Loging level flag
-	*
-	* TODO: comment
-	*
+	* @brief	Defines an alias representing the np log level.
+	* @brief	NP_FATAL NP_ERROR NP_WARNING NP_INFO NP_DEBUG NP_TRACE
 	*/
 	typedef int NPLogLevel;
 
-	/*
-	* 
-	* Log configuration variables
-	*
-	*
-	*/
-	static bool _np_log_disabled = false;
-	static bool _np_log_out_file = true;
-	static bool _np_log_out_console = true;
-	
-	//Trace variable
-	static bool _np_trace_disabled = false;
-	static bool _np_trace_out_file = true;
-	static bool _np_trace_out_console = true;
+	/**
+	 * @brief	Need to call before using debug functions
+	 * @return	If initialized is sucessfully 0 else -1.
+	 */
+	int _np_debug_initialize();
 
+	/**
+	 * @brief	Call when finished with debug functions
+	 * @return	If initialized is sucessfully 0 else -1.
+	 */
+	int _np_debug_exit();
+
+	/*
+	* LOGGING LEVEL RUNTIME FLAGS
+	*/
+	static bool _np_log_disabled = false;   /**< Is all logging disabled */
+	static bool _np_log_out_file = true;	/**< Is logs write to file */
+	static bool _np_log_out_console = true; /**< Is logs print to console at runtime */
+	
+	/*
+	* TRACING RUNTIME FLAGS
+	*/
+	static bool _np_trace_disabled = false; /**< Is trace disabled */
+	static bool _np_trace_out_file = true;  /**< Is trace logs write to file */
+	static bool _np_trace_out_console = true;/**< Is trace logs print to console at runtime  */
+
+	/**
+	 * @brief	Standard log output
+	 * @param	level	The level.
+	 * @param	msg  	The message.
+	 */
 	void _np_log(NPLogLevel level, const char* msg);
 
+	/**
+	 * @brief	Standard log output with formated input.
+	 * @param	level	Log level.
+	 * @param	fmt  	Describes the format to use.
+	 * @param	...  	Additional arguments.
+	 */
 	void _np_log_fmt(NPLogLevel level, const char* fmt, ...);
 
 
 	/*
-	* LOG LEVEL
+	* LOG LEVEL RUTIME FLAG
 	* 
 	*/
-	static int logLevel;
 
-	//
-	// Default tracefile
+	static NPLogLevel logLevel; /**< Runtime log level */
+
+
+	/**@brief Full pathname of the np tracefile default file.  
+	 * @todo Move to "Session" struct
+	*/
 	static char *_np_tracefile_default_path = "log.txt";
 
-	// Store trace logs in list for writing at end
+	/** @brief Store trace logs in list for writing at end. */
 	static List *_np_trace_log_text_list;
 
-
-
-	/*
+	/*********************************************************
 	*
 	* Determine log configuration helpers
-	*
+	*/
+
+	/**
+	* @brief	Determines if we can trace logs print in console.
 	*/
 	bool _does_trace_with_console();
+
+	/**
+	 * @brief	Determines if we can write trace logs to file.
+	 */
 	bool _does_trace_with_file();
+
+	/**
+	 * @brief	Determines if we can log print in console.
+	 */
 	bool _does_log_with_console();
+
+	/**
+	 * @brief	Determines if we can write logs to file.
+	 */
 	bool _does_log_with_file();
 
 }

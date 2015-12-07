@@ -1,3 +1,12 @@
+/**
+*  @brief Standard include for npcv
+*
+*  @file npstdlib.h
+*
+*  @ingroup core
+*
+*  @author Nedeljko Pejasinovic
+*/
 #ifndef __NP_STDLIB_H__
 #define __NP_STDLIB_H__
 
@@ -13,8 +22,16 @@
 
 namespace npcore {
 
-
+	/**
+	 * @brief	Initialize NPCORE.
+	 * @return	If sucessfully 1 else -1.
+	 */
 	int NPCORE_initialize();
+
+	/**
+	* @brief	exit NPCORE.
+	* @return	If sucessfully 1 else -1.
+	*/
 	int NPCORE_exit();
 
 }

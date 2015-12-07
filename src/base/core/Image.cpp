@@ -7,7 +7,7 @@ namespace npcore
 {
 	static const size_t MAX_IMAGE_STRING = 500;
 
-	Image* image_create(uchar* data, int width, int height, int type)
+	Image* image_create(const uchar* data, int width, int height, int type)
 	{
 		Image* ret = (Image *)mallocN(sizeof(Image));
 

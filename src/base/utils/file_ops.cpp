@@ -1,6 +1,6 @@
 #include "file_ops.h"
 
-#include <fstream>
+//#include <fstream>
 #include "base/core/npstring.h"
 #include "base/core/debug.h"
 //#define __cplusplus 1
@@ -13,7 +13,7 @@ namespace nputils
         size_t textLen =  npcore::strnlenN((char*)text);
         FILE *fp;
 
-        char textLenTxt[256];
+		char textLenTxt[256];
       /*  Log("File Write");
         Log(filepath);
 

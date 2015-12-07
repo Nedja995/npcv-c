@@ -1,8 +1,8 @@
-#include "core/npio.h"
-#include "core/npstring.h"
+#include "base/core/npio.h"
+#include "base/core/npstring.h"
 
 #include "classification_image_utils.h"
-#include "utils/file_ops.h"
+#include "base/utils/file_ops.h"
 
 
 #define MAX_IMAGE_CLASSDATA_TEXT 1024
@@ -12,7 +12,7 @@
 
 namespace npcf
 {
-	char *data_get_format_csv(ImageClassificationData * icd, size_t *stringLength)
+	char *data_get_format_csv(const ImageClassificationData * icd, size_t *stringLength)
 	{
 		char *ret = (char*)mallocN(sizeof(char) * MAX_IMAGE_CLASSDATA_TEXT);
 		*ret = '\0';

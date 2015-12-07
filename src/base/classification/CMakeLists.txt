@@ -12,8 +12,8 @@ set(CLASSIFICATION_INC_DIR
 )
 
 set(CLASSIFICATION_INC
-	${CLASSIFICATION_INC_DIR}/base/image_classification.h
-	${CLASSIFICATION_INC_DIR}/base/classification_image_utils.h
+	${CLASSIFICATION_INC_DIR}/image_classification.h
+	${CLASSIFICATION_INC_DIR}/classification_image_utils.h
 )
 
 set(CLASSIFICATION_SRC

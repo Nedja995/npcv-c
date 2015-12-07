@@ -1,12 +1,7 @@
 
 #include "image_classification.h"
-#include "core/memory.h"
-#include "core/mathn.h"
-
-//#include "imageproc/edge_detection.h"
-
-//#include <iostream>
-#include "stdio.h"
+#include "base/core/memory.h"
+#include "base/core/mathn.h"
 
 namespace npcf {
 
