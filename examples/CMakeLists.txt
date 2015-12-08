@@ -7,6 +7,10 @@
 #project include
 set(PROJECT_INCLUDE ${CMAKE_SOURCE_DIR}/include)
 
+#examples datas root directory path
+#input and otput datas
+add_definitions(-DEXAMPLES_DATA_DIR=\"${CMAKE_SOURCE_DIR}/examples/datas/\")
+
 set(EXAMPLES_INC
 	ExamplesDatas.h
 )

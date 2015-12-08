@@ -7,11 +7,9 @@
 
 
 //Windows or Unix
-#if defined _MSC_VER
-const char *sampleRoot = "D:\\Projects\\ComputerVision\\npcv\\examples\\datas\\";
-#else
-const char *sampleRoot = "/home/ubuntudev/Desktop/Projects/npcv/examples/datas/";
-#endif
+
+//Examples datas root defined in cmake
+const char *project_root = EXAMPLES_DATA_DIR;
 
 //inputs
 const char* fileWriteInput = "Hello\n File test is succesfully";
@@ -33,9 +31,11 @@ public:
 	//
 	//Append path and convert
 	static char *getPath_alloc(const char *relpath) {
-		char *ret = strappendN(sampleRoot, relpath);
+		char *ret = strappendN(project_root, relpath);
 #if defined __linux__
 		nputils::path_to_linux(ret);
+#else
+		nputils::path_to_windows(ret);
 #endif
 		return ret;
 	}
