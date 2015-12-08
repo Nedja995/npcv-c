@@ -13,6 +13,7 @@
  5.) Building
  6.) Installing
  7.) Contributing
+ 8.) Bugs
  
 == 1. PROJECT SUMMARY ==
 
@@ -24,20 +25,21 @@
 	  For now it can be used like:
 		1.) standard libray (strings, lists, memory, and etc..) with configurable log system
 		2.) utils that can read/write file and images and cross platform path string utilities
-		3.) some image filtering and processing like gray, edge detection canny, cuting images
+		3.) some image filtering and processing like gray, canny edge detection, cuting images
 		4.) classify images based on edges
 
 	* In addition to computer vision and even more I want learn to apply techniques related to open source projects 
 	  as other interesting software engineering techniques and technologies.
 	  I'm not going to make alternatives for existing solution 
-	  but there is some equals with somes solution I get inspired like opencv, blender, Vuforia, Neuroph, TensorFlow
+	  but there is some equals with somes solution with that i'm inspired.
+	  I get inspired by opencv, Vuforia, blender, cocos2dx, Neuroph, TensorFlow
 	  
 	* All advice, criticisms, questions and participants are welcome
 
 == 2. USING ==
 
 	* End user:
-		can start gui program from '/bin/' directory for their envrinoment
+		can start console program from '/bin/stable/' directory for their envrinoment
 	
 	* Library users:
 		need to link libs from '/lib/' directory and include headers from '/include/ directory'
@@ -67,11 +69,11 @@
 
 	* 'npcv' are base made by several C modules and they are full cross platform.
 	  There are main functions for computing and also standard and utils library
-	  with low level log system. Many functions in std library are just wrapped
-	  I did it for the problem  that I think may arise with performance or
-	  compatibility with embeded system. So I thought this can help later.
+	  with low level log system. Many functions in std library are just wrappers 
+	  for C std libs. I did it for the problem  that I think may arise with performance 
+	  or compatibility with embeded system. So I thought this can help later.
 	  Even this wr. for now reduce performance little
-	  And I want implement much more functionalities.
+	  And I want implement much more functionalities on my own.
   
 	* The 'npcv' is separated into four projects for now it contains:
 	 
@@ -110,3 +112,10 @@
 == 6. CONTRIBUTING ==
 
  TODO: Enhance section.
+
+== 8. Bugs ==
+
+	1.) CMake on Linux:
+		GTest cannot build with project on linux
+		because of CMAKE_CURRENT_BINARY_DIR not recognized
+		(npcv/test/CMakeLists.txt)
