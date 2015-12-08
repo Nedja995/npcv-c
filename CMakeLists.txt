@@ -10,24 +10,22 @@ SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib/dev)
 #
 # OPTIONS
 #
+option(MODULE_IMGPROC "With image processing module" YES)
+option(MODULE_CLASSIFICATION "With classification module" YES)
 
-option(MODULE_IMGPROC "With tests project" YES)
-option(MODULE_CLASSIFICATION "With tests project" YES)
+option(DEBUG_TRACE "Write all trace logs to default file" YES)
+option(DEBUG_WITH_VLD "Visual Leak Detector for Windows" NO)
 
+option(EXAMPLES "With examples project" YES)
 
-option(DEBUG_TRACE "Write trace file" YES)
-
-option(DEBUG_WITH_VLD "Only for Win" NO)
-
-
-option(EXAMPLES "With tests project" YES)
-
-# Iit is only way to load/write image for now
+# It is only way to load/write image for now
 #option(WITH_STB_IMAGE "With stb image library " YES)
 set(WITH_STB_IMAGE YES)
 
-option(WITH_GTEST "Win only" YES)
-
+option(GTEST "Add GTest to project" YES)
+option(GTEST_DOWNLOAD_GTEST_AND_GMOCK "Download GTest." YES)
+set(GTEST_DIR "${CMAKE_SOURCE_DIR}/test/gtest/gtest" CACHE PATH "If downloading is disable this will be used. The path to the GooglTest cloned repository.")
+set(GTEST_GMOCK_DIR "${CMAKE_SOURCE_DIR}/test/gtest/gmock" CACHE PATH "If downloading is disable this will be used. The path to the GooglMock cloned repository.")
 # This is understanding now
 #option(BUILD_GTEST "Builds the googletest subproject" OFF)
 #option(BUILD_GMOCK "Builds the googlemock subproject" ON) #Note that googlemock target already builds googletest
@@ -50,7 +48,7 @@ if(EXAMPLES)
 endif()
 
 # Add GTest project
-if(WITH_GTEST)
+if(GTEST)
 	add_subdirectory(test)
 endif()
 #

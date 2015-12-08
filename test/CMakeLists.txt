@@ -15,6 +15,7 @@ set(TEST_SRC
 	gtest_main.cc
 )
 
+
 #
 # Download gtest and gmock packages
 #
@@ -22,6 +23,8 @@ find_package(Threads REQUIRED)
 add_executable(tests ${TEST_SRC} ${TEST_INC})
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+
+if(GTEST_DOWNLOAD_GTEST_AND_GMOCK)
 
 # Enable ExternalProject CMake module
 include(ExternalProject)
@@ -65,6 +68,15 @@ set_target_properties(libgmock PROPERTIES
 	"IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
 #    "INTERFACE_INCLUDE_DIRECTORIES" "${source_dir}/include"
 )
+
+else()
+add_subdirectory(${GTEST_GMOCK_DIR})
+
+include_directories(tests ${GTEST_DIR}/include)
+
+endif()
+
+
 # I couldn't make it work with INTERFACE_INCLUDE_DIRECTORIES
 include_directories("${source_dir}/include")
 
@@ -78,7 +90,7 @@ include_directories(tests ${CMAKE_SOURCE_DIR}/include)
 #
 include_directories(tests ${CMAKE_CURRENT_BINARY_DIR}/gmock/src/gmock/include)
 
-
+if(GTEST_DOWNLOAD_GTEST_AND_GMOCK)
 #
 # Link gmock to project 'tests'
 #
@@ -90,7 +102,13 @@ TARGET_LINK_LIBRARIES(tests ${CMAKE_CURRENT_BINARY_DIR}/gmock/src/gmock-build/li
 TARGET_LINK_LIBRARIES(tests ${CMAKE_CURRENT_BINARY_DIR}/gmock/src/gmock-build/libmock_main.a)
 endif()
 
-
+else()
+if(MSVC)
+target_link_libraries(tests ${LIBRARY_OUTPUT_PATH}/${CMAKE_CFG_INTDIR}/gmock.lib)
+else()
+target_link_libraries(tests ${LIBRARY_OUTPUT_PATH}/gmock.a)
+endif()
+endif()
 
 #
 #END IMAGEPROC
