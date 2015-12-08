@@ -12,7 +12,7 @@
 
 namespace npcf
 {
-	char *data_get_format_csv(const ImageClassificationData * icd, size_t *stringLength)
+	char *data_get_format_csv(ImageClassificationData * icd, size_t *stringLength)
 	{
 		char *ret = (char*)mallocN(sizeof(char) * MAX_IMAGE_CLASSDATA_TEXT);
 		*ret = '\0';

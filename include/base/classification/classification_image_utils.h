@@ -34,7 +34,7 @@ namespace npcf
 	 * @param [in,out]	stringLength	If non-null, length of the string.
 	 * @return	null if it fails, else pointer to new string.
 	 */
-	char *data_get_format_csv(const ImageClassificationData *icd, size_t *stringLength);
+	char *data_get_format_csv(ImageClassificationData *icd, size_t *stringLength);
 
 	/**
 	 * @brief	Make csv string of array of ImageClassificationData.
