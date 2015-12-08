@@ -160,8 +160,8 @@
 
  /**@brief	Calling from no implemented functions.
  */
-#define NOT_IMPLEMENTED() \
-	NLogError("Called function with no implementation")
+#define NOT_IMPLEMENTED() //\
+	//NLogError("Called function with no implementation")
 
 /**
  * @namespace	npcore
