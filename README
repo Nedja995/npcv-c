@@ -75,6 +75,7 @@
 	
 == 4. TECHNICAL SUMMARY ==
 
+	* Doxygen docs http://npcvdocs.co.nf/modules.html
 	* 'npcv' are base made by several C modules and they are full cross platform.
 	  There are main functions for computing and also standard and utils library
 	  with low level log system. Many functions in std library are just wrappers 
