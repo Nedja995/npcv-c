@@ -42,22 +42,21 @@
 	
 	1.) Classification output. Ocr classification.
 	    Each picture for exactly 123 samples of character variation sorted by x axis: 
-	 https://github.com/Nedja995/npcv/blob/master/examples/datas/output/old/classified/test1/
+	    https://github.com/Nedja995/npcv/blob/master/examples/datas/output/old/classified/test1/
 	2.) Image processing:
-	 https://github.com/Nedja995/npcv/blob/master/examples/datas/output/valid_results
+	    https://github.com/Nedja995/npcv/blob/master/examples/datas/output/valid_results
 	
 == 3. USING ==
 
 	* End user:
-		can start console program from '/bin/stable/' directory for their envrinoment
+		can start console program from '/bin/stable/' directory for their platform
 	
 	* Library users:
 		need to link libs from '/lib/' directory and include headers from '/include/ directory'
 	  
 	* Developer: 
-		can use CMake to generate project for various IDE-s and Makefile 
-		I use Visual Studio 2015 and Codeblock for Linux.
-		For library development there is two usefull executable:
+		Can use CMake to generate project for various IDE-s and Makefile 
+		There is two usefull executable:
 			1.) examples - when running they will make few outputs 
 			    in '/examples/datas/output'
 		             - also in this directory you can find '/valid_results/' 
@@ -66,12 +65,14 @@
 				you can find classification output of ocr number samples 
 				in early stage of development
 			2.) tests - GTests. Can download them on build or
-				    select custom GTest and GMock project paths
+		            select custom GTest and GMock project paths
+		            
 		This is overview, more details in 6. BUILDING section
 	
 == 4. TECHNICAL SUMMARY ==
 
 	* Doxygen docs http://npcvdocs.co.nf/modules.html
+	
 	* 'npcv' are base made by several C modules and they are full cross platform.
 	  There are main functions for computing and also standard and utils library
 	  with low level log system. Many functions in std library are just wrappers 
@@ -81,12 +82,12 @@
 	  And I want implement much more functionalities on my own.
   
 	* The 'npcv' is separated into four projects for now it contains:
-	 
 	 |  module  description                   |     namespace   |              
 	 | 'core' something like standard library |  npcore         |
 	 | 'utils' file/image read and write	  |  nputils        |
 	 | 'imgproc' image processing             |  npip           |
 	 | 'classification'			  |  npcf           |
+	 
 	 
 == 5. PREREQUISITES ==
 
