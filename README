@@ -30,7 +30,7 @@
 		4.) classify images based on edges
 
 	* In addition to computer vision and even more I want learn to apply techniques related to open source projects 
-	  as other interesting software engineering techniques and technologies.
+	  as all other interesting software engineering techniques and technologies.
 	  I'm not going to make alternatives for existing solution 
 	  but there is some equals with somes solution with that i'm inspired.
 	  I get inspired by opencv, Vuforia, blender, cocos2dx, Neuroph, TensorFlow,..
@@ -53,25 +53,20 @@
 	* Library users:
 		need to link libs from '/lib/' directory and include headers from '/include/ directory'
 	  
-	* Developer:
+	* Developer: 
 		can use CMake to generate project for various IDE-s and Makefile 
 		I use Visual Studio 2015 and Codeblock for Linux.
 		For library development there is two usefull executable:
 			1.) examples - when running they will make few outputs 
-			               in '/examples/datas/output'
-			             - also in this directory you can find '/valid_results/' 
-					with who you can compare your outputs
-				     - althrought in '/examples/datas/output/old/classified/test1/' 
-					you can find classification output of ocr number samples 
-					in early stage of development
-							
+			    in '/examples/datas/output'
+		             - also in this directory you can find '/valid_results/' 
+				with who you can compare your outputs
+			     - althrought in '/examples/datas/output/old/classified/test1/' 
+				you can find classification output of ocr number samples 
+				in early stage of development
 			2.) tests - GTests. Can download them on build or
 				    select custom GTest and GMock project paths
-		
-		When configuring CMake you can configure third parts:
-			GTest
-			Visual Leak Detector
-			Examples
+		This is overview, more details in 6. BUILDING section
 	
 == 4. TECHNICAL SUMMARY ==
 
@@ -101,6 +96,12 @@
   * (linux optional) CodeBlock IDE
 
 == 6. BUILDING ==
+	When configuring CMake you can include in build:
+		* "optimal" modules for imageprocessing and classification
+		* Detail trace log writing in file
+		* GTest Project with downloading gtest and gmock reps or set path manual
+		* Visual Leak Detector - for windows debuging
+		* Examples project
 
  	1.) Windows Visual Studio
 
