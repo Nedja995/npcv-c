@@ -18,9 +18,9 @@ const char *ocrSamples = "samples\\digits.png";
 const int ocrSubimageSize = 20;
 //outputs
 const char *fileWriteOutput = "output\\FileWriteOutput.txt";
-const char *writeOutput = "output\\lena.jpg";
+const char *writeOutput = "output\\lena.png";
 const char* grayOutput = "output\\gray.png";
-const char *subareaOutput = "output\\subarea.jpg";
+const char *subareaOutput = "output\\subarea.png";
 const char* edgeDetectionOutput = "output\\edges.png";
 const char *ocrSamplesOutput = "output\\ocrSamples.csv";
 
