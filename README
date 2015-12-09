@@ -33,19 +33,17 @@
 	  as other interesting software engineering techniques and technologies.
 	  I'm not going to make alternatives for existing solution 
 	  but there is some equals with somes solution with that i'm inspired.
-	  I get inspired by opencv, Vuforia, blender, cocos2dx, Neuroph, TensorFlow
+	  I get inspired by opencv, Vuforia, blender, cocos2dx, Neuroph, TensorFlow,..
 	  
 	* All advice, criticisms, questions and participants are welcome
 	
 == 2. OUTPUT SAMPLES ==
 	
-	1.) Canny edge detection: https://github.com/Nedja995/npcv/blob/master/examples/datas/output/valid_results/edges.png
-	2.) Ocr classification of 123 samples chars:
-		* digit zero: https://github.com/Nedja995/npcv/blob/master/examples/datas/output/old/classified/test1/0F.png
-		* digit one: https://github.com/Nedja995/npcv/blob/master/examples/datas/output/old/classified/test1/1F.png
-		* digit two: https://github.com/Nedja995/npcv/blob/master/examples/datas/output/old/classified/test1/2F.png
-		* digit three: https://github.com/Nedja995/npcv/blob/master/examples/datas/output/old/classified/test1/3F.png
-		* digit four: https://github.com/Nedja995/npcv/blob/master/examples/datas/output/old/classified/test1/4F.png
+	1.) Classification output. Ocr classification.
+	    Each picture for exactly 123 samples of character variation sorted by x axis: 
+	 https://github.com/Nedja995/npcv/blob/master/examples/datas/output/old/classified/test1/
+	2.) Image processing:
+	 https://github.com/Nedja995/npcv/blob/master/examples/datas/output/valid_results
 	
 == 3. USING ==
 
@@ -59,20 +57,19 @@
 		can use CMake to generate project for various IDE-s and Makefile 
 		I use Visual Studio 2015 and Codeblock for Linux.
 		For library development there is two usefull executable:
-			1.) examples - when running they will make few outputs in '/examples/datas/output'
-			              - also this directory you can find '/valid_results/' 
+			1.) examples - when running they will make few outputs 
+			               in '/examples/datas/output'
+			             - also in this directory you can find '/valid_results/' 
 					with who you can compare your outputs
-				    
-				 - althrought in '/examples/datas/output/old/classified/test1/' 
-				    you can find classification output of ocr number samples 
-				    in early stage of development
+				     - althrought in '/examples/datas/output/old/classified/test1/' 
+					you can find classification output of ocr number samples 
+					in early stage of development
 							
-			2.) tests - Thanksfully GTests there is great system for testing this project
-				  - Dependency will be automaticaly download via CMake 
+			2.) tests - GTests. Can download them on build or
+				    select custom GTest and GMock project paths
 		
-		When configuring CMake you can configure third part libs:
+		When configuring CMake you can configure third parts:
 			GTest
-			Detailed trace
 			Visual Leak Detector
 			Examples
 	
@@ -104,9 +101,9 @@
 
 == 6. BUILDING ==
 
- 	1.) Windows/Visual Studio
+ 	1.) Windows Visual Studio
 
-	2.) Linux/Codeblock/Unix Makefile
+	2.) Unix Makefile
 	
  This project uses the Cross-platform Make (CMake) build system. However, we
  have conveniently provided a wrapper configure script and Makefile so that
@@ -126,7 +123,3 @@
 
 == 9. BUGS ==
 
-	1.) CMake on Linux:
-		GTest cannot build with project on linux
-		because of CMAKE_CURRENT_BINARY_DIR not recognized
-		(npcv/test/CMakeLists.txt)
