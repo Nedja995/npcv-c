@@ -46,12 +46,15 @@ namespace npcore
 
 	void list_free(List * list)
 	{
-		LIST_FOREACH(list) {
-			if (link->prev != NULL) {
-				freeN((void *)link->prev);
-				link->prev = NULL;
-			}
+		Link *link, *next;
+
+		link = list->first;
+		while (link) {
+			next = link->next;
+			freeN(link);
+			link = next;
 		}
+
 		freeN(list);
 	}
 
