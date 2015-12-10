@@ -94,17 +94,36 @@ namespace npcore {
 		return 1;
 	}
 
+	char *to_string_alloc(NPLogLevel level) {
+		char *ret = NULL;
+		if (level == NP_DEBUG)
+			ret = strmakeN("NP_DEBUG");
+		else if (level == NP_ERROR) 
+			ret = strmakeN("NP_ERROR");
+		else if (level == NP_FATAL) 
+			ret = strmakeN("NP_FATAL");
+		else if (level == NP_INFO) 
+			ret = strmakeN("NP_INFO");
+		else if (level == NP_TRACE) 
+			ret = strmakeN("NP_TRACE");
+		else if (level == NP_WARNING) 
+			ret = strmakeN("NP_WARNING");
+		return ret;
+	}
+
 	void _np_log(NPLogLevel level, const char* msg)
 	{
+		char *levelStr = to_string_alloc(level);
+		char *msgF = strmakeN("%s: %s", levelStr, msg);		
 
 		if (_does_trace_with_console()) {
-			NConsolePrint("%s", msg);
+			NConsolePrint("%s", msgF);
 		}			
 		if (_does_trace_with_file()) {
 			//Write to default trace listener	
 			//	if (strncmp(_np_tracefile_default_path, _np_tracefile_default_path, strlen(_np_tracefile_default_path)) == 0) {
 			//Log("tracing image. default listener");
-			list_put(_np_trace_log_text_list, msg);
+			list_put(_np_trace_log_text_list, msgF);
 			/*}
 			else {
 			NOT_IMPLEMENTED();
@@ -121,6 +140,7 @@ namespace npcore {
 		vsprintf(buffer, fmt, args);
 		va_end(args);
 		_np_log(level, buffer);
+		freeN(buffer);
 	}
 
 	/**********************************

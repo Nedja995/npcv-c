@@ -27,6 +27,7 @@ using namespace npcore;
 enum NPCVTests
 {
 	ALL,
+	TIME,
 	FILE_W,
 	IMAGE_RW,
 	GRAY,
@@ -35,6 +36,19 @@ enum NPCVTests
 	CLASSIFYOCR
 };
 
+bool Time_Example()
+{
+	NConsolePrint("\nstart Time\n");	
+	NTime *nt = time_get_allocN();
+	if (nt == NULL) {
+		NConsolePrint("Time struct getting error !");
+		return false;
+	}
+
+	NConsolePrint("\nTime successfuly used: %02d_%02d_%02d_%02d-%02d-%02d\n", nt->year, nt->month, nt->day, nt->hour, nt->minute, nt->second);
+	NConsolePrint("finish Time\n\n");
+	return true;
+}
 
 bool FileWrite_Example()
 {
@@ -158,6 +172,7 @@ void printMainMessage() {
 	NConsolePrint("\n\n===== NPCV ExamplesManger =====\n\n");
 	NConsolePrint("available inputs are (type parametars or leave it with default params):\n\n");
 	NConsolePrint(" all run all with example datas\n\n");
+	NConsolePrint("time\n\n");
 	NConsolePrint(" filewrite output_path\n\n");
 	NConsolePrint(" imagereadwrite input_image output_image\n\n");
 	NConsolePrint(" gray input_image output_path\n\n");
@@ -171,8 +186,11 @@ void printMainMessage() {
 //
 // for now without custom arguments
 //
+
+
 int main(int argc, char** argv)
 {
+	
 	NPCORE_initialize();
 
 	NPCVTests testChoosed = ALL;
@@ -194,6 +212,8 @@ int main(int argc, char** argv)
 		//choose example
 		if (strstr(input, "all") != NULL)
 			testChoosed = ALL;
+		else if (strstr(input, "time") != NULL)
+			testChoosed = TIME;
 		else if (strstr(input, "filewrite") != NULL)
 			testChoosed = FILE_W;
 		else if (strstr(input, "imagereadwrite") != NULL)
@@ -213,6 +233,11 @@ int main(int argc, char** argv)
 
 		//process
 		if (testChoosed == ALL) {
+
+			Time_Example();
+		
+
+
 			NConsolePrint("\nstart FileWrite\n");
 			FileWrite_Example();
 			NConsolePrint("stop FileWrite\n\n");
@@ -236,6 +261,9 @@ int main(int argc, char** argv)
 			NConsolePrint("start Classify OCR samples\n");
 			ClassifyOcrSamples_Example();
 			NConsolePrint("stop Classify OCR samples\n");
+		}
+		else if (testChoosed == TIME) {
+			Time_Example();
 		}
 		else if (testChoosed == FILE_W) {
 			FileWrite_Example();
@@ -261,8 +289,9 @@ int main(int argc, char** argv)
 
 
 	//system("pause");
+	NPCORE_exit();
 
-	return NPCORE_exit();
+	return 1;
 
 }
 

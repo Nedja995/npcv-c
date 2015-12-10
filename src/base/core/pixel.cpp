@@ -38,7 +38,7 @@ namespace npcore
 			//Log("tracing image. default listener");
 		}
 		else {
-			NOT_IMPLEMENTED();
+			NOT_IMPLEMENTED;
 		}
 	}
 	//trace default

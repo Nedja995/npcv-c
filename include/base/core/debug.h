@@ -160,8 +160,8 @@
 
  /**@brief	Calling from no implemented functions.
  */
-#define NOT_IMPLEMENTED() //\
-	//NLogError("Called function with no implementation")
+#define NOT_IMPLEMENTED \
+	NLogError("%s: Called function with no implementation", __FUNCTION__)
 
 /**
  * @namespace	npcore
@@ -218,6 +218,8 @@ namespace npcore {
 	 */
 	void _np_log_fmt(NPLogLevel level, const char* fmt, ...);
 
+
+	char *to_string_alloc(NPLogLevel level);
 
 	/*
 	* LOG LEVEL RUTIME FLAG

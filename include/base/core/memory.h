@@ -15,7 +15,7 @@
 
 
 /**************************************
-*		Defines for Windows & Linux
+*	Includes for Windows & Linux
 */
 #if defined _MSC_VER || defined __linux__
 #	include <stdio.h>

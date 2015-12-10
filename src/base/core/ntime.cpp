@@ -1,5 +1,6 @@
 #include "ntime.h"
 #include "memory.h"
+#include "debug.h"
 
 #if defined _MSC_VER
 #	include <windows.h>
@@ -11,12 +12,40 @@ namespace npcore {
 
 	NTime *time_get_allocN()
 	{
-		NTime *ret = NULL;
-#if defined _MSC_VER
-			SYSTEMTIME lt;
+		NTime *ret = (NTime*)mallocN(sizeof(NTime));
+#ifdef _MSC_VER || __linux__
+		time_t curtime;
+		struct tm *loctime;
+
+		/* Get the current time. */
+		curtime = time(NULL);
+
+		/* Convert it to local time representation. */
+		loctime = localtime(&curtime);
+
+		ret->day = loctime->tm_mday;
+		ret->hour = loctime->tm_hour;
+		ret->milisecond = 0;
+		ret->minute = loctime->tm_min;
+		ret->month = loctime->tm_mon;
+		ret->second = loctime->tm_sec;
+		ret->year = 1900 + loctime->tm_year;
+
+		/*Windows . old
+		SYSTEMTIME lt;
 		GetLocalTime(&lt);
-		ret = (NTime*) duplicateN(&lt, sizeof(SYSTEMTIME));
+		ret->day = (int)lt.wDay;
+		ret->hour = (int)lt.wHour;
+		ret->milisecond = (int)lt.wMilliseconds;
+		ret->minute = (int)lt.wMinute;
+		ret->month = (int)lt.wMonth;
+		ret->second = (int)lt.wSecond;
+		ret->year = (int)lt.wYear;*/
+#else
+		NOT_IMPLEMENTED;
 #endif
+
+
 		return ret;
 	}
 

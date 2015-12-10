@@ -24,14 +24,13 @@ namespace npcore {
 	 * @brief	Time structure.
 	 */
 	struct NTime {
-		ushort year;
-		ushort month;
-		ushort dayOfWeek;
-		ushort day;
-		ushort hour;
-		ushort minute;
-		ushort second;
-		ushort milisecond;
+		int year;
+		int month;
+		int day;
+		int hour;
+		int minute;
+		int second;
+		int milisecond;
 	};
 
 	typedef struct NTime NTime;
