@@ -34,6 +34,8 @@
 #   include <string.h>
 #endif
 
+#include "debug.h" //for NLogError
+
 /**
  * @brief	Allocate memory.
  * @param	size	Number of bytes.
@@ -94,8 +96,13 @@ inline void memsetN(void * mem, int val, size_t size)
  */
 inline void freeN(void * data)
 {
-	free(data);
-	data = NULL;
+	if(data == NULL){
+		//npcore::NLogError("NULL pointer passed to free");
+	}
+	else{
+		free(data);
+		data = NULL;
+	}
 }
 
 /**

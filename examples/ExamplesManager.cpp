@@ -39,13 +39,18 @@ enum NPCVTests
 bool Time_Example()
 {
 	NConsolePrint("\nstart Time\n");	
+	
 	NTime *nt = time_get_allocN();
+	
 	if (nt == NULL) {
 		NConsolePrint("Time struct getting error !");
 		return false;
 	}
-
+	
 	NConsolePrint("\nTime successfuly used: %02d_%02d_%02d_%02d-%02d-%02d\n", nt->year, nt->month, nt->day, nt->hour, nt->minute, nt->second);
+	
+	freeN(nt);
+	
 	NConsolePrint("finish Time\n\n");
 	return true;
 }
@@ -186,7 +191,42 @@ void printMainMessage() {
 //
 // for now without custom arguments
 //
+#	include <time.h>
+int main2(int argc, char** argv)
+{
 
+	
+/*	NTime *ret = (NTime*)mallocN(sizeof(NTime));
+		
+		time_t curtime;
+		struct tm *loctime;
+
+		//Get the current time. 
+		curtime = time(NULL);
+
+		// Convert it to local time representation. 
+		loctime = localtime(&curtime);
+
+	NConsolePrint("now: %d-%d-%d %d:%d:%d\n", loctime->tm_year + 1900, loctime->tm_mon + 1, loctime->tm_mday, loctime->tm_hour, loctime->tm_min, loctime->tm_min);
+
+
+
+		ret->day = loctime->tm_mday;
+		ret->hour = loctime->tm_hour;
+		ret->milisecond = 0;
+		ret->minute = loctime->tm_min;
+		ret->month = loctime->tm_mon;
+		ret->second = loctime->tm_sec;
+		ret->year = 1900 + loctime->tm_year;
+		
+		//freeN(loctime);
+
+	freeN(ret);*/
+	
+	
+	
+	return 0;
+}
 
 int main(int argc, char** argv)
 {
@@ -194,12 +234,12 @@ int main(int argc, char** argv)
 	NPCORE_initialize();
 
 	NPCVTests testChoosed = ALL;
-	char *input = (char*)mallocN(sizeof(char) * 256);
+	char *input = strmakeN("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	//*(input + 256) = '\0';
 	//
 
 
-	while (strncmp(input, "quit", 5) != 0)
+	while (strncmp(input, "quit", 50) != 0)
 	{
 		//
 		// MAIN LOOP
@@ -286,7 +326,7 @@ int main(int argc, char** argv)
 
 	}
 
-
+	freeN(input);
 
 	//system("pause");
 	NPCORE_exit();

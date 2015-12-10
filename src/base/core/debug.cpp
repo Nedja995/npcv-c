@@ -74,16 +74,17 @@ namespace npcore {
 			NTime *lt =  time_get_allocN();
 			
 			//format wild time string 
-			char *timeText = (char*)mallocN(sizeof(char) * 256);
-			sprintfN(timeText, "%02d_%02d_%02d_%02d-%02d-%02d", lt->year, lt->month, lt->day, lt->hour, lt->minute, lt->second);
+			char *timeText = strmakeN("%02d_%02d_%02d_%02d-%02d-%02d", lt->year, lt->month, lt->day, lt->hour, lt->minute, lt->second);
+			freeN(lt);
 
 			//make log file path
-			char *logFile = (char*)mallocN(sizeof(char) * 264);
-			logFile = strmakeN("%s.log", timeText);
-
+			char *logFile =  strmakeN("%s.log", timeText);
+			
+			freeN(timeText);
+			
 			//create and open output stream
 			traceFile.open(logFile, std::ofstream::out | std::ofstream::app);
-
+			freeN(logFile);
 			//iterate through trace logs
 			LIST_FOREACH(_np_trace_log_text_list) {
 				traceFile << (char*)link->data;
@@ -91,6 +92,8 @@ namespace npcore {
 			traceFile.close();
 
 		}
+		freeN(_np_trace_log_text_list);
+		
 		return 1;
 	}
 

@@ -5,15 +5,17 @@
 #if defined _MSC_VER
 #	include <windows.h>
 #	include <wchar.h>
-#	include <time.h>
+
 #endif
+#	include <time.h>
 
 namespace npcore {
 
 	NTime *time_get_allocN()
 	{
 		NTime *ret = (NTime*)mallocN(sizeof(NTime));
-#ifdef _MSC_VER || __linux__
+		
+#if defined _MSC_VER || defined __linux__
 		time_t curtime;
 		struct tm *loctime;
 
@@ -30,7 +32,9 @@ namespace npcore {
 		ret->month = loctime->tm_mon;
 		ret->second = loctime->tm_sec;
 		ret->year = 1900 + loctime->tm_year;
-
+		
+	//	freeN(loctime);
+		
 		/*Windows . old
 		SYSTEMTIME lt;
 		GetLocalTime(&lt);
