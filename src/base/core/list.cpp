@@ -1,4 +1,4 @@
-#include "..\..\..\include\base\core\list.h"
+
 #include "list.h"
 #include "memory.h"
 
@@ -14,7 +14,7 @@ namespace npcore
 		return ret;
 	}
 
-	void list_put(List *list, void *item) {
+	void list_put(List *list, const void *item) {
 		Link *link = list_link_create(item);
 
 		link->next = NULL;
@@ -36,7 +36,7 @@ namespace npcore
 		return ret;
 	}
 
-	Link * list_link_create(void * item) {
+	Link * list_link_create(const void * item) {
 		Link *ret = (Link*)mallocN(sizeof(Link));
 		ret->data = item;
 		ret->next = NULL;
