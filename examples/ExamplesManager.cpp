@@ -36,6 +36,7 @@ enum NPCVTests
 	CLASSIFYOCR
 };
 
+
 bool Time_Example()
 {
 	NConsolePrint("\nstart Time\n");	
@@ -46,7 +47,7 @@ bool Time_Example()
 		NConsolePrint("Time struct getting error !");
 		return false;
 	}
-	
+			
 	NConsolePrint("\nTime successfuly used: %02d_%02d_%02d_%02d-%02d-%02d\n", nt->year, nt->month, nt->day, nt->hour, nt->minute, nt->second);
 	
 	freeN(nt);
@@ -61,8 +62,11 @@ bool FileWrite_Example()
 
 	if (nputils::file_write(output, fileWriteInput) == false) {
 		NConsolePrint("\nFile Writing failed !");
+		freeN(output);
 		return false;
 	}
+	freeN(output);
+	return true;
 }
 
 bool ImageReadWrite_Example()
@@ -70,13 +74,18 @@ bool ImageReadWrite_Example()
 	char *input = Examples::getPath_alloc(lenaInput);
 	char *output = Examples::getPath_alloc(writeOutput);
 	Image * img = nputils::ImageStream::ReadImage_STB(input);
+	
+	freeN(input);
+	
 	if (img == NULL) {
 		NConsolePrint("\nEdge Image Read Write failed! input image not found!");
 		return false;
 	}
 
 	nputils::ImageStream::WriteImage_STB(img, output);
-
+	
+	free_image(img);
+	freeN(output);
 	return true;
 }
 
@@ -86,6 +95,9 @@ bool ImageGray_Example()
 	char *output = Examples::getPath_alloc(grayOutput);
 
 	Image * img = nputils::ImageStream::ReadImage_STB(input);
+	
+	freeN(input);
+	
 	if (img == NULL) {
 		NConsolePrint("\nGray failed! input image not found!");
 		return false;
@@ -94,6 +106,8 @@ bool ImageGray_Example()
 	npip::gray(img);
 	nputils::ImageStream::WriteImage_STB(img, output);
 
+	free_image(img);
+	freeN(output);
 
 	return true;
 }
@@ -113,6 +127,11 @@ bool Subarea_Example()
 		img->width / 2, img->height / 2);
 
 	nputils::ImageStream::WriteImage_STB(small, output);
+	
+	freeN(input);
+	freeN(output);
+	free_image(img);
+	free_image(small);
 
 	return true;
 }
@@ -132,7 +151,16 @@ bool EdgeDetection_Examples()
 	npip::contour_draw_custom(img, 1, 20);
 	nputils::ImageStream::WriteImage_STB(img, output);
 
+	freeN(input);
+	freeN(output);
+	free_image(img);
+
 	return true;
+}
+
+void free_l(Link * link)
+{
+	npcf::free_image_classification_data((npcf::ImageClassificationData*) link->data);
 }
 
 bool ClassifyOcrSamples_Example()
@@ -159,16 +187,28 @@ bool ClassifyOcrSamples_Example()
 			subimage = image_get_area(img, x, y, ocrSubimageSize, ocrSubimageSize);
 
 			icdTemp = npcf::image_classify(subimage, 12);
+			
+			free_image(subimage);
+			
 			if (icdTemp == NULL)
 				continue;
 			list_put(classes, icdTemp);
+			
+			//free_image_classification_data(icdTemp);
 			si++;
 		}
 	}
 
-	char *csvContent = npcf::datas_get_format_csv(classes);
+	//char *csvContent = npcf::datas_get_format_csv(classes);
 
-	nputils::file_write(output, csvContent);
+	//nputils::file_write(output, csvContent);
+
+	//free(csvContent);
+	//list_free_default(classes, free_l);
+	
+	freeN(input);
+	freeN(output);
+	free_image(img);
 
 	return true;
 }
@@ -318,7 +358,7 @@ int main(int argc, char** argv)
 			Subarea_Example();
 		}
 		else if (testChoosed == EDGES) {
-			FileWrite_Example();
+			EdgeDetection_Examples();
 		}
 		else if (testChoosed == CLASSIFYOCR) {
 			ClassifyOcrSamples_Example();

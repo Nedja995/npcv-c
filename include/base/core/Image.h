@@ -101,6 +101,11 @@ namespace npcore
 	 */
 	char *image_string_alloc(const Image *image);
 
+	
+	void free_image(Image *image);
+	
+
+
 	/**
 	 * @brief	Image trace.
 	 *

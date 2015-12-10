@@ -21,6 +21,12 @@ namespace npcf {
 				memsetN(ret->regionsDatas + i, 0, sizeof(int));
 		return ret;
 	}
+	
+	void free_image_classification_data(ImageClassificationData * data)
+	{
+		freeN(data->regionsDatas);
+		freeN(data);
+	}
 
 	bool image_classify_region_set(ImageClassificationData *icd, int region, int val)
 	{
@@ -80,6 +86,8 @@ namespace npcf {
 				regIt += (int)(y / regionSize);
 
 				image_classify_region_add(ret, regIt, (px->b == 0) ? 0 : 1);
+				
+				freeN(px);
 			}
 
 		}

@@ -92,7 +92,7 @@ namespace npcore {
 			traceFile.close();
 
 		}
-		freeN(_np_trace_log_text_list);
+		list_free_default(_np_trace_log_text_list);
 		
 		return 1;
 	}

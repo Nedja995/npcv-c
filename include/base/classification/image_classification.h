@@ -32,6 +32,8 @@ namespace npcf {
 	 * @return	null if it fails, else an new ImageClassificationData.
 	 */
 	ImageClassificationData * image_classification_data_create(int regionsCount);
+	
+	void free_image_classification_data(ImageClassificationData * data);
 
 	/**
 	 * @brief	Set region value.

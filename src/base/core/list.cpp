@@ -49,6 +49,7 @@ namespace npcore
 		LIST_FOREACH(list){
 			freeN((void *)link->data);
 		}
+		freeN(list);
 	}
 
 	void list_free_default(List * list, NListFree_Callback freeCallback)

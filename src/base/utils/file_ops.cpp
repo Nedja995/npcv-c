@@ -34,6 +34,8 @@ namespace nputils
 
 		fwrite(text, sizeof(char), textLen, fp);
 
+		fclose(fp);
+
 		return true;
 	}
 

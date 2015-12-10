@@ -1,6 +1,6 @@
 #include "imageproc_gray.h"
-
-
+#include "base/core/memory.h"
+using namespace npcore;
 namespace npip{
 
 	bool gray(Image * image)
@@ -13,6 +13,7 @@ namespace npip{
 				R(px) /= 2;
 				G(px) /= 2;
 				B(px) /= 2;
+				freeN(px);
 			}
 		}
 		return false;

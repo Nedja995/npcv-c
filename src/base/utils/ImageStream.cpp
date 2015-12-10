@@ -28,14 +28,18 @@ namespace nputils
 			NLogError("\nCannot load image from: %s", pat);
 			return NULL;
 		}
-
+		
 		ret = image_create(data, width, height, type);
+		
+		//free_image(ret);
+		freeN(data);
+		
 		return ret;
 	}
 
 	bool ImageStream::WriteImage_STB(const Image * image, const char * filepath)
 	{
-		int res = stbi_write_png(filepath, image->width, image->height, image->type, image->data, 0);
+		//int res = stbi_write_png(filepath, image->width, image->height, image->type, image->data, 0);
 
 		return true;
 	}

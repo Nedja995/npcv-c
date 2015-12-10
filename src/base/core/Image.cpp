@@ -1,7 +1,7 @@
 #include "base/core/Image.h"
 #include "base/core/npstring.h"
 
-
+//#include "stdlib.h"
 
 namespace npcore
 {
@@ -16,8 +16,14 @@ namespace npcore
 		ret->height = height;
 		ret->width = width;
 		ret->type = type;
-
+		//freeN(ret->data);
 		return ret;
+	}
+
+	void free_image(Image *image)
+	{
+		freeN(image->data);
+		freeN(image);
 	}
 
 	Pixel * image_get_pixel(const Image * image, int x, int y)
@@ -106,6 +112,7 @@ namespace npcore
 				}
 			}
 			ret = image_create(newData, width , height, image->type);
+			freeN(newData);
 		}
 		return ret;
 	}
