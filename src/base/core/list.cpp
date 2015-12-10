@@ -13,7 +13,7 @@ namespace npcore
 		return ret;
 	}
 
-	void list_put(List *list, const void *item) {
+	void list_put(List *list, void *item) {
 		Link *link = list_link_create(item);
 
 		link->next = NULL;
@@ -35,7 +35,7 @@ namespace npcore
 		return ret;
 	}
 
-	Link * list_link_create(const void * item) {
+	Link * list_link_create(void * item) {
 		Link *ret = (Link*)mallocN(sizeof(Link));
 		ret->data = item;
 		ret->next = NULL;
@@ -46,9 +46,14 @@ namespace npcore
 
 	void list_free_default(List * list)
 	{
-		LIST_FOREACH(list){
-			freeN((void *)link->data);
+	//	LIST_FOREACH(list){
+		for (Link *link = (Link*)list->first; link != NULL; link = link->next) {
+			free((void *)link->data);
+			if (link->prev != NULL) {
+				free((void *)link->prev);
+			}
 		}
+		//}
 		freeN(list);
 	}
 

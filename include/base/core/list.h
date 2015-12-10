@@ -51,7 +51,7 @@ namespace npcore
 	 * @param [in,out]	list	list.
 	 * @param	item			Item for list.
 	 */
-	void list_put(List *list, const void *item);
+	void list_put(List *list, void *item);
 
 	/**
 	 * @brief	List count.
@@ -67,7 +67,7 @@ namespace npcore
 	 *
 	 * @return	null if it fails, else new allocated Link.
 	 */
-	Link *list_link_create(const void *item);
+	Link *list_link_create(void *item);
 
 	/**
 	 * @brief	Free list and elements.

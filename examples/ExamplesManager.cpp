@@ -44,8 +44,8 @@ bool List_Example()
 	list_put(list, strmakeN("Prva Rec"));
 	list_put(list, strmakeN("DruGa"));
 	list_put(list, strmakeN("treca rec"));
-	list_put(list, strmakeN("c e t v r t a"));
-	list_put(list, strmakeN("peta zadnja"));
+	//list_put(list, strmakeN("c e t v r t a"));
+	//list_put(list, strmakeN("peta zadnja"));
 
 	//print them
 	NConsolePrint("\n");
