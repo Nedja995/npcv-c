@@ -27,6 +27,7 @@ using namespace npcore;
 enum NPCVTests
 {
 	ALL,
+	LIST,
 	TIME,
 	FILE_W,
 	IMAGE_RW,
@@ -36,6 +37,29 @@ enum NPCVTests
 	CLASSIFYOCR
 };
 
+bool List_Example()
+{
+	NConsolePrint("\nstart List\n");
+	List *list = list_create();
+	list_put(list, strmakeN("Prva Rec"));
+	list_put(list, strmakeN("DruGa"));
+	list_put(list, strmakeN("treca rec"));
+	list_put(list, strmakeN("c e t v r t a"));
+	list_put(list, strmakeN("peta zadnja"));
+
+	//print them
+	NConsolePrint("\n");
+	LIST_FOREACH(list)
+	{
+		NConsolePrint("%s\n", (char *)link->data);
+	}
+
+	//free list
+	list_free_default(list);
+
+	NConsolePrint("finish List\n\n");
+	return true;
+}
 
 bool Time_Example()
 {
@@ -217,7 +241,8 @@ void printMainMessage() {
 	NConsolePrint("\n\n===== NPCV ExamplesManger =====\n\n");
 	NConsolePrint("available inputs are (type parametars or leave it with default params):\n\n");
 	NConsolePrint(" all run all with example datas\n\n");
-	NConsolePrint("time\n\n");
+	NConsolePrint(" list\n\n");
+	NConsolePrint(" time\n\n");
 	NConsolePrint(" filewrite output_path\n\n");
 	NConsolePrint(" imagereadwrite input_image output_image\n\n");
 	NConsolePrint(" gray input_image output_path\n\n");
@@ -292,6 +317,8 @@ int main(int argc, char** argv)
 		//choose example
 		if (strstr(input, "all") != NULL)
 			testChoosed = ALL;
+		else if (strstr(input, "list") != NULL)
+			testChoosed = LIST;
 		else if (strstr(input, "time") != NULL)
 			testChoosed = TIME;
 		else if (strstr(input, "filewrite") != NULL)
@@ -313,7 +340,7 @@ int main(int argc, char** argv)
 
 		//process
 		if (testChoosed == ALL) {
-
+			List_Example();
 			Time_Example();
 		
 
@@ -341,6 +368,9 @@ int main(int argc, char** argv)
 			NConsolePrint("start Classify OCR samples\n");
 			ClassifyOcrSamples_Example();
 			NConsolePrint("stop Classify OCR samples\n");
+		}
+		else if (testChoosed == LIST) {
+			List_Example();
 		}
 		else if (testChoosed == TIME) {
 			Time_Example();
