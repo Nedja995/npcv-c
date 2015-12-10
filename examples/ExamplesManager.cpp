@@ -41,9 +41,9 @@ bool List_Example()
 {
 	NConsolePrint("\nstart List\n");
 	List *list = list_create();
-	list_put(list, strmakeN("Prva Rec"));
-	list_put(list, strmakeN("DruGa"));
-	list_put(list, strmakeN("treca rec"));
+	list_put(list, "Prva Rec");
+	list_put(list, "DruGa");
+	list_put(list, "treca rec");
 	//list_put(list, strmakeN("c e t v r t a"));
 	//list_put(list, strmakeN("peta zadnja"));
 
@@ -55,7 +55,7 @@ bool List_Example()
 	}
 
 	//free list
-	list_free_default(list);
+	list_free(list);
 
 	NConsolePrint("finish List\n\n");
 	return true;

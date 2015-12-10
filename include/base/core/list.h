@@ -69,6 +69,8 @@ namespace npcore
 	 */
 	Link *list_link_create(void *item);
 
+	void list_free(List *list);
+
 	/**
 	 * @brief	Free list and elements.
 	 * @param [in,out]	list	list.

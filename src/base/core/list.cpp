@@ -1,3 +1,4 @@
+#include "..\..\..\include\base\core\list.h"
 #include "list.h"
 #include "memory.h"
 
@@ -41,6 +42,17 @@ namespace npcore
 		ret->next = NULL;
 		ret->prev = NULL;
 		return ret;
+	}
+
+	void list_free(List * list)
+	{
+		LIST_FOREACH(list) {
+			if (link->prev != NULL) {
+				freeN((void *)link->prev);
+				link->prev = NULL;
+			}
+		}
+		freeN(list);
 	}
 
 
