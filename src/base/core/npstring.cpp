@@ -8,7 +8,7 @@ namespace npcore
 {
 	char *strmakeN(const char * fmt, ...)
 	{
-		char *ret = (char*)mallocN(sizeof(char) * 400);
+		char *ret = (char*)mallocN(sizeof(char) * STRING_BUFFER);
 		*ret = '\0';
 		va_list args;
 		va_start(args, fmt);	

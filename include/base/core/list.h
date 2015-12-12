@@ -20,7 +20,7 @@ namespace npcore
 	 * @brief	Callback Type for free list.
 	 * @param	link	Link item
 	 */
-	typedef void(*NListFree_Callback)(Link *link);
+	typedef void(*NListFree_Callback)(void *link);
 
 	/**
 	 * @struct	Link

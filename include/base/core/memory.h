@@ -10,31 +10,53 @@
 *  @author Nedeljko Pejasinovic
 *
 */
-
 #define NULL 0
 
-
-/**************************************
-*	Includes for Windows & Linux
-*/
 #if defined _MSC_VER || defined __linux__
+//+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+//	Windows and Linux headers
+//
 #	include <stdio.h>
 #	include "stdlib.h"
-#endif
+#endif//+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 #if defined _MSC_VER
-/**************************************
-*		Defines for Windows
-*/
+//+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+//	Windows headers
+//
 #	include <string>
-#else defined __linux__
-/**************************************
-*		Defines for Linux
-*/
+#else defined __linux__//-+-+-+-+-+-+-+
+//+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+//	Linux headers
+//
 #   include <string.h>
-#endif
+#endif//+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
+//-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+// projects headers
+// 
 #include "debug.h" //for NLogError
+//-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#if defined _MSC_VER && defined _DEBUG && false
+//+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+// Windows CRT debuging
+// 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>=
+/**
+ * @def	malloc(s) _malloc_dbg(s, _NORMAL_BLOCK, __FILE__, __LINE__)
+ *
+ * @brief	Windows CRT debuging macro
+ * 
+ * @todo	This is defined in included crtdbg.h
+ * 			but don't work for some case
+ * 
+ * @param	sizes	size_t.
+ */
+#define malloc(size) _malloc_dbg(size, _NORMAL_BLOCK, __FILE__, __LINE__)
+#endif //+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 
 /**
  * @brief	Allocate memory.
@@ -46,12 +68,12 @@ inline void* mallocN(size_t size)
 	void* ret = 0;
 
 #if _MSC_VER || __linux__
-	/**************************************
-	*		Defines for Windows & Linux
-	*/
+	//-+-+-+-+-+-+-+-+-+-+-+-+-+
+	// Windows and Linux malloc
+	// 
 	ret = malloc(size);
 #endif
-
+	
 	return ret;
 }
 
@@ -59,7 +81,7 @@ inline void* mallocN(size_t size)
  * @brief	Faster generic allocation function.
  * @param	T	Generic type parameter.
  * @return	null if it fails, else a T*.
- */
+ 
 template<typename T>
 inline T* mallocN()
 {
@@ -68,13 +90,16 @@ inline T* mallocN()
 	ret = (T*)mallocN(sizeof(T));
 
 	return ret;
-}
+}*/
 
 inline void memcpyN(void * dst,
 			 void * src,
 			 size_t size)
 {
 #if _MSC_VER || __linux__
+	//-+-+-+-+-+-+-+-+-+-+-+-+-+
+	// Windows and Linux memory copy
+	// 
 	dst = memcpy(dst, src, size);
 #endif
 }
@@ -87,7 +112,31 @@ inline void memcpyN(void * dst,
  */
 inline void memsetN(void * mem, int val, size_t size)
 {
+#if _MSC_VER || __linux__
+	//-+-+-+-+-+-+-+-+-+-+-+-+-+
+	// Windows and Linux memory set
+	// 
 	memset(mem, val, size);
+#endif
+
+}
+
+inline void free_pointer(void **ptr)
+{
+	if (*ptr == NULL) {
+		//npcore::NLogError("NULL pointer passed to free");
+	}
+	else {
+#if _MSC_VER || __linux__
+		//-+-+-+-+-+-+-+-+-+-+-+-+-+
+		// Windows and Linux free
+		// 
+		free(*ptr);
+		free(ptr);
+		*ptr = NULL;
+		ptr = NULL;
+#endif
+	}
 }
 
 /**
@@ -100,8 +149,14 @@ inline void freeN(void * data)
 		//npcore::NLogError("NULL pointer passed to free");
 	}
 	else{
+#if _MSC_VER || __linux__
+		//-+-+-+-+-+-+-+-+-+-+-+-+-+
+		// Windows and Linux free
+		// 
 		free(data);
 		data = NULL;
+#endif
+
 	}
 }
 
@@ -116,6 +171,7 @@ inline void* duplicateN(void * src,
 {
 	void * dst = mallocN(size);
 	memcpyN(dst, src, size);
+
 	return dst;
 }
 

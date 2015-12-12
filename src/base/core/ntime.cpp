@@ -33,7 +33,7 @@ namespace npcore {
 		ret->second = loctime->tm_sec;
 		ret->year = 1900 + loctime->tm_year;
 		
-	//	freeN(loctime);
+		freeN(loctime);
 		
 		/*Windows . old
 		SYSTEMTIME lt;

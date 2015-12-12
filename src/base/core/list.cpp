@@ -61,21 +61,25 @@ namespace npcore
 
 	void list_free_default(List * list)
 	{
-	//	LIST_FOREACH(list){
-		for (Link *link = (Link*)list->first; link != NULL; link = link->next) {
-			free((void *)link->data);
-			if (link->prev != NULL) {
-				free((void *)link->prev);
-			}
+		Link *link, *next;
+
+		link = list->first;
+		while (link) {
+			next = link->next;
+			freeN((void *)link->data);
+			freeN(link);
+			link = next;
 		}
-		//}
+
 		freeN(list);
+
+
 	}
 
 	void list_free_default(List * list, NListFree_Callback freeCallback)
 	{
 		LIST_FOREACH(list) {
-			(*freeCallback)(link);
+			(*freeCallback)((void *)link);
 		}
 	}
 }
