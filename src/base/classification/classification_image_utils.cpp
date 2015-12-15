@@ -37,6 +37,7 @@ namespace npcf
 				offsetReg += npcore::strnlenN(textValue) + 1;
 			}
 		}
+		freeN(textValue);
 		*stringLength = offsetReg;
 
 		return ret;
@@ -53,7 +54,7 @@ namespace npcf
 		int regCount = ((ImageClassificationData*)classifiersList->first->data)->regionCount;
 
 	//	char *textValue = NULL;
-		char *textClass = (char *)mallocN((sizeof(char) * MAX_REGION_VALUE_CHARS * 2) * regCount);
+		char *textClass = NULL;// (char *)mallocN((sizeof(char) * MAX_REGION_VALUE_CHARS * 2) * regCount);
 		char *textAllClass = (char *)mallocN(sizeof(char) * MAX_REGION_VALUE_CHARS * regCount * listCount + 1);
 
 
@@ -65,9 +66,10 @@ namespace npcf
 			textClass = data_get_format_csv(icdIter, &offsetReg);
 
 			sprintfN(textAllClass + offset, "%s\n", textClass);
-
+			freeN(textClass);
 			offset += offsetReg + sizeof(char);
 		}
+		//freeN(textClass);
 	//	nputils::file_write(filepath, textAllClass);
 
 		return textAllClass;

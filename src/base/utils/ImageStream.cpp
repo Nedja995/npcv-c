@@ -39,7 +39,7 @@ namespace nputils
 
 	bool ImageStream::WriteImage_STB(const Image * image, const char * filepath)
 	{
-		//int res = stbi_write_png(filepath, image->width, image->height, image->type, image->data, 0);
+		int res = stbi_write_png(filepath, image->width, image->height, image->type, image->data, 0);
 
 		return true;
 	}

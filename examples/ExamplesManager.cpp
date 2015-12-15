@@ -41,11 +41,12 @@ bool List_Example()
 {
 	NConsolePrint("\nstart List\n");
 	List *list = list_create();
-	list_put(list, "Prva Rec");
-	list_put(list, "DruGa");
-	list_put(list, "treca rec");
-	//list_put(list, strmakeN("c e t v r t a"));
-	//list_put(list, strmakeN("peta zadnja"));
+	//list_put(list, "static str");
+	//list_put(list, "static string");
+	//list_put(list, "statString");
+	list_put(list, strmakeN("DynString"));
+	list_put(list, strmakeN("DynamicS"));
+	list_put(list, strmakeN("String dyn"));
 
 	//print them
 	NConsolePrint("\n");
@@ -54,8 +55,8 @@ bool List_Example()
 		NConsolePrint("%s\n", (char *)link->data);
 	}
 
-	//free list
-	list_free(list);
+	list_free_custom(list, freeN); /* with passed callback for free element */
+	//list_free(list); /* clear only list. for list with static elements */
 
 	NConsolePrint("finish List\n\n");
 	return true;
@@ -182,9 +183,9 @@ bool EdgeDetection_Examples()
 	return true;
 }
 
-void free_l(Link * link)
+void free_l(void *icd)
 {
-	npcf::free_image_classification_data((npcf::ImageClassificationData*) link->data);
+	npcf::free_image_classification_data((npcf::ImageClassificationData*)icd);
 }
 
 bool ClassifyOcrSamples_Example()
@@ -223,12 +224,14 @@ bool ClassifyOcrSamples_Example()
 		}
 	}
 
-	//char *csvContent = npcf::datas_get_format_csv(classes);
+	char *csvContent = npcf::datas_get_format_csv(classes);
 
-	//nputils::file_write(output, csvContent);
+	nputils::file_write(output, csvContent);
 
-	//free(csvContent);
+	freeN(csvContent);
 	//list_free_default(classes, free_l);
+	
+	list_free_custom(classes, free_l);
 	
 	freeN(input);
 	freeN(output);
@@ -341,57 +344,52 @@ int main(int argc, char** argv)
 		//process
 		if (testChoosed == ALL) {
 			List_Example();
+			List_Example();
 			Time_Example();
-		
-
-
-			NConsolePrint("\nstart FileWrite\n");
+			Time_Example();
 			FileWrite_Example();
-			NConsolePrint("stop FileWrite\n\n");
-
-			NConsolePrint("start ImageReadWrite\n");
+			FileWrite_Example();
 			ImageReadWrite_Example();
-			NConsolePrint("stop ImageReadWrite\n\n");
-
-			NConsolePrint("start Gray\n");
+			ImageReadWrite_Example();
 			ImageGray_Example();
-			NConsolePrint("stop Gray\n\n");
-
-			NConsolePrint("start Subarea\n");
+			ImageGray_Example();
 			Subarea_Example();
-			NConsolePrint("stop Subarea\n\n");
-
-			NConsolePrint("start Edges\n");
+			Subarea_Example();
 			EdgeDetection_Examples();
-			NConsolePrint("stop FileWrite\n\n");
-
-			NConsolePrint("start Classify OCR samples\n");
+			EdgeDetection_Examples();
 			ClassifyOcrSamples_Example();
-			NConsolePrint("stop Classify OCR samples\n");
+			ClassifyOcrSamples_Example();
 		}
 		else if (testChoosed == LIST) {
 			List_Example();
 		}
 		else if (testChoosed == TIME) {
 			Time_Example();
+
 		}
 		else if (testChoosed == FILE_W) {
 			FileWrite_Example();
+
 		}
 		else if (testChoosed == IMAGE_RW) {
 			ImageReadWrite_Example();
+
 		}
 		else if (testChoosed == GRAY) {
 			ImageGray_Example();
+
 		}
 		else if (testChoosed == SUBIMAGE) {
 			Subarea_Example();
+
 		}
 		else if (testChoosed == EDGES) {
 			EdgeDetection_Examples();
+
 		}
 		else if (testChoosed == CLASSIFYOCR) {
 			ClassifyOcrSamples_Example();
+
 		}
 
 	}

@@ -137,7 +137,7 @@
  * @param	...		  	Variable arguments providing additional information.
  */
 #define NLogWarning(fmt_, ...)  \
-	_np_log_fmt(fmt_, __VA_ARGS__)
+	_np_log_fmt(NP_WARNING, fmt_, __VA_ARGS__)
 
 /**
  * @brief	Debug log formated

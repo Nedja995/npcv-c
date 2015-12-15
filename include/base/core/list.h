@@ -17,10 +17,10 @@ namespace npcore
 	struct Link;
 
 	/**
-	 * @brief	Callback Type for free list.
-	 * @param	link	Link item
+	 * @brief	Callback Type for free stored element in list.
+	 * @param	itemData	Stored elemnt
 	 */
-	typedef void(*NListFree_Callback)(void *link);
+	typedef void(*NListFreeElement_Callback)(void *element);
 
 	/**
 	 * @struct	Link
@@ -69,20 +69,28 @@ namespace npcore
 	 */
 	Link *list_link_create(const void *item);
 
+	/**
+	 * @brief	Default link and list free.
+	 * 
+	 * @param [in,out]	list	List to free.
+	 */
 	void list_free(List *list);
 
 	/**
-	 * @brief	Free list and elements.
+	 * @brief	Free list and stored elements.
+	 * 	Elements free  with default freeN() function
 	 * @param [in,out]	list	list.
+	 * @param	freeElementCallback	Callback for freed list item.
 	 */
 	void list_free_default(List *list);
 
 	/**
-	 * @brief	List free default.
-	 * @param [in,out]	list	list.
-	 * @param	freeCallback	Callback for freed list item.
+	 * @brief	Free list and free their elements with custom function.
+	 *
+	 * @param [in,out]	list	   	If non-null, the list.
+	 * @param	freeElementCallback	The free element callback.
 	 */
-	void list_free_default(List *list, NListFree_Callback freeCallback);
+	void list_free_custom(List *list, NListFreeElement_Callback freeElementCallback);
 
 /**
  * @brief	Helper macro for iterateing throught list.

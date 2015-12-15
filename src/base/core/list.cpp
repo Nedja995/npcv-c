@@ -54,10 +54,8 @@ namespace npcore
 			freeN(link);
 			link = next;
 		}
-
 		freeN(list);
 	}
-
 
 	void list_free_default(List * list)
 	{
@@ -70,16 +68,20 @@ namespace npcore
 			freeN(link);
 			link = next;
 		}
-
 		freeN(list);
-
-
 	}
 
-	void list_free_default(List * list, NListFree_Callback freeCallback)
-	{
-		LIST_FOREACH(list) {
-			(*freeCallback)((void *)link);
+	void list_free_custom(List * list, NListFreeElement_Callback freeElementCallback)
+	{			
+		Link *link, *next;
+
+		link = list->first;
+		while (link) {
+			next = link->next;
+			(*freeElementCallback)((void *)link->data);
+			freeN(link);
+			link = next;
 		}
+		freeN(list);
 	}
 }
