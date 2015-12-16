@@ -95,9 +95,9 @@
 * 		 won't be called
 */
 #if _NP_LOG_DISABLED
-#define NLogTrace(NP_DEBUG, fmt_, ...)
-#define NLogDebug(NP_DEBUG, fmt_, ...)
-#define NLogWarning(NP_WARNING, fmt_, ...)
+#define NLogTrace(fmt_, ...)
+#define NLogDebug(fmt_, ...)
+#define NLogWarning(fmt_, ...)
 #define NLogError(fmt_, ...) 
 #define NLogFatal(fmt_, ...) 
 #define NLog(fmt_, ...)
@@ -137,7 +137,7 @@
  * @param	...		  	Variable arguments providing additional information.
  */
 #define NLogWarning(fmt_, ...)  \
-	_np_log_fmt(NP_WARNING, fmt_, __VA_ARGS__)
+	_np_log_fmt(NP_ERROR, fmt_, __VA_ARGS__)
 
 /**
  * @brief	Debug log formated
@@ -146,7 +146,7 @@
  * @param	...			Variable arguments providing additional information.
  */
 #define NLogDebug(fmt_, ...)  \
-	_np_log_fmt(fmt_, __VA_ARGS__)
+	_np_log_fmt(NP_DEBUG, fmt_, __VA_ARGS__)
 
 /**@brief	Trace log formated.
  *

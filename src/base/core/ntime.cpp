@@ -6,43 +6,49 @@
 #	include <windows.h>
 #	include <wchar.h>
 
+#elif defined __linux__
+
 #endif
 #	include <time.h>
 
 namespace npcore {
 
+	/*
+	 * @brief get local time
+	 * @todo error not work in linux
+	 */
 	NTime *time_get_allocN()
 	{
 		NTime *ret = (NTime*)mallocN(sizeof(NTime));
+		int err = 0;
 		
 #if defined _MSC_VER || defined __linux__
 		time_t curtime;
-		struct tm *loctime = (struct tm *)mallocN(sizeof(struct tm));
+		struct tm loctime;
 
 		/* Get the current time. */
-		curtime = time(NULL);
+		curtime = time(&curtime);
 	
-		/* Convert it to local time representation. */
-		errno_t error = -1;
+		/* Convert it to local time representation. */		
 #if defined _MSC_VER 
-		error = localtime_s(loctime, &curtime);
+		err = localtime_s(&loctime, &curtime);
 #elif defined __linux__
-		error = localtime_r(loctime, &curtime);
+		localtime_r(&curtime,&loctime);
 #endif
-		if (error != 0) {
-			NLogWarning("Can't get local time\n");
+		if (err != 0) {
+			//NLogWarning("Can't get local time\n");
 		}
 		else {
 			/* get values */
-			ret->day = loctime->tm_mday;
-			ret->hour = loctime->tm_hour;
+			ret->day = loctime.tm_mday;
+			ret->hour = loctime.tm_hour;
 			ret->milisecond = 0;
-			ret->minute = loctime->tm_min;
-			ret->month = loctime->tm_mon;
-			ret->second = loctime->tm_sec;
-			ret->year = 1900 + loctime->tm_year;
+			ret->minute = loctime.tm_min;
+			ret->month = loctime.tm_mon;
+			ret->second = loctime.tm_sec;
+			ret->year = 1900 + loctime.tm_year;
 		}
-		freeN(loctime);
+		//freeN(loctime);
 #else
 		NOT_IMPLEMENTED;
 #endif
