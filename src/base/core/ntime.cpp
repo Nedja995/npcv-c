@@ -15,7 +15,6 @@ namespace npcore {
 
 	/*
 	 * @brief get local time
-	 * @todo error not work in linux
 	 */
 	NTime *time_get_allocN()
 	{

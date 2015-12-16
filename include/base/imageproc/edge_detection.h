@@ -15,12 +15,9 @@
 
 using namespace npcore;
 
-/**
- * @namespace	npip
- *
- * @brief	Image processing namespace
- */
-namespace npip {
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 	/**
 	 * @brief Set specific color for edge and not edge pixel.
@@ -30,7 +27,10 @@ namespace npip {
 	 * @param	sensitivity  	The sensitivity.
 	 */
 	void contour_draw_custom(Image * image, int resolution, int sensitivity);
+
+#ifdef __cplusplus
 }
+#endif
 
 
 #endif

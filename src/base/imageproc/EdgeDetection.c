@@ -1,7 +1,6 @@
 #include "base/core/memory.h"
 #include "edge_detection.h"
 
-namespace npip {
 
 	void contour_draw_custom(Image * image, int resolution, int sensitivity)
 	{
@@ -179,6 +178,6 @@ namespace npip {
 
 
 	}
-}
+
 
 //int main() { return 0; }

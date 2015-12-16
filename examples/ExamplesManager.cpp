@@ -128,7 +128,7 @@ bool ImageGray_Example()
 		return false;
 	}
 
-	npip::gray(img);
+	n_gray(img);
 	nputils::ImageStream::WriteImage_STB(img, output);
 
 	free_image(img);
@@ -173,7 +173,7 @@ bool EdgeDetection_Examples()
 		return false;
 	}
 
-	npip::contour_draw_custom(img, 1, 20);
+	contour_draw_custom(img, 1, 20);
 	nputils::ImageStream::WriteImage_STB(img, output);
 
 	freeN(input);

@@ -1,9 +1,9 @@
 #include "imageproc_gray.h"
 #include "base/core/memory.h"
 using namespace npcore;
-namespace npip{
+//namespace npip{
 
-	bool gray(Image * image)
+	bool n_gray(Image * image)
 	{
 		for (int x = 0; x < image->width; ++x)
 		{
@@ -18,4 +18,4 @@ namespace npip{
 		}
 		return false;
 	}
-}
+//}

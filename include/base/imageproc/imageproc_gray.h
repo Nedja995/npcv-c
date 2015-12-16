@@ -15,16 +15,20 @@
 
 using namespace npcore;
 
-namespace npip{
-
+//namespace npip{
+#ifdef __cplusplus
+extern "C" {
+#endif
 	/**
 	 * @brief	Grays the given image.
 	 *
 	 * @param [in,out]	image	Image.
 	 * @return	true if it succeeds, false if it fails.
 	 */
-	bool gray(Image * image);
+	bool n_gray(Image * image);
 
+	//}
+#ifdef __cplusplus
 }
-
+#endif
 #endif
