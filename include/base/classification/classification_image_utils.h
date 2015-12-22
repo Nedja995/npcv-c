@@ -18,15 +18,14 @@
 
 #include "base/core/list.h"
 
-using namespace npcore;
-
 /**
  * @namespace	npcf
  *
  * @brief	Classification namespace
  */
-namespace npcf
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
 	/**
 	 * @brief	Make csv string of ImageClassificationData
 	 *
@@ -45,7 +44,9 @@ namespace npcf
 	char *datas_get_format_csv(List *classifiersList);
 
 
+#ifdef __cplusplus
 }
+#endif
 
 
 #endif

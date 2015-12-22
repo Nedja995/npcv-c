@@ -11,9 +11,9 @@
 #ifndef __NPCV_EDGE_DETECTION_H__
 #define __NPCV_EDGE_DETECTION_H__
 
-#include "base/core/Image.h"
+#include "base/imageproc/image.h"
 
-using namespace npcore;
+//using namespace npcore;
 
 #ifdef __cplusplus
 extern "C" {

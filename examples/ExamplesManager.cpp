@@ -6,7 +6,7 @@
 //#include "vld.h"
 //#endif
 
-//#include "base/core/Image.h"
+//#include "base/imageproc/image.h"
 #include "base/utils/ImageStream.h"
 #include "base/imageproc/imageproc_gray.h"
 #include "base/imageproc/edge_detection.h"
@@ -98,7 +98,7 @@ bool ImageReadWrite_Example()
 {
 	char *input = Examples::getPath_alloc(lenaInput);
 	char *output = Examples::getPath_alloc(writeOutput);
-	Image * img = nputils::ImageStream::ReadImage_STB(input);
+	Image * img = ReadImage_STB(input);
 	
 	freeN(input);
 	
@@ -107,7 +107,7 @@ bool ImageReadWrite_Example()
 		return false;
 	}
 
-	nputils::ImageStream::WriteImage_STB(img, output);
+	WriteImage_STB(img, output);
 	
 	free_image(img);
 	freeN(output);
@@ -119,7 +119,7 @@ bool ImageGray_Example()
 	char *input = Examples::getPath_alloc(lenaInput);
 	char *output = Examples::getPath_alloc(grayOutput);
 
-	Image * img = nputils::ImageStream::ReadImage_STB(input);
+	Image * img = ReadImage_STB(input);
 	
 	freeN(input);
 	
@@ -129,7 +129,7 @@ bool ImageGray_Example()
 	}
 
 	n_gray(img);
-	nputils::ImageStream::WriteImage_STB(img, output);
+	WriteImage_STB(img, output);
 
 	free_image(img);
 	freeN(output);
@@ -142,7 +142,7 @@ bool Subarea_Example()
 	char *input = Examples::getPath_alloc(lenaInput);
 	char *output = Examples::getPath_alloc(subareaOutput);
 
-	Image * img = nputils::ImageStream::ReadImage_STB(input);
+	Image * img = ReadImage_STB(input);
 	if (img == NULL) {
 		NConsolePrint("\n Subarea failed! input image not found!");
 		return false;
@@ -151,7 +151,7 @@ bool Subarea_Example()
 	Image * small = image_get_area(img, img->width / 4, img->height / 4,
 		img->width / 2, img->height / 2);
 
-	nputils::ImageStream::WriteImage_STB(small, output);
+	WriteImage_STB(small, output);
 	
 	freeN(input);
 	freeN(output);
@@ -166,7 +166,7 @@ bool EdgeDetection_Examples()
 	char *input = Examples::getPath_alloc(lenaInput);
 	char *output = Examples::getPath_alloc(edgeDetectionOutput);
 
-	Image * img = nputils::ImageStream::ReadImage_STB(input);
+	Image * img = ReadImage_STB(input);
 
 	if (img == NULL) {
 		NConsolePrint("\nDetection failed! input image not found!");
@@ -174,7 +174,7 @@ bool EdgeDetection_Examples()
 	}
 
 	contour_draw_custom(img, 1, 20);
-	nputils::ImageStream::WriteImage_STB(img, output);
+	WriteImage_STB(img, output);
 
 	freeN(input);
 	freeN(output);
@@ -194,7 +194,7 @@ bool ClassifyOcrSamples_Example()
 	char *output = Examples::getPath_alloc(ocrSamplesOutput);
 
 
-	Image *img = nputils::ImageStream::ReadImage_STB(input);
+	Image *img = ReadImage_STB(input);
 	if (img == NULL) {
 		NConsolePrint("\nClassify OCR Samples failed! input image not found!");
 		return false;

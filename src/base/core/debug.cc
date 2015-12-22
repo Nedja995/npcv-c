@@ -1,23 +1,23 @@
 #if defined _MSC_VER || defined __linux__
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 // Windows and Linux headers
-// 
-#	include "stdio.h"
-#	include <fstream>
-#	include <stdarg.h>
+//#include <stdarg.h>
+//#	include "stdio.h"
+//#	include <fstream>
+//#	include <stdarg.h>
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #endif
 
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 // projects headers
 // 
-#include "ntime.h"
+//#include "ntime.h"
 #include "debug.h"
-#include "datatypes.h"
+#include "npmemory.h"
+//#include "datatypes.h"
+#include "npstring.h"
 #include "npio.h"
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-namespace npcore {
 
 	/**
 	 * @brief	Np debug initialize.
@@ -53,32 +53,7 @@ namespace npcore {
 	{
 		//write trace logs to file
 		if (_does_trace_with_file()) {
-			//output stream
-			//std::ofstream traceFile;
 
-			//fja();
-
-
-			//get time
-		//	NTime *lt =  time_get_allocN();
-			
-			//format wild time string 
-		//	char *timeText = strmakeN("%02d_%02d_%02d_%02d-%02d-%02d", lt->year, lt->month, lt->day, lt->hour, lt->minute, lt->second);
-	//		freeN(lt);
-
-			//make log file path
-		//	char *logFile =  strmakeN("%s.log", timeText);
-			
-		//	freeN(timeText);
-			
-			//create and open output stream
-			//traceFile.open(logFile, std::ofstream::out | std::ofstream::app);
-		//	freeN(logFile);
-			//iterate through trace logs
-		/*	LIST_FOREACH(_np_trace_log_text_list) {
-				traceFile << (char*)link->data;
-			}*/
-		//	traceFile.close();
 
 		}
 		list_free_default(_np_trace_log_text_list);
@@ -146,82 +121,82 @@ namespace npcore {
 	void _np_log_fmt(NPLogLevel level, const char * fmt, ...)
 	{
 		char *buffer = (char*)mallocN(sizeof(char) * 512);
-		va_list args;
+		/*va_list args;
 		va_start(args, fmt);
 		vsprintf(buffer, fmt, args);
 		va_end(args);
-		_np_log(level, buffer);
+		_np_log(level, buffer);*/
 		freeN(buffer);
 	}
 
 	/**
 	 * @brief	Determines if we need trace with console. Helper
 	 *
-	 * @return	true if can else false.
+	 * @return	0 if can else -1.
 	 */
-	bool _does_trace_with_console()
+	int _does_trace_with_console()
 	{
 #ifdef _NP_LOG_DISABLED				
-		return false;
+		return -1;
 #elif  _NP_TRACE_OUT_CONSOLE		
-		if (npcore::_np_trace_disabled)
-			return false;
+		if (_np_trace_disabled)
+			return -1;
 		else if (_np_trace_out_console)
-			return true;
+			return 0;
 #endif								
-		return false;
+		return -1;
 	}
 
 	/**
 	* @brief	Determines if we need trace in file. Helper
 	*
-	* @return	true if can else false.
+	* @return	0 if can else -1.
 	*/
-	bool _does_trace_with_file()
+	int _does_trace_with_file()
 	{
 #ifdef _NP_LOG_DISABLED				
-		return false;
+		return -1;
 #elif  _NP_TRACE_OUT_FILE		
 		if (_np_trace_disabled)
-			return false;
+			return -1;
 		else if (_np_trace_out_file)
-			return true;
+			return 0;
 #endif								
-		return false;
+		return -1;
 	}
 	/**
 	* @brief	Determines if we need log with file. Helper
 	*
-	* @return	true if can else false.
+	* @return	0 if can else -1.
 	*/
-	bool _does_log_with_file()
+	int _does_log_with_file()
 	{
 #ifdef _NP_LOG_DISABLED				
-		return false;
+		return -1;
 #elif  _NP_LOG_OUT_FILE		
-		if (npcore::_np_log_disabled)
-			return false;
+		if (_np_log_disabled)
+			return -1;
 		else if (_np_log_out_file)
-			return true;
+			return 0;
 #endif								
-		return false;
+		return -1;
 	}
 
 	/**
 	* @brief	Determines if we need log with console. Helper
 	*
-	* @return	true if can elsevere false.
+	* @return	0 if can elsevere -1.
 	*/
-	bool _does_log_with_console()
+	int _does_log_with_console()
 	{
 #ifdef _NP_LOG_DISABLED				
-		return false;
+		return -1;
 #elif  _NP_LOG_OUT_CONSOLE		
-		if (npcore::_np_log_disabled)
-			return false;
+		if (_np_log_disabled)
+			return -1;
 		else if (_np_log_out_console)
-			return true;
+			return 0;
 #endif								
-		return false;
+		return -1;
 	}
-}
+

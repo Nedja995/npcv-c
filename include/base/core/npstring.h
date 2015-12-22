@@ -11,7 +11,7 @@
 #define __NPCORE_STRING__
 
 #include "datatypes.h"
-#include "memory.h"
+//#include "npmemory.h"
 
 /**@brief	A macro that defines string buffer. */
 #define STRING_BUFFER 1024
@@ -23,28 +23,32 @@
  */
 #define string_alloc(length) (char *)mallocN(sizeof(char) * length + 1)
 
-namespace npcore
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+//	NPC_DATATYPES
+
 	/**
 	 * @brief	Make formated string.
-	 * 			
+	 *
 	 * @param	fmt	Describes the format to use.
 	 * @param	...	Variable arguments providing additional information.
 	 * @return	null if it fails, else pointer to new string.
 	 */
 	char *strmakeN(const char *fmt, ...);
-
+	
 	/**
 	 * @brief	String length.
-	 * 			
+	 *
 	 * @param	string	The string.
 	 * @return	Number of chars in string.
 	 */
-	size_t strnlenN(const char *string);
+	size_tt strnlenN(const char *string);
 
 	/**
 	 * @brief	sptrinf.
-	 * 			
+	 *
 	 * @param [in,out]	buf	If non-null, the buffer.
 	 * @param	fmt		   	Describes the format to use.
 	 * @param	...		   	Variable arguments providing additional information.
@@ -53,7 +57,7 @@ namespace npcore
 
 	/**
 	 * @brief	Replace characters in string.
-     *
+	 *
 	 * @param [in,out]	string	If non-null, the string.
 	 * @param [in,out]	from  	If non-null, source for the.
 	 * @param [in,out]	to	  	If non-null, to.
@@ -69,5 +73,7 @@ namespace npcore
 	 */
 	char *strappendN(const char *first, const char *second);
 
+#ifdef __cplusplus
 }
+#endif
 #endif

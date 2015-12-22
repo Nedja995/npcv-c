@@ -11,19 +11,21 @@
 *
 */
 
-#include "math.h"
+//#include "math.h"
 
-namespace npcore {
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 	/**
 	 * @brief	Sqrtfs.
 	 * @param	num	Number of.
 	 *
 	 * @return	A float.
 	 */
-	float sqrtf(float num);
+	float sqrtf22(float num);
 
-
+#ifdef __cplusplus
 }
+#endif
 
 #endif

@@ -3,9 +3,6 @@
 #include "stdio.h"
 #include <stdarg.h>
 
-namespace npcore
-{
-
 
 	int NConsoleInput(const char *fmt, ...)
 	{
@@ -24,4 +21,3 @@ namespace npcore
 		vprintf(fmt, args);
 		va_end(args);
 	}
-}

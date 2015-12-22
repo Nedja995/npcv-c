@@ -3,8 +3,6 @@
 #include "base/core/memory.h"
 #include "base/core/mathn.h"
 
-namespace npcf {
-
 	ImageClassificationData * image_classification_data_create(int regionsCount)
 	{
 		ImageClassificationData * ret = (ImageClassificationData *)mallocN(sizeof(ImageClassificationData));
@@ -93,5 +91,3 @@ namespace npcf {
 		}
 		return ret;
 	}
-}
-//int main() { return 0; }

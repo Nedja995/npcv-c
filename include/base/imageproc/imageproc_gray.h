@@ -11,9 +11,8 @@
 #ifndef __NPCV__GRAY_H__
 #define __NPCV_GRAY_H__
 
-#include "base/core/Image.h"
+#include "base/imageproc/image.h"
 
-using namespace npcore;
 
 //namespace npip{
 #ifdef __cplusplus
@@ -25,7 +24,7 @@ extern "C" {
 	 * @param [in,out]	image	Image.
 	 * @return	true if it succeeds, false if it fails.
 	 */
-	bool n_gray(Image * image);
+	int n_gray(Image * image);
 
 	//}
 #ifdef __cplusplus

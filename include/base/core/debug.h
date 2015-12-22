@@ -43,11 +43,11 @@
 
 
 //std
-#include <stdarg.h>
-#include "stdio.h"
+//#include <stdarg.h>
+//#include "stdio.h"
 
 #include "list.h"
-#include "npstring.h"
+//#include "npstring.h"
 
 #define DOES_WRITE_TRACE_CONSOLE
 
@@ -168,7 +168,9 @@
  *
  * @brief	Core functionalities
  */
-namespace npcore {
+#ifdef __cplusplus
+extern "C" {
+#endif
 	/**
 	* @typedef	int NPLogLevel
 	*
@@ -192,16 +194,16 @@ namespace npcore {
 	/*
 	* LOGGING LEVEL RUNTIME FLAGS
 	*/
-	static bool _np_log_disabled = false;   /**< Is all logging disabled */
-	static bool _np_log_out_file = true;	/**< Is logs write to file */
-	static bool _np_log_out_console = true; /**< Is logs print to console at runtime */
-	
+	static int _np_log_disabled = -1;   /**< Is all logging disabled */
+	static int _np_log_out_file = 0;	/**< Is logs write to file */
+	static int _np_log_out_console = 0; /**< Is logs print to console at runtime */
+
 	/*
 	* TRACING RUNTIME FLAGS
 	*/
-	static bool _np_trace_disabled = false; /**< Is trace disabled */
-	static bool _np_trace_out_file = true;  /**< Is trace logs write to file */
-	static bool _np_trace_out_console = true;/**< Is trace logs print to console at runtime  */
+	static int _np_trace_disabled = -1; /**< Is trace disabled */
+	static int _np_trace_out_file = 0;  /**< Is trace logs write to file */
+	static int _np_trace_out_console = 0;/**< Is trace logs print to console at runtime  */
 
 	/**
 	 * @brief	Standard log output
@@ -223,13 +225,13 @@ namespace npcore {
 
 	/*
 	* LOG LEVEL RUTIME FLAG
-	* 
+	*
 	*/
 
 	static NPLogLevel logLevel; /**< Runtime log level */
 
 
-	/**@brief Full pathname of the np tracefile default file.  
+	/**@brief Full pathname of the np tracefile default file.
 	 * @todo Move to "Session" struct
 	*/
 	static char *_np_tracefile_default_path = "log.txt";
@@ -245,26 +247,26 @@ namespace npcore {
 	/**
 	* @brief	Determines if we can trace logs print in console.
 	*/
-	bool _does_trace_with_console();
+	int _does_trace_with_console();
 
 	/**
 	 * @brief	Determines if we can write trace logs to file.
 	 */
-	bool _does_trace_with_file();
+	int _does_trace_with_file();
 
 	/**
 	 * @brief	Determines if we can log print in console.
 	 */
-	bool _does_log_with_console();
+	int _does_log_with_console();
 
 	/**
 	 * @brief	Determines if we can write logs to file.
 	 */
-	bool _does_log_with_file();
+	int _does_log_with_file();
 
+#ifdef __cplusplus
 }
-
-
+#endif
 
 
 

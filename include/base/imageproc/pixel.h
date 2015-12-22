@@ -17,19 +17,20 @@
 
 #define PIXEL_MAX_STRING 500 // pixel_string_alloc() LIMIT
 
-#include "datatypes.h"
+#include "base\core\datatypes.h"
 
-namespace npcore 
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
 	/**
 	 * @struct	Pixel
 	 * @brief	A pixel.
 	 */
-	struct Pixel 
+	typedef struct Pixel 
 	{
 		int r, g, b;
 		uchar *ptr;
-	};
+	} Pixel;
 
 	/**
 	 * @brief	Contructor for Pixel.
@@ -47,15 +48,7 @@ namespace npcore
 	 */
 	char *pixel_string_alloc(const Pixel *pixel);
 
-	/**
-	 * @brief	Pixel trace.
-	 *
-	 * @param	pixel		 	The pixel.
-	 * @param	traceListener	The trace listener.
-	 */
-	void pixel_trace(const Pixel *pixel, const char *traceListener);
 
-	void pixel_trace(const Pixel *pixel);
 
 
 
@@ -109,7 +102,9 @@ namespace npcore
 #define END_ITER_Y  freeN(pixel);}
 #define END_FOREACH2 }
 
+#ifdef __cplusplus
 }
+#endif
 
 
 #endif

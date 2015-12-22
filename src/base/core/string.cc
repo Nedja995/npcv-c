@@ -1,14 +1,12 @@
 #include "npstring.h"
+#include "npmemory.h"
 #include <stdarg.h>
-#include "stdio.h"
+#include <stdio.h>
 
 
-
-namespace npcore
-{
 	char *strmakeN(const char * fmt, ...)
 	{
-		char *ret = (char*)mallocN(sizeof(char) * STRING_BUFFER);
+		char *ret =  (char*)mallocN(sizeof(char) * STRING_BUFFER);
 		*ret = '\0';
 		va_list args;
 		va_start(args, fmt);	
@@ -18,19 +16,19 @@ namespace npcore
 	}
 
 
-	size_t strnlenN(const char * string)
+	size_tt strnlenN(const char * string)
 	{
-		size_t ret = 0;
+		size_tt ret = 0;
 		for (; *(string + ret++) != '\0';);
 		return ret - 1;
 	}
 
 	void sprintfN(char *buf,const char *fmt, ...)
 	{
-		va_list va;
+		/*va_list va;
 		va_start(va, fmt);
 		vsprintf(buf, fmt, va);
-		va_end(va);
+		va_end(va);*/
 	}
 
 	void strreplaceN(char *string, char *from, char *to)
@@ -53,7 +51,6 @@ namespace npcore
 	char *strappendN(const char *first, const char *second)
 	{
 		char *ret = (char*)mallocN(sizeof(char) * STRING_BUFFER);
-		sprintf(ret, "%s%s", first, second);
+		//sprintf(ret, "%s%s", first, second);
 		return ret;
 	}
-}

@@ -13,15 +13,16 @@
 #include "datatypes.h"
 #include "mathn.h"
 #include "debug.h"
-#include "Image.h"
+
 #include "list.h"
-#include "memory.h"
+#include "npmemory.h"
 #include "npio.h"
 #include "npstring.h"
 #include "ntime.h"
 
-namespace npcore {
-
+#ifdef __cplusplus
+extern "C"{
+#endif
 	/**
 	 * @brief	Initialize NPCORE.
 	 * @return	If sucessfully 1 else -1.
@@ -34,6 +35,8 @@ namespace npcore {
 	*/
 	int NPCORE_exit();
 
-}
 
+#ifdef __cplusplus
+}
+#endif
 #endif

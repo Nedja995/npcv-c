@@ -1,6 +1,6 @@
 #include "pixel.h"
-#include "npstring.h"
-#include "debug.h"
+#include "base\core\npstring.h"
+#include "base\core\debug.h"
 
 namespace npcore 
 {
@@ -44,7 +44,7 @@ namespace npcore
 	//trace default
 	void pixel_trace(const Pixel * pixel)
 	{
-		pixel_trace(pixel, _np_tracefile_default_path);
+		//pixel_trace(pixel, _np_tracefile_default_path);
 	}
 
 

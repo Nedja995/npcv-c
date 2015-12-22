@@ -12,12 +12,16 @@ set(IMAGEPROC_INC_DIR
 	${PROJECT_INCLUDE}/base/imageproc
 )
 set(IMAGEPROC_INC
+	${IMAGEPROC_INC_DIR}/pixel.h
+	${IMAGEPROC_INC_DIR}/image.h
 	${IMAGEPROC_INC_DIR}/edge_detection.h
 	${IMAGEPROC_INC_DIR}/imageproc_gray.h
 )
 set(IMAGEPROC_SRC
-	EdgeDetection.cpp
-	ImageProc_Gray.cpp
+	pixel.cpp
+	image.cpp
+	EdgeDetection.c
+	ImageProc_Gray.c
 )
 
 

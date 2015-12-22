@@ -1,4 +1,4 @@
-#include "base/core/Image.h"
+#include "image.h"
 #include "base/core/npstring.h"
 
 //#include "stdlib.h"
