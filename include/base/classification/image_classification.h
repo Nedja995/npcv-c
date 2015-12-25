@@ -11,7 +11,7 @@
 #ifndef __NPCV_IMAGE_CLASSIFICATION_H__
 #define __NPCV_IMAGE_CLASSIFICATION_H__
 
-#include "../imageproc/image.h";
+#include "base/imageproc/image.h";
 
 //using namespace npcore;
 #ifdef __cplusplus

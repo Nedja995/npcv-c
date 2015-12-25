@@ -22,7 +22,7 @@ extern "C" {
 	 *
 	 * @return	A float.
 	 */
-	float sqrtf22(float num);
+	float npsqrtf(float num);
 
 #ifdef __cplusplus
 }

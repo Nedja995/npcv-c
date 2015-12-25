@@ -19,6 +19,7 @@
 #include "npio.h"
 #include "npstring.h"
 #include "ntime.h"
+#include "npfile.h"
 
 #ifdef __cplusplus
 extern "C"{

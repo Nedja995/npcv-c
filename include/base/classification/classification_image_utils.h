@@ -14,7 +14,7 @@
 #ifndef __NPCV_CLASSF_FILE_H__
 #define __NPCV_CLASSF_FILE_H__
 
-#include "base/classification/image_classification.h"
+#include "image_classification.h"
 
 #include "base/core/list.h"
 

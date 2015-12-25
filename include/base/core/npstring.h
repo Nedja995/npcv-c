@@ -73,6 +73,34 @@ extern "C" {
 	 */
 	char *strappendN(const char *first, const char *second);
 
+	/**
+	 * @brief	Nstrdups the given string.
+	 * @param	string	The string.
+	 *
+	 * @return	null if it fails, else a char*.
+	 */
+	char *stringDuplicate(const char *string);
+
+	/**
+	 * @brief	String compare.
+	 * 			
+	 * @param	string			The string.
+	 * @param	stringSecond	The string second.
+	 *
+	 * @return	An int.
+	 */
+	int stringCompare(const char *string, const char *stringSecond);
+
+	/**
+	 * @brief	String contains.
+	 *
+	 * @param	string  	The string.
+	 * @param	sequence	The sequence.
+	 *
+	 * @return	Pointer to sequience in string.
+	 */
+	const char *stringContains(const char *string, const char *sequence);
+
 #ifdef __cplusplus
 }
 #endif

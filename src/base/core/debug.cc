@@ -182,6 +182,14 @@
 		return -1;
 	}
 
+	void _nassert(void * ptr)
+	{
+		if (ptr == NULL)
+		{
+			NLogTrace("Assertion Error");
+		}
+	}
+
 	/**
 	* @brief	Determines if we need log with console. Helper
 	*

@@ -11,8 +11,9 @@
 #ifndef __NP_PATH_UTILS_H__
 #define __NP_PATH_UTILS_H__
 
-namespace nputils {
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 	/**
 	 * @brief	Path to linux.
 
@@ -42,8 +43,8 @@ namespace nputils {
 	 * @return	null if it fails, else a char*.
 	 */
 	char *path_to_windows_alloc(const char *unixPath);
+
+#ifdef __cplusplus
 }
-
-
-
+#endif
 #endif

@@ -6,7 +6,7 @@
 *
 *  \file ImageStream.h
 *
-*  \ingroup utils
+*  \ingroup imageproc
 *
 *  \author Nedeljko Pejasinovic
 *
@@ -14,7 +14,7 @@
 #ifndef __NSD_IMAGE_READER__
 #define __NSD_IMAGE_READER__
 
-#include "base/imageproc/image.h"
+#include "image.h"
 
 
 #ifdef __cplusplus
@@ -27,7 +27,7 @@ extern "C" {
 	* @param	filepath	The filepath.
 	* @return	null if it fails, else the loaded image.
 	*/
-	static Image * ReadImage_STB(const char * filepath);
+	Image * ReadImage_STB(const char * filepath);
 
 	/**
 	* @brief	Writes an image with STB image.
@@ -37,7 +37,7 @@ extern "C" {
 	*
 	* @return	true if it succeeds, false if it fails.
 	*/
-	static bool WriteImage_STB(const Image * image, const char * filepath);
+	bool WriteImage_STB(const Image * image, const char * filepath);
 
 #ifdef __cplusplus
 }

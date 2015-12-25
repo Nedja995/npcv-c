@@ -17,7 +17,7 @@
 
 #define PIXEL_MAX_STRING 500 // pixel_string_alloc() LIMIT
 
-#include "base\core\datatypes.h"
+#include "base\core\npstdlib.h"
 
 #ifdef __cplusplus
 extern "C" {

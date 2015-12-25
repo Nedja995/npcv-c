@@ -1,7 +1,7 @@
 
 #include "image_classification.h"
-#include "base/core/memory.h"
-#include "base/core/mathn.h"
+#include "base/core/npstdlib.h"
+#include <math.h>
 
 	ImageClassificationData * image_classification_data_create(int regionsCount)
 	{
@@ -53,19 +53,18 @@
 		return *(icd->regionsDatas + region);
 	}
 
-
 	ImageClassificationData * image_classify(Image * edges, int region)
 	{
 		if (edges == NULL)
 		{
-			printf("No Image");
+			NConsolePrint("No Image");
 			return NULL;
 		}
 
 		//region size
-		float sizeCoef = ::sqrtf((float)region);
-		size_t regionSize = edges->width / sizeCoef;
-		int rows = abs(sizeCoef);
+		float sizeCoef = sqrtf((float)region);
+		size_tt regionSize = edges->width / sizeCoef;
+		int rows = fabs(sizeCoef);
 
 		ImageClassificationData * ret = image_classification_data_create(region);
 

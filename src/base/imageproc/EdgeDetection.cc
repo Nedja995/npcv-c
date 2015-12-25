@@ -1,4 +1,4 @@
-#include "base/core/memory.h"
+#include "base/core/npstdlib.h"
 #include "edge_detection.h"
 
 
@@ -28,8 +28,8 @@
 				freeN(left);
 				freeN(right);
 
-				if (abs(centerGray - leftGray) < sensitivity
-					|| abs(centerGray - rightGray) < sensitivity)
+				if (/*abs(*/centerGray - leftGray/*)*/ < sensitivity
+					|| /*abs(*/centerGray - rightGray/*)*/ < sensitivity)
 				{
 					*center->ptr++ = 0; // b
 					*center->ptr++ = 0; // g
@@ -91,46 +91,46 @@
 		//}
 
 		// Y
-		for (int x = 0; x < image->width; ++x)
-		{
-			for (int y = 0; y < image->height; ++y)
-			{
-				if (y < resolution + 1 || y + resolution + 1 > image->height)
-				{
-					continue;
-				}
-				Pixel * center = image_get_pixel(image, x, y);
+		//for (int x = 0; x < image->width; ++x)
+		//{
+		//	for (int y = 0; y < image->height; ++y)
+		//	{
+		//		if (y < resolution + 1 || y + resolution + 1 > image->height)
+		//		{
+		//			continue;
+		//		}
+		//		Pixel * center = image_get_pixel(image, x, y);
 
-				Pixel *up = image_get_pixel(image, x , y - resolution);
-				Pixel *down = image_get_pixel(image, x , y + resolution);
+		//		Pixel *up = image_get_pixel(image, x , y - resolution);
+		//		Pixel *down = image_get_pixel(image, x , y + resolution);
 
-				int centerGray = (center->r + center->g + center->b) / 3;
-				int leftGray = (up->r + up->g + up->b) / 3;
-				int rightGray = (down->r + down->g + down->b) / 3;
+		//		int centerGray = (center->r + center->g + center->b) / 3;
+		//		int leftGray = (up->r + up->g + up->b) / 3;
+		//		int rightGray = (down->r + down->g + down->b) / 3;
 
 
-				freeN(up);
-				freeN(down);
+		//		freeN(up);
+		//		freeN(down);
 
-				if (abs(centerGray - leftGray) < sensitivity
-					|| abs(centerGray - rightGray) < sensitivity)
-				{
-					*center->ptr++ = 0; // b
-					*center->ptr++ = 0; // g
-					*center->ptr++ = 0; //r
-				}
-				else
-				{
-					//edge
-					*center->ptr++ = 255; // b
-					*center->ptr++ = 255; // g
-					*center->ptr++ = 255; // r
-				}
+		//		if (abs(centerGray - leftGray) < sensitivity
+		//			|| abs(centerGray - rightGray) < sensitivity)
+		//		{
+		//			*center->ptr++ = 0; // b
+		//			*center->ptr++ = 0; // g
+		//			*center->ptr++ = 0; //r
+		//		}
+		//		else
+		//		{
+		//			//edge
+		//			*center->ptr++ = 255; // b
+		//			*center->ptr++ = 255; // g
+		//			*center->ptr++ = 255; // r
+		//		}
 
-				freeN(center);
+		//		freeN(center);
 
-			}
-		}
+		//	}
+		//}
 
 		//y reverse
 		//for (int x = image->width; x > 0; --x)

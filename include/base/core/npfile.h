@@ -16,8 +16,9 @@
  *
  * @brief	Utilities and helpers for npcv
  */
-namespace nputils
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
 	/**
 	 * @brief	File write.
 	 *
@@ -25,7 +26,8 @@ namespace nputils
 	 * @param	text		Text to write.
 	 * @return	true if it succeeds, false if it fails.
 	 */
-	bool file_write(const char * filepath, const char * text);
+	int file_write(const char * filepath, const char * text);
+#ifdef __cplusplus
 }
-
+#endif
 #endif

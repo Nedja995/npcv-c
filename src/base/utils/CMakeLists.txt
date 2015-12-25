@@ -12,37 +12,22 @@ set(UTILS_INC_DIR
 )
 set(UTILS_INC
 	${UTILS_INC_DIR}/path_utils.h
-	${UTILS_INC_DIR}/file_ops.h
-	${UTILS_INC_DIR}/ImageStream.h
+	${UTILS_INC_DIR}/nputils.h
+
 )
 set(UTILS_SRC
-	path_utils.cpp
-	file_ops.cpp
-	ImageStream.cpp
+	path_utils.cc
+	test.cc
 )
 
-###################
-# EXTERNAL DEP
-#
-# STB_IMAGE
-set(STB_IMAGE_INC
-	${CMAKE_SOURCE_DIR}/lib/stb/stb_image.h
-	${CMAKE_SOURCE_DIR}/lib/stb/stb_image_write.h
-)
+
 
 #include project headers
 include_directories(utils ${PROJECT_INCLUDE})
 #include headers
 include_directories(utils ${UTILS_INC_DIR})
 
-#
-# external STB_IMAGE 
-if(WITH_STB_IMAGE)
-	#preprocessor
-	add_definitions(-DWITH_STB_IMAGE)
-	#include stb_image headers
-	include_directories(utils ${CMAKE_SOURCE_DIR}/lib/stb)	
-endif()
+
 
 # Library Add
 add_library(utils STATIC ${UTILS_SRC} ${UTILS_INC})

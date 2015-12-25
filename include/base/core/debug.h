@@ -88,7 +88,11 @@
 /** @brief	A macro that defines np trace.*/
 #define NP_TRACE	6
 
-
+#ifdef NPC_ASSERTION
+#	define npassert(ptr) _nassert(ptr)
+#else
+#	define npassert(ptr) _nassert(ptr)
+#endif
 
 /**
 * @brief if disabled any log and trace functions
@@ -263,6 +267,15 @@ extern "C" {
 	 * @brief	Determines if we can write logs to file.
 	 */
 	int _does_log_with_file();
+
+	/**
+	 * @brief	Npasserts the given pointer.
+	 *
+	 * @param [in,out]	ptr	If non-null, the pointer.
+	 */
+	void _nassert(const void * ptr);
+
+
 
 #ifdef __cplusplus
 }

@@ -20,6 +20,7 @@ set(CORE_INC
 	${CORE_INC_DIR}/datatypes.h
 	${CORE_INC_DIR}/ntime.h
 	${CORE_INC_DIR}/npstdlib.h
+	${CORE_INC_DIR}/npfile.h
 )
 
 set(CORE_SRC
@@ -31,6 +32,7 @@ set(CORE_SRC
 	time.cc
 	stdlib.cc
 	test.cc
+	file.cc
 )
 
 #include project headers

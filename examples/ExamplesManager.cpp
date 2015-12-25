@@ -1,28 +1,12 @@
 #ifndef __NPCV_EXAMPLES_MANAGER__
 #define __NPCV_EXAMPLES_MANAGER__
 
-//#include <varargs.h>
-//#if defined _MSC_VER && _NP_DEBUG && _NP_NP_DEBUG_VLD
-//#include "vld.h"
-//#endif
-
-//#include "base/imageproc/image.h"
-#include "base/utils/ImageStream.h"
-#include "base/imageproc/imageproc_gray.h"
-#include "base/imageproc/edge_detection.h"
-//#include "classification/image_classification.h"
-#include "base/utils/file_ops.h"
-#include "base/classification/classification_image_utils.h"
-//#include "base/core/list.h"
-#include "base/core/npio.h"
-//#include "base/core/npstring.h"
-#include "base/core/memory.h"
-#include "base/core/debug.h"
 #include "ExamplesDatas.h"
 
 #include "base/core/npstdlib.h"
-
-using namespace npcore;
+#include "base/imageproc/npimageproc.h"
+#include "base/classification/classification_image_utils.h"
+#include "base/classification/image_classification.h"
 
 enum NPCVTests
 {
@@ -37,7 +21,7 @@ enum NPCVTests
 	CLASSIFYOCR
 };
 
-bool List_Example()
+int List_Example()
 {
 	NConsolePrint("\nstart List\n");
 	List *list = list_create();
@@ -59,10 +43,10 @@ bool List_Example()
 	//list_free(list); /* clear only list. for list with static elements */
 
 	NConsolePrint("finish List\n\n");
-	return true;
+	return 0;
 }
 
-bool Time_Example()
+int Time_Example()
 {
 	NConsolePrint("\nstart Time\n");	
 	
@@ -70,7 +54,7 @@ bool Time_Example()
 	
 	if (nt == NULL) {
 		NConsolePrint("Time struct getting error !");
-		return false;
+		return -1;
 	}
 			
 	NConsolePrint("\nTime successfuly used: %02d_%02d_%02d_%02d-%02d-%02d\n", nt->year, nt->month, nt->day, nt->hour, nt->minute, nt->second);
@@ -78,23 +62,23 @@ bool Time_Example()
 	freeN(nt);
 	
 	NConsolePrint("finish Time\n\n");
-	return true;
+	return 0;
 }
 
-bool FileWrite_Example()
+int FileWrite_Example()
 {
 	char *output = Examples::getPath_alloc(fileWriteOutput);
 
-	if (nputils::file_write(output, fileWriteInput) == false) {
+	if (file_write(output, fileWriteInput) == -1) {
 		NConsolePrint("\nFile Writing failed !");
 		freeN(output);
-		return false;
+		return -1;
 	}
 	freeN(output);
-	return true;
+	return 0;
 }
 
-bool ImageReadWrite_Example()
+int ImageReadWrite_Example()
 {
 	char *input = Examples::getPath_alloc(lenaInput);
 	char *output = Examples::getPath_alloc(writeOutput);
@@ -104,17 +88,17 @@ bool ImageReadWrite_Example()
 	
 	if (img == NULL) {
 		NConsolePrint("\nEdge Image Read Write failed! input image not found!");
-		return false;
+		return -1;
 	}
 
 	WriteImage_STB(img, output);
 	
 	free_image(img);
 	freeN(output);
-	return true;
+	return 0;
 }
 
-bool ImageGray_Example()
+int ImageGray_Example()
 {
 	char *input = Examples::getPath_alloc(lenaInput);
 	char *output = Examples::getPath_alloc(grayOutput);
@@ -125,7 +109,7 @@ bool ImageGray_Example()
 	
 	if (img == NULL) {
 		NConsolePrint("\nGray failed! input image not found!");
-		return false;
+		return -1;
 	}
 
 	n_gray(img);
@@ -134,10 +118,10 @@ bool ImageGray_Example()
 	free_image(img);
 	freeN(output);
 
-	return true;
+	return 0;
 }
 
-bool Subarea_Example()
+int Subarea_Example()
 {
 	char *input = Examples::getPath_alloc(lenaInput);
 	char *output = Examples::getPath_alloc(subareaOutput);
@@ -145,7 +129,7 @@ bool Subarea_Example()
 	Image * img = ReadImage_STB(input);
 	if (img == NULL) {
 		NConsolePrint("\n Subarea failed! input image not found!");
-		return false;
+		return -1;
 	}
 
 	Image * small = image_get_area(img, img->width / 4, img->height / 4,
@@ -158,10 +142,10 @@ bool Subarea_Example()
 	free_image(img);
 	free_image(small);
 
-	return true;
+	return 0;
 }
 
-bool EdgeDetection_Examples()
+int EdgeDetection_Examples()
 {
 	char *input = Examples::getPath_alloc(lenaInput);
 	char *output = Examples::getPath_alloc(edgeDetectionOutput);
@@ -170,7 +154,7 @@ bool EdgeDetection_Examples()
 
 	if (img == NULL) {
 		NConsolePrint("\nDetection failed! input image not found!");
-		return false;
+		return -1;
 	}
 
 	contour_draw_custom(img, 1, 20);
@@ -180,15 +164,15 @@ bool EdgeDetection_Examples()
 	freeN(output);
 	free_image(img);
 
-	return true;
+	return 0;
 }
 
 void free_l(void *icd)
 {
-	npcf::free_image_classification_data((npcf::ImageClassificationData*)icd);
+	free_image_classification_data((ImageClassificationData*)icd);
 }
 
-bool ClassifyOcrSamples_Example()
+int ClassifyOcrSamples_Example()
 {
 	char *input = Examples::getPath_alloc(ocrSamples);
 	char *output = Examples::getPath_alloc(ocrSamplesOutput);
@@ -197,11 +181,11 @@ bool ClassifyOcrSamples_Example()
 	Image *img = ReadImage_STB(input);
 	if (img == NULL) {
 		NConsolePrint("\nClassify OCR Samples failed! input image not found!");
-		return false;
+		return -1;
 	}
 	Image *subimage = 0;
 	Image *subImageEdges = NULL;
-	npcf::ImageClassificationData *icdTemp = 0;
+	ImageClassificationData *icdTemp = 0;
 	List *classes = list_create();
 
 	int si = 0;
@@ -211,7 +195,7 @@ bool ClassifyOcrSamples_Example()
 		{
 			subimage = image_get_area(img, x, y, ocrSubimageSize, ocrSubimageSize);
 
-			icdTemp = npcf::image_classify(subimage, 12);
+			icdTemp = image_classify(subimage, 12);
 			
 			free_image(subimage);
 			
@@ -224,9 +208,9 @@ bool ClassifyOcrSamples_Example()
 		}
 	}
 
-	char *csvContent = npcf::datas_get_format_csv(classes);
+	char *csvContent = datas_get_format_csv(classes);
 
-	nputils::file_write(output, csvContent);
+	file_write(output, csvContent);
 
 	freeN(csvContent);
 	//list_free_default(classes, free_l);
@@ -237,7 +221,7 @@ bool ClassifyOcrSamples_Example()
 	freeN(output);
 	free_image(img);
 
-	return true;
+	return 0;
 }
 
 void printMainMessage() {
@@ -254,87 +238,41 @@ void printMainMessage() {
 	NConsolePrint(" csfocr input_image output_file sample_size regions\n\n");
 }
 
-//
-//TODO: solution for unknown input arguments number
-//
-// for now without custom arguments
-//
-#	include <time.h>
-int main2(int argc, char** argv)
-{
-
-	
-/*	NTime *ret = (NTime*)mallocN(sizeof(NTime));
-		
-		time_t curtime;
-		struct tm *loctime;
-
-		//Get the current time. 
-		curtime = time(NULL);
-
-		// Convert it to local time representation. 
-		loctime = localtime(&curtime);
-
-	NConsolePrint("now: %d-%d-%d %d:%d:%d\n", loctime->tm_year + 1900, loctime->tm_mon + 1, loctime->tm_mday, loctime->tm_hour, loctime->tm_min, loctime->tm_min);
-
-
-
-		ret->day = loctime->tm_mday;
-		ret->hour = loctime->tm_hour;
-		ret->milisecond = 0;
-		ret->minute = loctime->tm_min;
-		ret->month = loctime->tm_mon;
-		ret->second = loctime->tm_sec;
-		ret->year = 1900 + loctime->tm_year;
-		
-		//freeN(loctime);
-
-	freeN(ret);*/
-	
-	
-	
-	return 0;
-}
-
 int main(int argc, char** argv)
-{
-	
+{	
 	NPCORE_initialize();
 
 	NPCVTests testChoosed = ALL;
 	char *input = strmakeN("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-	//*(input + 256) = '\0';
-	//
 
-
-	while (strncmp(input, "quit", 50) != 0)
+	while (stringCompare(input, "quit") != 0)
 	{
 		//
 		// MAIN LOOP
 		printMainMessage();
 
 		//get input
-		scanf("%s", input);
+		NConsoleInput("%s", input);
 
 		//TODO: move this to function
 		//choose example
-		if (strstr(input, "all") != NULL)
+		if (stringContains(input, "all") != NULL)
 			testChoosed = ALL;
-		else if (strstr(input, "list") != NULL)
+		else if (stringContains(input, "list") != NULL)
 			testChoosed = LIST;
-		else if (strstr(input, "time") != NULL)
+		else if (stringContains(input, "time") != NULL)
 			testChoosed = TIME;
-		else if (strstr(input, "filewrite") != NULL)
+		else if (stringContains(input, "filewrite") != NULL)
 			testChoosed = FILE_W;
-		else if (strstr(input, "imagereadwrite") != NULL)
+		else if (stringContains(input, "imagereadwrite") != NULL)
 			testChoosed = IMAGE_RW;
-		else if (strstr(input, "gray") != NULL)
+		else if (stringContains(input, "gray") != NULL)
 			testChoosed = GRAY;
-		else if (strstr(input, "subimage") != NULL)
+		else if (stringContains(input, "subimage") != NULL)
 			testChoosed = SUBIMAGE;
-		else if (strstr(input, "edges") != NULL)
+		else if (stringContains(input, "edges") != NULL)
 			testChoosed = EDGES;
-		else if (strstr(input, "csfocr") != NULL)
+		else if (stringContains(input, "csfocr") != NULL)
 			testChoosed = CLASSIFYOCR;
 		else {
 			NConsolePrint("\nWrong command..");

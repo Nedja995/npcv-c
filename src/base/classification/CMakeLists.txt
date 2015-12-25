@@ -17,8 +17,8 @@ set(CLASSIFICATION_INC
 )
 
 set(CLASSIFICATION_SRC
-	image_classification.cpp
-	classification_image_utils.cpp
+	image_classification.cc
+	classification_image_utils.cc
 )
 
 if(MODULE_CLASSIFICATION)

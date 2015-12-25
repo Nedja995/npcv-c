@@ -18,7 +18,7 @@
 */
 
 #include "pixel.h"
-#include "base\core\datatypes.h"
+#include "base\core\npstdlib.h"
 
 /**
  * @brief	Return pointer to R component in pixel.
@@ -39,10 +39,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-
-	
-
 	/**
 	 * @struct	Image
 	 *
@@ -97,7 +93,7 @@ extern "C" {
 	 * @param	type  	The type.
 	 * @return	Sum of components and all pixels.
 	 */
-	int image_data_get_size(const int width, const int height, const int type);
+	size_t image_data_get_size(const int width, const int height, const int type);
 
 	/**
 	 * @brief	String representation of Image struct
