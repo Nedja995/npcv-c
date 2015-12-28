@@ -91,9 +91,9 @@ extern "C" {
  */
 #define IMAGE_FOREACH(image)							\
 	Pixel *pixel = NULL;								\
-	for (int x = 0; x < img->width; ++x) {				\
-		for (int y = 0; y < img->height; ++y) {			\
-			pixel = image_get_pixel(img, x, y);	
+	for (int x = 0; x < image->width; x++) {				\
+		for (int y = 0; y < image->height; y++) {			\
+			pixel = image_get_pixel(image, x, y);	
 
 // End foreach
 #define END_FOREACH freeN(pixel); } }

@@ -91,23 +91,22 @@ include_directories(tests ${CMAKE_SOURCE_DIR}/include)
 include_directories(tests ${CMAKE_CURRENT_BINARY_DIR}/gmock/src/gmock/include)
 
 if(GTEST_DOWNLOAD_GTEST_AND_GMOCK)
-#
-# Link gmock to project 'tests'
-#
-if(MSVC)
-TARGET_LINK_LIBRARIES(tests ${CMAKE_CURRENT_BINARY_DIR}/gmock/src/gmock-build/${CMAKE_CFG_INTDIR}/gmock.lib)
-TARGET_LINK_LIBRARIES(tests ${CMAKE_CURRENT_BINARY_DIR}/gmock/src/gmock-build/${CMAKE_CFG_INTDIR}/gmock_main.lib)
+	#
+	# Link gmock to project 'tests'
+	#
+	if(MSVC)
+		TARGET_LINK_LIBRARIES(tests ${CMAKE_CURRENT_BINARY_DIR}/gmock/src/gmock-build/${CMAKE_CFG_INTDIR}/gmock.lib)
+		TARGET_LINK_LIBRARIES(tests ${CMAKE_CURRENT_BINARY_DIR}/gmock/src/gmock-build/${CMAKE_CFG_INTDIR}/gmock_main.lib)
+	else()
+		TARGET_LINK_LIBRARIES(tests libgmock)
+		#TARGET_LINK_LIBRARIES(tests ${CMAKE_CURRENT_BINARY_DIR}/gmock/src/gmock-build/libmock_main.a)
+	endif()
 else()
-TARGET_LINK_LIBRARIES(tests libgmock)
-#TARGET_LINK_LIBRARIES(tests ${CMAKE_CURRENT_BINARY_DIR}/gmock/src/gmock-build/libmock_main.a)
-endif()
-
-else()
-if(MSVC)
-target_link_libraries(tests ${LIBRARY_OUTPUT_PATH}/${CMAKE_CFG_INTDIR}/gmock.lib)
-else()
-target_link_libraries(tests gmock)
-endif()
+	if(MSVC)
+		target_link_libraries(tests ${LIBRARY_OUTPUT_PATH}/${CMAKE_CFG_INTDIR}/gmock.lib)
+	else()
+		target_link_libraries(tests gmock)
+	endif()
 endif()
 
 #

@@ -20,6 +20,7 @@
 #include "npstring.h"
 #include "ntime.h"
 #include "npfile.h"
+#include "npmath.h"
 
 #ifdef __cplusplus
 extern "C"{

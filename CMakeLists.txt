@@ -4,7 +4,7 @@ cmake_minimum_required (VERSION 2.8.11)
 project (NPComputerVision)
 
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin/dev)
-SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib/dev)
+SET(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin/dev)
 
 ####################################
 #

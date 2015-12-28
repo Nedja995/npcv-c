@@ -24,9 +24,17 @@ extern "C" {
 	 * @param [in,out]	image	Image.
 	 * @return	true if it succeeds, false if it fails.
 	 */
-	int n_gray(Image * image);
+	int np_gray_simple(Image *image);
 
-	//}
+	/**
+	 * @brief	Np gray matrix.
+	 *
+	 * @param [in,out]	image	If non-null, the image.
+	 *
+	 * @return	An int.
+	 */
+	int np_gray_matrix(Image *image);
+
 #ifdef __cplusplus
 }
 #endif

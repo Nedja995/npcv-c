@@ -16,6 +16,7 @@ enum NPCVTests
 	FILE_W,
 	IMAGE_RW,
 	GRAY,
+	GRAY2,
 	SUBIMAGE,
 	EDGES,
 	CLASSIFYOCR
@@ -112,7 +113,30 @@ int ImageGray_Example()
 		return -1;
 	}
 
-	n_gray(img);
+	np_gray_simple(img);
+	WriteImage_STB(img, output);
+
+	free_image(img);
+	freeN(output);
+
+	return 0;
+}
+
+int ImageGray2_Example()
+{
+	char *input = Examples::getPath_alloc(gray2input);
+	char *output = Examples::getPath_alloc(gray2Output);
+
+	Image * img = ReadImage_STB(input);
+
+	freeN(input);
+
+	if (img == NULL) {
+		NConsolePrint("\nGray failed! input image not found!");
+		return -1;
+	}
+
+	np_gray_matrix(img);
 	WriteImage_STB(img, output);
 
 	free_image(img);
@@ -233,6 +257,7 @@ void printMainMessage() {
 	NConsolePrint(" filewrite output_path\n\n");
 	NConsolePrint(" imagereadwrite input_image output_image\n\n");
 	NConsolePrint(" gray input_image output_path\n\n");
+	NConsolePrint(" gray2 input_image output_path\n\n");
 	NConsolePrint(" subimage input_image output_image x y width height\n\n");
 	NConsolePrint(" edges input_path output_path resolution sensitivity\n\n");
 	NConsolePrint(" csfocr input_image output_file sample_size regions\n\n");
@@ -266,6 +291,8 @@ int main(int argc, char** argv)
 			testChoosed = FILE_W;
 		else if (stringContains(input, "imagereadwrite") != NULL)
 			testChoosed = IMAGE_RW;
+		else if (stringContains(input, "gray2") != NULL)
+			testChoosed = GRAY2;
 		else if (stringContains(input, "gray") != NULL)
 			testChoosed = GRAY;
 		else if (stringContains(input, "subimage") != NULL)
@@ -291,6 +318,8 @@ int main(int argc, char** argv)
 			ImageReadWrite_Example();
 			ImageGray_Example();
 			ImageGray_Example();
+			ImageGray2_Example();
+			ImageGray2_Example();
 			Subarea_Example();
 			Subarea_Example();
 			EdgeDetection_Examples();
@@ -315,6 +344,10 @@ int main(int argc, char** argv)
 		}
 		else if (testChoosed == GRAY) {
 			ImageGray_Example();
+
+		}
+		else if (testChoosed == GRAY2) {
+			ImageGray2_Example();
 
 		}
 		else if (testChoosed == SUBIMAGE) {
