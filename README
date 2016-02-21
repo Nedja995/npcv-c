@@ -1,13 +1,7 @@
-:::::::::::::::::::::::::::::::::::
-:: 
-::		WORK IN PROGRESS
-::
-:::::::::::::::::::::::::::::::::::
-
     :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   :::::   											     ::
 ::::::: 		NPCV									     ::
-:::::::	   COMPUTER VISION LIBRARY								     ::
+:::::::	   COMPUTER VISION LIBRARY (INCOMPLITE)								     ::
 ::::::: 											     ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -25,9 +19,7 @@
  
 == 1. PROJECT SUMMARY ==
 
-	* This is a lightweight computer vision library I started with the aim of personal training.
-	  It is cross platform compiling and open source project for Windows, Linux and Android
-	  with posibility to port them on other platform and even embeded system.	
+	* Cross platform C library (windows, linux)	
 
 	* There is not clear targets for what this can be used.
 	  For now it can be used like:
@@ -55,9 +47,6 @@
 	
 == 3. USING ==
 
-	* End user:
-		can start console program from '/bin/stable/' directory for their platform
-	
 	* Library users:
 		need to link libs from '/lib/' directory and include headers from '/include/ directory'
 	  
