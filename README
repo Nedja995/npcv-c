@@ -1,7 +1,7 @@
     :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   :::::   											     ::
 ::::::: 		NPCV									     ::
-:::::::	   COMPUTER VISION LIBRARY (INCOMPLITE)								     ::
+:::::::	   LETTER RECOGNITION LIBRARY (INCOMPLITE)								     ::
 ::::::: 											     ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -21,19 +21,15 @@
 
 	* Cross platform C library (windows, linux)	
 
-	* There is not clear targets for what this can be used.
-	  For now it can be used like:
+	* There is:
 		1.) standard libray (strings, lists, memory, and etc..) with configurable log system
 		2.) utils that can read/write file and images and cross platform path string utilities
-		3.) some image filtering and processing like gray, canny edge detection, cuting images
-		4.) classify images based on edges
+		3.) some image filtering and processing like convolution matrix, edge detection, subimage
+		4.) region based letter classification
 
 	* In addition to computer vision and even more I want learn to apply techniques 
 	  related to open source projects as all other interesting 
 	  software engineering techniques and technologies.
-	  I'm not going to make alternatives for existing solution 
-	  but there is some equals with somes solution with that i'm inspired.
-	  I get inspired by opencv, Vuforia, blender, cocos2dx, Neuroph, TensorFlow,..
 	  
 	* All advice, criticisms, questions and participants are welcome
 	
