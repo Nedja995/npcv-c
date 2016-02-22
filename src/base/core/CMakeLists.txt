@@ -34,7 +34,7 @@ set(CORE_SRC
 	stdlib.cc
 	test.cc
 	file.cc
-	mathn.cpp
+	mathn.cc
 )
 
 #include project headers

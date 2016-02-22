@@ -1,3 +1,26 @@
+/*
+* Copyright (c) 2016 Nedeljko Pejasinovic (nedjaunity@gmail.com)
+*
+* Permission is hereby granted, free of charge, to any person obtaining
+* a copy of this software and associated documentation files (the
+* "Software"), to deal in the Software without restriction, including
+* without limitation the rights to use, copy, modify, merge, publish,
+* distribute, sublicense, and/or sell copies of the Software, and to
+* permit persons to whom the Software is furnished to do so, subject to
+* the following conditions:
+*
+* The above copyright notice and this permission notice shall be
+* included in all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+* NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+* LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+* OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+* WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 #include "image.h"
 #include "pixel.h"
 
@@ -18,6 +41,20 @@
 		return ret;
 	}
 
+	Image * image_create_blank(int width, int height, int components)
+	{
+		Image* ret = (Image *)mallocN(sizeof(Image));
+
+		size_t memSize = sizeof(uchar) * width * height * 3;
+		ret->data = (unsigned char*)mallocN(memSize);
+		memsetN(ret->data, 255, memSize);
+		ret->height = height;
+		ret->width = width;
+		ret->type = components;
+		//freeN(ret->data);
+		return ret;
+	}
+
 	void free_image(Image *image)
 	{
 		freeN(image->data);
@@ -26,12 +63,18 @@
 
 	Pixel * image_get_pixel(const Image * image, int x, int y)
 	{
-		uchar * pixel = 0;
+		uchar* pixel = 0;
+
+		int pos = (x + y * image->width) * image->type;
+		pixel = image->data + pos;
+		return pixel_create(pixel);
+
+		/*uchar * pixel = 0;
 		int columnPosition = x * image->type;
 		int rowBeginPosition = image->width * image->type * y;
 		uchar* rowBegin = image->data + rowBeginPosition;
 		pixel = rowBegin + columnPosition;
-		return pixel_create(pixel);
+		return pixel_create(pixel);*/
 
 	}
 

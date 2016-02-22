@@ -22,40 +22,34 @@
 */
 
 /**
-*  \brief Edge detection functions
+*  \brief Gray processing functions
 *
-*  \file edge_detection.h
+*  \file imageproc_gray.h
 *
 *  \ingroup imageproc
 *
 *  \author Nedeljko Pejasinovic
 *
 */
-#ifndef __NPCV_EDGE_DETECTION_H__
-#define __NPCV_EDGE_DETECTION_H__
+#ifndef __NPCV__CONVOLUTION_MATRIX_H__
+#define __NPCV__CONVOLUTION_MATRIX_H__
 
 #include "base/imageproc/image.h"
 
-//using namespace npcore;
 
+//namespace npip{
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 	/**
-	 * @brief Set specific color for edge and not edge pixel.
-	 *
-	 * @param [in,out]	image	If non-null, the image.
-	 * @param	resolution   	The resolution.
-	 * @param	sensitivity  	The sensitivity.
-	 */
-	void contour_draw_custom(Image * image, int resolution, int sensitivity);
+	* @brief	Apply convolution matrix.
+	*
+	* @param [in,out]	image	Image.
+	* @return Image* new filtered image.
+	*/
+	Image * apply_matrix_alloc(Image *image);
 
 #ifdef __cplusplus
 }
 #endif
-
-
 #endif
-
-

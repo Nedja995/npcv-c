@@ -1,3 +1,26 @@
+/*
+* Copyright (c) 2016 Nedeljko Pejasinovic (nedjaunity@gmail.com)
+*
+* Permission is hereby granted, free of charge, to any person obtaining
+* a copy of this software and associated documentation files (the
+* "Software"), to deal in the Software without restriction, including
+* without limitation the rights to use, copy, modify, merge, publish,
+* distribute, sublicense, and/or sell copies of the Software, and to
+* permit persons to whom the Software is furnished to do so, subject to
+* the following conditions:
+*
+* The above copyright notice and this permission notice shall be
+* included in all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+* NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+* LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+* OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+* WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 #ifndef __NPCV_EXAMPLES_MANAGER__
 #define __NPCV_EXAMPLES_MANAGER__
 
@@ -8,6 +31,8 @@
 #include "base/imageproc/imageproc_gray.h"
 #include "base/classification/classification_image_utils.h"
 #include "base/classification/image_classification.h"
+#include "base/imageproc/convolution_matrix.h"
+#include "stdio.h"
 
 enum NPCVTests
 {
@@ -17,7 +42,7 @@ enum NPCVTests
 	FILE_W,
 	IMAGE_RW,
 	GRAY,
-	GRAY2,
+	FILTER,
 	SUBIMAGE,
 	EDGES,
 	CLASSIFYOCR
@@ -123,7 +148,7 @@ int ImageGray_Example()
 	return 0;
 }
 
-int ImageGray2_Example()
+int Filter_Example()
 {
 	char *input = Examples::getPath_alloc(gray2input);
 	char *output = Examples::getPath_alloc(gray2Output);
@@ -137,10 +162,11 @@ int ImageGray2_Example()
 		return -1;
 	}
 
-	np_gray_matrix(img);
-	WriteImage_STB(img, output);
+	Image* filtered = apply_matrix_alloc(img);
+	WriteImage_STB(filtered, output);
 
 	free_image(img);
+	free_image(filtered);
 	freeN(output);
 
 	return 0;
@@ -258,7 +284,7 @@ void printMainMessage() {
 	NConsolePrint(" filewrite output_path\n\n");
 	NConsolePrint(" imagereadwrite input_image output_image\n\n");
 	NConsolePrint(" gray input_image output_path\n\n");
-	NConsolePrint(" gray2 input_image output_path\n\n");
+	NConsolePrint(" filter input_image output_path\n\n");
 	NConsolePrint(" subimage input_image output_image x y width height\n\n");
 	NConsolePrint(" edges input_path output_path resolution sensitivity\n\n");
 	NConsolePrint(" csfocr input_image output_file sample_size regions\n\n");
@@ -278,7 +304,7 @@ int main(int argc, char** argv)
 		printMainMessage();
 
 		//get input
-		NConsoleInput("%s", input);
+		scanf("%s", input);
 
 		//TODO: move this to function
 		//choose example
@@ -292,8 +318,8 @@ int main(int argc, char** argv)
 			testChoosed = FILE_W;
 		else if (stringContains(input, "imagereadwrite") != NULL)
 			testChoosed = IMAGE_RW;
-		else if (stringContains(input, "gray2") != NULL)
-			testChoosed = GRAY2;
+		else if (stringContains(input, "filter") != NULL)
+			testChoosed = FILTER;
 		else if (stringContains(input, "gray") != NULL)
 			testChoosed = GRAY;
 		else if (stringContains(input, "subimage") != NULL)
@@ -319,8 +345,8 @@ int main(int argc, char** argv)
 			ImageReadWrite_Example();
 			ImageGray_Example();
 			ImageGray_Example();
-			ImageGray2_Example();
-			ImageGray2_Example();
+			Filter_Example();
+			Filter_Example();
 			Subarea_Example();
 			Subarea_Example();
 			EdgeDetection_Examples();
@@ -347,8 +373,8 @@ int main(int argc, char** argv)
 			ImageGray_Example();
 
 		}
-		else if (testChoosed == GRAY2) {
-			ImageGray2_Example();
+		else if (testChoosed == FILTER) {
+			Filter_Example();
 
 		}
 		else if (testChoosed == SUBIMAGE) {

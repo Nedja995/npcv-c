@@ -21,41 +21,22 @@
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/**
-*  \brief Edge detection functions
-*
-*  \file edge_detection.h
-*
-*  \ingroup imageproc
-*
-*  \author Nedeljko Pejasinovic
-*
-*/
-#ifndef __NPCV_EDGE_DETECTION_H__
-#define __NPCV_EDGE_DETECTION_H__
 
-#include "base/imageproc/image.h"
+#include "mathn.h"
+#include "math.h"
+//#include "math.h"
 
-//using namespace npcore;
+	float sqrtf22(float num)
+	{
+		return 0;// sqrtf(num);
+	}
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+	int np_min(int number, int numberSecond)
+	{
+		return fmin(number, numberSecond);
+	}
 
-	/**
-	 * @brief Set specific color for edge and not edge pixel.
-	 *
-	 * @param [in,out]	image	If non-null, the image.
-	 * @param	resolution   	The resolution.
-	 * @param	sensitivity  	The sensitivity.
-	 */
-	void contour_draw_custom(Image * image, int resolution, int sensitivity);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#endif
-
-
+	int np_max(int number, int numberSecond)
+	{
+		return fmax(number, numberSecond);
+	}

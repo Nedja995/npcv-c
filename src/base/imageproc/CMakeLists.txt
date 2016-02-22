@@ -16,6 +16,7 @@ set(IMAGEPROC_INC
 	${IMAGEPROC_INC_DIR}/image.h
 	${IMAGEPROC_INC_DIR}/edge_detection.h
 	${IMAGEPROC_INC_DIR}/imageproc_gray.h
+	${IMAGEPROC_INC_DIR}/convolution_matrix.h
 	${IMAGEPROC_INC_DIR}/npimage_utils.h
 )
 set(IMAGEPROC_SRC
@@ -24,6 +25,7 @@ set(IMAGEPROC_SRC
 	EdgeDetection.cc
 	ImageProc_Gray.cc
 	image_utils.cc
+	convolution_matrix.cc
 	test.cc
 )
 
