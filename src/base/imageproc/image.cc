@@ -1,13 +1,11 @@
-#include "base/core/Image.h"
-#include "base/core/npstring.h"
+#include "image.h"
+#include "pixel.h"
 
 //#include "stdlib.h"
 
-namespace npcore
-{
 	static const size_t MAX_IMAGE_STRING = 500;
 
-	Image* image_create(const uchar* data, int width, int height, int type)
+	Image *image_create(const uchar* data, int width, int height, int type)
 	{
 		Image* ret = (Image *)mallocN(sizeof(Image));
 
@@ -46,13 +44,10 @@ namespace npcore
 		return pos;
 	}
 
-
 	size_t image_data_get_size(const int width, const int height, const int type)
 	{
 		return width * height * type;
 	}
-
-
 
 	void image_trace(const Image * image)
 	{
@@ -129,15 +124,11 @@ namespace npcore
 		char *ret = string_alloc(MAX_IMAGE_STRING);
 		ret[0] = '\0';
 		char strW[15], strH[15], strT[15];
-		sprintf(strW, "%ix", image->width);
-		sprintf(strH, "%i ", image->height);
-		sprintf(strT, "%i", image->type);
-		strcat(ret, strW);
-		strcat(ret, strH);
-		strcat(ret, strT);
+		sprintfN(strW, "%ix", image->width);
+		sprintfN(strH, "%i ", image->height);
+		sprintfN(strT, "%i", image->type);
+		sprintfN(ret, strW);
+		sprintfN(ret, strH);
+		sprintfN(ret, strT);
 		return ret;
 	}
-
-
-}
-

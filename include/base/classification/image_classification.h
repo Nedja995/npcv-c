@@ -11,33 +11,33 @@
 #ifndef __NPCV_IMAGE_CLASSIFICATION_H__
 #define __NPCV_IMAGE_CLASSIFICATION_H__
 
-#include "../core/Image.h";
+#include "base/imageproc/image.h";
 
-using namespace npcore;
-
-namespace npcf {
-
-	struct ImageClassificationData 
+//using namespace npcore;
+#ifdef __cplusplus
+extern "C" {
+#endif
+	typedef struct ImageClassificationData
 	{
 		int regionCount;	/**< Number of regions */
 		int * regionsDatas; /**< Array of regions value. "-1" is separator betwen regions */
-	};
+	} ImageClassificationData;
 
 	/**
 	 * @brief	Classify based on regions
 	 *
 	 * Based on counting edge pixels per regions
-	 * 
+	 *
 	 * @param	regionsCount	Number of regions.
 	 * @return	null if it fails, else an new ImageClassificationData.
 	 */
 	ImageClassificationData * image_classification_data_create(int regionsCount);
-	
+
 	void free_image_classification_data(ImageClassificationData * data);
 
 	/**
 	 * @brief	Set region value.
-	 *  
+	 *
 	 *
 	 * @param [in,out]	    icd.
 	 * @param	region	   	The region.
@@ -75,7 +75,8 @@ namespace npcf {
 	ImageClassificationData * image_classify(Image * image, int region);
 
 
+#ifdef __cplusplus
 }
-
+#endif
 
 #endif

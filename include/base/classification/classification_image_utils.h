@@ -14,19 +14,18 @@
 #ifndef __NPCV_CLASSF_FILE_H__
 #define __NPCV_CLASSF_FILE_H__
 
-#include "base/classification/image_classification.h"
+#include "image_classification.h"
 
 #include "base/core/list.h"
-
-using namespace npcore;
 
 /**
  * @namespace	npcf
  *
  * @brief	Classification namespace
  */
-namespace npcf
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
 	/**
 	 * @brief	Make csv string of ImageClassificationData
 	 *
@@ -45,7 +44,9 @@ namespace npcf
 	char *datas_get_format_csv(List *classifiersList);
 
 
+#ifdef __cplusplus
 }
+#endif
 
 
 #endif

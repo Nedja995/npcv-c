@@ -1,11 +1,7 @@
-
+#include "datatypes.h"
 #include "list.h"
-#include "memory.h"
 
-namespace npcore
-{
-
-
+#include "npmemory.h"
 
 	List * list_create() {
 		List *ret = (List*)mallocN(sizeof(List));
@@ -28,7 +24,7 @@ namespace npcore
 	int list_count(List * list)
 	{
 		int ret = 0;
-		for (npcore::Link *iter = list->first;
+		for (Link *iter = list->first;
 			iter != list->last;
 			iter = iter->next) {
 			ret++;
@@ -78,10 +74,9 @@ namespace npcore
 		link = list->first;
 		while (link) {
 			next = link->next;
-			(*freeElementCallback)((void *)link->data);
+			freeElementCallback((void*)link->data);
 			freeN(link);
 			link = next;
 		}
 		freeN(list);
 	}
-}

@@ -14,11 +14,13 @@
 
 #define NULL 0
 
-namespace npcore {
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 	/**
 	 * @brief	Console print.
-	 * 			
+	 *
 	 * @param	fmt	Describes the format to use.
 	 * @param	...	Variable arguments providing additional information.
 	 */
@@ -26,15 +28,17 @@ namespace npcore {
 
 	/**
 	 * @brief	Console input.
-	 * 			
+	 *
 	 * @param	fmt	Describes the format to use.
 	 * @param	...	Variable arguments providing additional information.
 	 *
 	 * @return	input from console.
 	 */
 	int NConsoleInput(const char *fmt, ...);
+
+
+#ifdef __cplusplus
 }
-
-
+#endif
 
 #endif

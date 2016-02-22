@@ -17,19 +17,20 @@
 
 #define PIXEL_MAX_STRING 500 // pixel_string_alloc() LIMIT
 
-#include "datatypes.h"
+#include "base\core\npstdlib.h"
 
-namespace npcore 
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
 	/**
 	 * @struct	Pixel
 	 * @brief	A pixel.
 	 */
-	struct Pixel 
+	typedef struct Pixel 
 	{
 		int r, g, b;
 		uchar *ptr;
-	};
+	} Pixel;
 
 	/**
 	 * @brief	Contructor for Pixel.
@@ -47,15 +48,7 @@ namespace npcore
 	 */
 	char *pixel_string_alloc(const Pixel *pixel);
 
-	/**
-	 * @brief	Pixel trace.
-	 *
-	 * @param	pixel		 	The pixel.
-	 * @param	traceListener	The trace listener.
-	 */
-	void pixel_trace(const Pixel *pixel, const char *traceListener);
 
-	void pixel_trace(const Pixel *pixel);
 
 
 
@@ -98,9 +91,9 @@ namespace npcore
  */
 #define IMAGE_FOREACH(image)							\
 	Pixel *pixel = NULL;								\
-	for (int x = 0; x < img->width; ++x) {				\
-		for (int y = 0; y < img->height; ++y) {			\
-			pixel = image_get_pixel(img, x, y);	
+	for (int x = 0; x < image->width; x++) {				\
+		for (int y = 0; y < image->height; y++) {			\
+			pixel = image_get_pixel(image, x, y);	
 
 // End foreach
 #define END_FOREACH freeN(pixel); } }
@@ -109,7 +102,9 @@ namespace npcore
 #define END_ITER_Y  freeN(pixel);}
 #define END_FOREACH2 }
 
+#ifdef __cplusplus
 }
+#endif
 
 
 #endif

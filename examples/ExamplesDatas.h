@@ -1,8 +1,8 @@
 #ifndef __NPCV_EXAMPLES_DATAS__
 #define __NPCV_EXAMPLES_DATAS__
 
-#include "base/core/npstring.h"
-#include "base/utils/path_utils.h"
+#include "base/core/npstdlib.h"
+#include "base/utils/nputils.h"
 
 
 
@@ -12,16 +12,20 @@
 const char *project_root = EXAMPLES_DATA_DIR;
 
 //inputs
-const char* fileWriteInput = "Hello\n File test is succesfully";
+const char *fileWriteInput = "Hello\n File test is succesfully";
 const char *lenaInput = "samples\\lena.jpg";
+const char *gray2input = "samples\\photo3.bmp";
+const char *graySimpleInput = "samples\\pic3.png";
 const char *ocrSamples = "samples\\digits.png";
 const int ocrSubimageSize = 20;
 //outputs
 const char *fileWriteOutput = "output\\FileWriteOutput.txt";
 const char *writeOutput = "output\\lena.png";
-const char* grayOutput = "output\\gray.png";
+const char *grayOutput = "output\\gray.png";
+const char *gray2Output = "output\\photo3.bmp";
+const char *graySimpleOutput = "output\\pic3.png";
 const char *subareaOutput = "output\\subarea.png";
-const char* edgeDetectionOutput = "output\\edges.png";
+const char *edgeDetectionOutput = "output\\edges.png";
 const char *ocrSamplesOutput = "output\\ocrSamples.csv";
 
 
@@ -33,9 +37,9 @@ public:
 	static char *getPath_alloc(const char *relpath) {
 		char *ret = strappendN(project_root, relpath);
 #if defined __linux__
-		nputils::path_to_linux(ret);
+		path_to_linux(ret);
 #else
-		nputils::path_to_windows(ret);
+		path_to_windows(ret);
 #endif
 		return ret;
 	}

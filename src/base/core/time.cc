@@ -1,27 +1,25 @@
 #include "ntime.h"
-#include "memory.h"
-#include "debug.h"
+#include "npmemory.h"
+//#include "debug.h"
+#include "npstring.h"
 
 #if defined _MSC_VER
-#	include <windows.h>
-#	include <wchar.h>
+//#	include <windows.h>
+//#	include <wchar.h>
 
 #elif defined __linux__
 
 #endif
 #	include <time.h>
 
-namespace npcore {
-
 	/*
 	 * @brief get local time
-	 * @todo error not work in linux
 	 */
 	NTime *time_get_allocN()
 	{
 		NTime *ret = (NTime*)mallocN(sizeof(NTime));
 		int err = 0;
-		
+//		
 #if defined _MSC_VER || defined __linux__
 		time_t curtime;
 		struct tm loctime;
@@ -56,4 +54,4 @@ namespace npcore {
 	}
 
 
-}
+

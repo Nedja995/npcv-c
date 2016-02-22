@@ -1,12 +1,8 @@
 #include "mathn.h"
 
-#include "math.h"
+//#include "math.h"
 
-namespace npcore
-{
-	float sqrtf(float num)
+	float sqrtf22(float num)
 	{
-		return sqrtf(num);
+		return 0;// sqrtf(num);
 	}
-
-}

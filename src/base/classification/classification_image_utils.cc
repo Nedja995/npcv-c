@@ -1,17 +1,13 @@
-#include "base/core/npio.h"
-#include "base/core/npstring.h"
+#include "base/core/npstdlib.h"
 
 #include "classification_image_utils.h"
-#include "base/utils/file_ops.h"
+
 
 
 #define MAX_IMAGE_CLASSDATA_TEXT 1024
 
 #define MAX_REGION_VALUE_CHARS 4
 
-
-namespace npcf
-{
 	char *data_get_format_csv(ImageClassificationData * icd, size_t *stringLength)
 	{
 		char *ret = (char*)mallocN(sizeof(char) * MAX_IMAGE_CLASSDATA_TEXT);
@@ -26,15 +22,15 @@ namespace npcf
 			regVal = image_classify_region_get(icd, i);
 			if (regVal == -1)
 				int a = 3;
-			sprintf(textValue, "%i", regVal);
+			sprintfN(textValue, "%i", regVal);
 			//printf("%i", regVal);
 			if (i == icd->regionCount - 1) {
-				sprintf(ret + offsetReg, "%i", regVal);
-				offsetReg += npcore::strnlenN(textValue);
+				sprintfN(ret + offsetReg, "%i", regVal);
+				offsetReg += strnlenN(textValue);
 			}
 			else {
-				sprintf(ret + offsetReg, "%i,", regVal);
-				offsetReg += npcore::strnlenN(textValue) + 1;
+				sprintfN(ret + offsetReg, "%i,", regVal);
+				offsetReg += strnlenN(textValue) + 1;
 			}
 		}
 		freeN(textValue);
@@ -50,7 +46,7 @@ namespace npcf
 		size_t offset = 0;
 		size_t offsetReg = 0;
 
-		int listCount = npcore::list_count(classifiersList);
+		int listCount = list_count(classifiersList);
 		int regCount = ((ImageClassificationData*)classifiersList->first->data)->regionCount;
 
 	//	char *textValue = NULL;
@@ -75,4 +71,3 @@ namespace npcf
 		return textAllClass;
 	}
 
-}

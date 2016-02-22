@@ -11,29 +11,30 @@ set(CORE_INC_DIR
 	${PROJECT_INCLUDE}/base/core)
 	
 set(CORE_INC
-	${CORE_INC_DIR}/pixel.h
-	${CORE_INC_DIR}/Image.h
 	${CORE_INC_DIR}/list.h
-	${CORE_INC_DIR}/mathn.h
+
 	${CORE_INC_DIR}/npio.h
 	${CORE_INC_DIR}/npstring.h
-	${CORE_INC_DIR}/memory.h
+	${CORE_INC_DIR}/npmemory.h
 	${CORE_INC_DIR}/debug.h
 	${CORE_INC_DIR}/datatypes.h
 	${CORE_INC_DIR}/ntime.h
 	${CORE_INC_DIR}/npstdlib.h
+	${CORE_INC_DIR}/npfile.h
+	${CORE_INC_DIR}/npfmath.h
 )
 
 set(CORE_SRC
-	pixel.cpp
-	Image.cpp
-	list.cpp
-	mathn.cpp
-	npio.cpp
-	debug.cpp
-	npstring.cpp
-	ntime.cpp
-	npstdlib.cpp
+	list.cc
+	memory.cc
+	io.cc
+	debug.cc
+	string.cc
+	time.cc
+	stdlib.cc
+	test.cc
+	file.cc
+	math.cc
 )
 
 #include project headers

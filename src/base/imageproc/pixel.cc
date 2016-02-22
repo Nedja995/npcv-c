@@ -1,9 +1,6 @@
 #include "pixel.h"
-#include "npstring.h"
-#include "debug.h"
+#include "base\core\npstdlib.h"
 
-namespace npcore 
-{
 	Pixel *pixel_create(uchar *pixel)
 	{
 		Pixel *ret = (Pixel *)mallocN(sizeof(Pixel));
@@ -22,19 +19,19 @@ namespace npcore
 		char *ret = string_alloc(PIXEL_MAX_STRING);
 		ret[0] = '\0';
 		char strR[15], strG[15], strB[15];
-		sprintf(strR, "%i:", pixel->r);
-		sprintf(strG, "%i:", pixel->g);
-		sprintf(strB, "%i ", pixel->b);
-		strcat(ret, strR);
-		strcat(ret, strG);
-		strcat(ret, strB);
+		sprintfN(strR, "%i:", pixel->r);
+		sprintfN(strG, "%i:", pixel->g);
+		sprintfN(strB, "%i ", pixel->b);
+		sprintfN(ret, strR);
+		strappendN(ret, strG);
+		strappendN(ret, strB);
 		return ret;
 	}
 
 	//trace
 	void pixel_trace(const Pixel * pixel, const char *listener)
 	{
-		if (strncmp(listener, _np_tracefile_default_path, strlen(_np_tracefile_default_path)) == 0) {
+		if (/*strncmp(listener, _np_tracefile_default_path, strlen(_np_tracefile_default_path)) == 0*/false) {
 			//Log("tracing image. default listener");
 		}
 		else {
@@ -44,10 +41,5 @@ namespace npcore
 	//trace default
 	void pixel_trace(const Pixel * pixel)
 	{
-		pixel_trace(pixel, _np_tracefile_default_path);
+		//pixel_trace(pixel, _np_tracefile_default_path);
 	}
-
-
-}
-
- 

@@ -12,18 +12,18 @@
 *
 */
 
-#include "datatypes.h"
-//#ifdef __cplusplus
-//extern "C" {
-//#endif
-namespace npcore {
+//#include "datatypes.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 	//#define NULL 0
 
 	/**
 	 * @struct	NTime
 	 * @brief	Time structure.
 	 */
-	struct NTime {
+	typedef struct NTime {
 		int year;
 		int month;
 		int day;
@@ -31,9 +31,8 @@ namespace npcore {
 		int minute;
 		int second;
 		int milisecond;
-	};
+	} NTime;
 
-	typedef struct NTime NTime;
 
 	/**
 	 * @brief	Constructor for Time struct.
@@ -47,5 +46,7 @@ namespace npcore {
 	//}
 	//#endif
 
+#ifdef __cplusplus
 }
+#endif
 #endif

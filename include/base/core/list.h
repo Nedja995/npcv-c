@@ -11,10 +11,10 @@
 *
 */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-namespace npcore
-{
-	struct Link;
 
 	/**
 	 * @brief	Callback Type for free stored element in list.
@@ -26,18 +26,18 @@ namespace npcore
 	 * @struct	Link
 	 * @brief	Item for list.
 	 */
-	struct Link {
-		Link *next, *prev;
+	typedef struct Link {
+		struct Link *next, *prev;
 		const void *data;
-	};
+	} Link;
 
 	/**
 	 * @struct	List
 	 * @brief	A list.
 	 */
-	struct List {
-		Link *first, *last;
-	};
+	typedef struct List {
+		struct Link *first, *last;
+	} List;
 
 	/**
 	 * @brief	Contructor of List.
@@ -47,7 +47,7 @@ namespace npcore
 
 	/**
 	 * @brief	List put.
-	 * 			
+	 *
 	 * @param [in,out]	list	list.
 	 * @param	item			Item for list.
 	 */
@@ -71,7 +71,7 @@ namespace npcore
 
 	/**
 	 * @brief	Default link and list free.
-	 * 
+	 *
 	 * @param [in,out]	list	List to free.
 	 */
 	void list_free(List *list);
@@ -92,16 +92,18 @@ namespace npcore
 	 */
 	void list_free_custom(List *list, NListFreeElement_Callback freeElementCallback);
 
-/**
- * @brief	Helper macro for iterateing throught list.
- * @param	list	list.
- */
+	/**
+	 * @brief	Helper macro for iterateing throught list.
+	 * @param	list	list.
+	 */
 #define LIST_FOREACH(list)					\
 	for (Link *link = (Link*)list->first;	\
 					link != NULL;			\
 					link = link->next)  					
-	
 
 
+
+#ifdef __cplusplus
 }
+#endif
 #endif

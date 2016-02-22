@@ -18,7 +18,7 @@
 */
 
 #include "pixel.h"
-#include "datatypes.h"
+#include "base\core\npstdlib.h"
 
 /**
  * @brief	Return pointer to R component in pixel.
@@ -36,20 +36,21 @@
  */
 #define B(pixel) *(pixel->ptr + 2)
 
-namespace npcore
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
 	/**
 	 * @struct	Image
 	 *
 	 * @brief	Image presentation.
 	 */
-	struct Image
+	typedef struct Image
 	{
 		uchar *data; /**< Array of pixels */
 		int width;
 		int height;
 		int type; /**< Pixel components number */
-	};
+	} Image;
 
 	/**
 	 * @brief	Contstructor for image.
@@ -120,7 +121,9 @@ namespace npcore
 	 * @param	traceListener	The trace listener.
 	 */
 //	void image_trace(const Image *image, const char *traceListener);
+//}
+#ifdef __cplusplus
 }
-
+#endif
 
 #endif
