@@ -1,4 +1,5 @@
 #include "imageproc_gray.h"
+#include "base/core/npmath.h"
 #include "base/core/npstdlib.h"
 
 int np_gray_simple(Image * image)

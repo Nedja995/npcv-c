@@ -5,6 +5,7 @@
 
 #include "base/core/npstdlib.h"
 #include "base/imageproc/npimageproc.h"
+#include "base/imageproc/imageproc_gray.h"
 #include "base/classification/classification_image_utils.h"
 #include "base/classification/image_classification.h"
 

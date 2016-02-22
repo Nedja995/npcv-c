@@ -21,7 +21,7 @@ set(CORE_INC
 	${CORE_INC_DIR}/ntime.h
 	${CORE_INC_DIR}/npstdlib.h
 	${CORE_INC_DIR}/npfile.h
-	${CORE_INC_DIR}/npfmath.h
+	${CORE_INC_DIR}/mathn.h
 )
 
 set(CORE_SRC
@@ -34,7 +34,7 @@ set(CORE_SRC
 	stdlib.cc
 	test.cc
 	file.cc
-	math.cc
+	mathn.cpp
 )
 
 #include project headers

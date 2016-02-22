@@ -5,9 +5,7 @@
 extern "C" {
 #endif
 
-	int np_min(int number, int numberTwo);
 
-	int np_max(int number, int numberTwo);
 
 
 

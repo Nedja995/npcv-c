@@ -24,6 +24,10 @@ extern "C" {
 	 */
 	float npsqrtf(float num);
 
+	int np_min(int number, int numberSecond);
+
+	int np_max(int number, int numberSecond);
+
 #ifdef __cplusplus
 }
 #endif
