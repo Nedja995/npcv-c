@@ -12,10 +12,10 @@
 
 - Cross platform C library (windows, linux)	
 - There is:
-	1.) standard libray (strings, lists, memory, and etc..) with configurable log system
-	2.) utils that can read/write file and images and cross platform path string utilities
-	3.) some image filtering and processing like convolution matrix, edge detection, subimage
-	4.) region based letter classification
+	1. standard libray (strings, lists, memory, and etc..) with configurable log system
+	2. utils that can read/write file and images and cross platform path string utilities
+	3. some image filtering and processing like convolution matrix, edge detection, subimage
+	4. region based letter classification
 
 ### 2. OUTPUT SAMPLES
 1. Classification output. Ocr classification.
@@ -53,16 +53,16 @@ This is overview, more details in 6. BUILDING section
 
 ### 5. PREREQUISITES
 This project requires:
-* Cross-platform Make (CMake) v2.6.2+
-* (Windows) Visual Studio 2010+
-* (linux) GCC or an alternative, reasonably conformant C++ compiler.
-* (linux optional) CodeBlock IDE
+- Cross-platform Make (CMake) v2.6.2+
+- (Windows) Visual Studio 2010+
+- (linux) GCC or an alternative, reasonably conformant C++ compiler.
+- (linux optional) CodeBlock IDE
 
 ### 6. BUILDING
 - When configuring CMake you can include in build:
-	* GTest Project with downloading gtest and gmock reps or set path manual
-	* Visual Leak Detector - for windows debuging
-	* Examples project
+	- GTest Project with downloading gtest and gmock reps or set path manual
+	- Visual Leak Detector - for windows debuging
+	- Examples project
 - Tested with:
      - Windows Visual Studio
     - Unix Makefile
