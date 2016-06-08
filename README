@@ -14,19 +14,13 @@
  
 == 1. PROJECT SUMMARY ==
 
-	* Cross platform C library (windows, linux)	
+	* Cross platform C library (Windows, Linux)	
 
 	* There is:
-		1.) standard libray (strings, lists, memory, and etc..) with configurable log system
+		1.) standard libray (strings, lists, memory,etc..)
 		2.) utils that can read/write file and images and cross platform path string utilities
 		3.) some image filtering and processing like convolution matrix, edge detection, subimage
 		4.) region based letter classification
-
-	* In addition to computer vision and even more I want learn to apply techniques 
-	  related to open source projects as all other interesting 
-	  software engineering techniques and technologies.
-	  
-	* All advice, criticisms, questions and participants are welcome
 	
 == 2. OUTPUT SAMPLES ==
 	
@@ -65,15 +59,13 @@
 	  with low level log system. Many functions in std library are just wrappers 
 	  for C std libs. I did it for the problem  that I think may arise with performance 
 	  or compatibility with embeded system. So I thought this can help later.
-	  Even this wr. for now reduce performance little
-	  And I want implement much more functionalities on my own.
+	  Even this wrapper for now reduce performance for little.
   
 	* The 'npcv' is separated into four projects for now it contains:
-	 |  module  description                   |     namespace   |              
-	 | 'core' something like standard library |  npcore         |
-	 | 'utils' file/image read and write	  |  nputils        |
-	 | 'imgproc' image processing             |  npip           |
-	 | 'classification'			  |  npcf           |
+	  - 'core' something like standard library 
+	  - 'utils' file/image read and write	  
+	  - 'imgproc' image processing             
+	  - 'classification'			  
 	 
 	 
 == 5. PREREQUISITES ==
