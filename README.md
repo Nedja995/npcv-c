@@ -27,11 +27,11 @@
 ### 3. USING
 ###### Library users
 1. Need to link libs from '/lib/' directory and include headers from '/include/ directory'
-###### Developers:
-- Can use CMake to generate project for various IDE-s and Makefile 
-- There is two usefull executable project:
-- examples - when running they will make few outputs in '/examples/datas/output' also in this directory you can find '/valid_results/'	with who you can compare your outputs althrought in '/examples/datas/output/old/classified/test1/' you can find classification output of ocr number samples in early stage of development
-- tests - GTests. Can download them on build or select custom GTest and GMock project paths
+###### Developers
+1. Can use CMake to generate project for various IDE-s and Makefile 
+2. There is two usefull executable project:
+    - examples - when running they will make few outputs in '/examples/datas/output' also in this directory you can find '/valid_results/'	with who you can compare your outputs althrought in '/examples/datas/output/old/classified/test1/' you can find classification output of ocr number samples in early stage of development
+    - tests - GTests. Can download them on build or select custom GTest and GMock project paths
                     
 This is overview, more details in 6. BUILDING section
 
