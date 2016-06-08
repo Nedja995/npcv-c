@@ -61,9 +61,9 @@
 	  or compatibility with embeded system. So I thought this can help later.
 	  Even this wrapper for now reduce performance for little.
   
-	* The 'npcv' is separated into four projects for now it contains:
+	* The 'npcv' is separated into four library projects. it contains:
 	  - 'core' something like standard library 
-	  - 'utils' file/image read and write	  
+	  - 'utils'  
 	  - 'imgproc' image processing             
 	  - 'classification'			  
 	 
